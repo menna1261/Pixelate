@@ -1,6 +1,7 @@
-CMakeFiles/Pixelate.dir/main.cpp.o: /home/mennajaheen/Pixelate/main.cpp \
- /usr/include/stdc-predef.h /usr/include/gtkmm-3.0/gtkmm.h \
- /usr/include/glibmm-2.4/glibmm.h \
+CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
+ /home/mennajaheen/Pixelate/MainWindow.cpp /usr/include/stdc-predef.h \
+ /home/mennajaheen/Pixelate/include/MainWindow.h \
+ /usr/include/gtkmm-3.0/gtkmm.h /usr/include/glibmm-2.4/glibmm.h \
  /usr/lib64/glibmm-2.4/include/glibmmconfig.h \
  /usr/include/glibmm-2.4/glibmm/thread.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
@@ -1446,6 +1447,4 @@ CMakeFiles/Pixelate.dir/main.cpp.o: /home/mennajaheen/Pixelate/main.cpp \
  /usr/include/gtkmm-3.0/gtkmm/treestore.h \
  /usr/include/gtkmm-3.0/gtkmm/uimanager.h \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
- /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
- /home/mennajaheen/Pixelate/include/MainWindow.h \
- /usr/include/c++/15/iostream
+ /usr/include/gtkmm-3.0/gtkmm/volumebutton.h /usr/include/c++/15/iostream

@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Pixelate.dir/link.d"
+  "CMakeFiles/Pixelate.dir/MainWindow.cpp.o"
+  "CMakeFiles/Pixelate.dir/MainWindow.cpp.o.d"
   "CMakeFiles/Pixelate.dir/main.cpp.o"
   "CMakeFiles/Pixelate.dir/main.cpp.o.d"
   "Pixelate"

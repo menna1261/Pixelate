@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/mennajaheen/Pixelate/MainWindow.cpp" "CMakeFiles/Pixelate.dir/MainWindow.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/MainWindow.cpp.o.d"
   "/home/mennajaheen/Pixelate/main.cpp" "CMakeFiles/Pixelate.dir/main.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/main.cpp.o.d"
   "" "Pixelate" "gcc" "CMakeFiles/Pixelate.dir/link.d"
   )

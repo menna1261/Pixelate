@@ -18,8 +18,19 @@
 
 #NewButton{
     background: #3F3F43;
-    text-decoration-color: #ffffff
-    ;
-
 
 }
+
+#HButton{
+    background: #4D4D4D;
+    padding: 0;
+    margin: 0;
+
+}
+
+#Image{
+
+    padding: 0;
+    margin: 0;
+}
+

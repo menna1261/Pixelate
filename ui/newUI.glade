@@ -45,9 +45,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <property name="margin-start">11</property>
                 <property name="margin-top">5</property>
                 <property name="margin-bottom">9</property>
+                <signal name="clicked" handler="on_NewButton_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -63,6 +63,7 @@
                 <property name="receives-default">True</property>
                 <property name="margin-top">5</property>
                 <property name="margin-bottom">9</property>
+                <signal name="clicked" handler="on_ExportButton_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -90,7 +91,7 @@
             <property name="margin-left">1</property>
             <property name="margin-start">1</property>
             <property name="margin-bottom">19</property>
-            <property name="spacing">16</property>
+            <property name="spacing">21</property>
             <property name="baseline-position">bottom</property>
             <child>
               <object class="GtkButton" id="brushButton">
@@ -115,6 +116,7 @@
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Eraser</property>
                 <property name="image">EraserImg1</property>
+                <signal name="clicked" handler="on_Eraser_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -129,6 +131,7 @@
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Fill</property>
                 <property name="image">BucketImg1</property>
+                <signal name="clicked" handler="on_FillButton_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -143,6 +146,7 @@
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Zoom</property>
                 <property name="image">ZoomImg1</property>
+                <signal name="clicked" handler="on_ZoomButton_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -156,6 +160,9 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Pick a color</property>
+                <property name="color">#f6f6d3d32d2d</property>
+                <signal name="clicked" handler="on_ColorButton_clicked" swapped="no"/>
+                <signal name="color-set" handler="on_ColorButton_color_set" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
