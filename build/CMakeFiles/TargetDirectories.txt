@@ -1,0 +1,3 @@
+/home/mennajaheen/Pixelate/build/CMakeFiles/Pixelate.dir
+/home/mennajaheen/Pixelate/build/CMakeFiles/edit_cache.dir
+/home/mennajaheen/Pixelate/build/CMakeFiles/rebuild_cache.dir
