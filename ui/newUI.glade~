@@ -17,6 +17,135 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">assets/eraser.png</property>
   </object>
+  <object class="GtkPopover" id="NewCanvas">
+    <property name="width-request">400</property>
+    <property name="height-request">400</property>
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="has-focus">True</property>
+    <property name="is-focus">True</property>
+    <signal name="add" handler="on___glade_unnamed_1_add" object="mainWindow" swapped="no"/>
+    <signal name="closed" handler="on___glade_unnamed_1_closed" swapped="no"/>
+    <child>
+      <object class="GtkFixed" id="Fixed1">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel" id="widthLabel">
+            <property name="width-request">111</property>
+            <property name="height-request">55</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">width</property>
+            <attributes>
+              <attribute name="style" value="normal"/>
+              <attribute name="weight" value="normal"/>
+              <attribute name="scale" value="2"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">11</property>
+            <property name="y">111</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="HeightLabel">
+            <property name="width-request">111</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Height</property>
+            <attributes>
+              <attribute name="style" value="normal"/>
+              <attribute name="weight" value="normal"/>
+              <attribute name="scale" value="2"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">182</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="CreateCanvasLabel">
+            <property name="width-request">288</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Create a new Canvas</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="style" value="normal"/>
+              <attribute name="weight" value="medium"/>
+              <attribute name="scale" value="2"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">62</property>
+            <property name="y">17</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="WidthEntry">
+            <property name="width-request">214</property>
+            <property name="height-request">46</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+          </object>
+          <packing>
+            <property name="x">135</property>
+            <property name="y">119</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="HeightEntry">
+            <property name="width-request">216</property>
+            <property name="height-request">46</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+          </object>
+          <packing>
+            <property name="x">134</property>
+            <property name="y">197</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="CancelButton">
+            <property name="label" translatable="yes">Cancel</property>
+            <property name="width-request">98</property>
+            <property name="height-request">38</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <signal name="clicked" handler="on_CancelButton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">192</property>
+            <property name="y">311</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="CreateButton">
+            <property name="label" translatable="yes">Create</property>
+            <property name="width-request">98</property>
+            <property name="height-request">38</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="margin-end">15</property>
+            <signal name="clicked" handler="on_CreateButton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">311</property>
+            <property name="y">310</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkImage" id="ZoomImg1">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -160,8 +289,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="tooltip-text" translatable="yes">Pick a color</property>
-                <signal name="clicked" handler="on_ColorButton_clicked" swapped="no"/>
-                <signal name="color-set" handler="on_ColorButton_color_set" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

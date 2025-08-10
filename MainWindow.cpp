@@ -23,6 +23,16 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("mainWindow", window);
     m_refBuilder->get_widget("GtkBox2", ToolBar);
     m_refBuilder->get_widget("GtkBox3", HorizontalBar);
+    m_refBuilder->get_widget("NewCanvas", CanvasPopover);
+    m_refBuilder->get_widget("CancelButton", CancelButton);
+    m_refBuilder->get_widget("CreateButton", CreateButton);
+    m_refBuilder->get_widget("NewButton", NewButton);
+    m_refBuilder->get_widget("WidthEntry", WidthEntry); 
+    m_refBuilder->get_widget("HeightEntry", HeightEntry);  
+
+
+    CanvasPopover->set_relative_to(*NewButton);
+    CanvasPopover->hide();
 
     // Connect signals
     if (Eraser)
@@ -40,6 +50,15 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if (ColorButton)
         ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
 
+    if(NewButton)
+        NewButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_NewButton_clicked));
+
+    if(CreateButton)
+        CreateButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CreateButton_clicked));
+
+    if(CancelButton)
+        CancelButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CancelButton_clicked));
+
     //Style Widgets with CSS
     if(Eraser) Eraser->set_name("HButton");
     if(Bucket) Bucket->set_name("HButton");
@@ -49,6 +68,12 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if(window) window->set_name("mainWindow");
     if(ToolBar) ToolBar->set_name("GtkBox2");
     if(HorizontalBar) HorizontalBar->set_name("GtkBox3");
+    if(CanvasPopover) CanvasPopover->set_name("NewCanvas");
+    if(WidthEntry) WidthEntry->set_name("CButton");
+    if(HeightEntry) HeightEntry->set_name("CButton");
+    if(CreateButton) CreateButton->set_name("CButton");
+    if(CancelButton) CancelButton->set_name("CButton");
+    
 
 }
 
@@ -75,4 +100,33 @@ void MainWindow::on_FillButton_clicked()
 void MainWindow::on_ColorButton_clicked()
 {
     std::cout << "color button clicked!" << std::endl;
+}
+
+void MainWindow::on_NewButton_clicked()
+{
+    std::cout << "new clicked" << std::endl;
+    CanvasPopover->show_all();
+}
+
+void MainWindow::on_CancelButton_clicked()
+{
+    std::cout << "cancel" << std::endl;
+    CanvasPopover->hide();
+    WidthEntry->set_text("");
+    HeightEntry->set_text("");
+}
+
+void MainWindow::on_CreateButton_clicked()
+{
+    std::cout << "new clicked" << std::endl;
+    CanvasPopover->hide();
+
+    Glib::ustring Width = WidthEntry->get_text();
+    std::cout << "User typed: " << Width << std::endl;
+
+    Glib::ustring Height = HeightEntry->get_text();
+    std::cout << "User typed: " << Height << std::endl;
+
+    WidthEntry->set_text("");
+    HeightEntry->set_text("");
 }

@@ -14,6 +14,9 @@ public:
     void on_ZoomButton_clicked();
     void on_FillButton_clicked();
     void on_ColorButton_clicked();
+    void on_NewButton_clicked();
+    void on_CancelButton_clicked();
+    void on_CreateButton_clicked();
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
@@ -23,11 +26,21 @@ public:
     Gtk::Button* Bucket = nullptr;
     Gtk::Button* Zoom = nullptr;
     Gtk::Button* ColorButton = nullptr;
+    Gtk::Button* CancelButton = nullptr;
+    Gtk::Button* CreateButton = nullptr;
+    Gtk::Button* NewButton = nullptr;
 
     Gtk::Box* ToolBar = nullptr;
     Gtk::Box* HorizontalBar = nullptr;
 
     Gtk::Window* window = nullptr;
+
+    Gtk::Popover* CanvasPopover = nullptr;
+
+    Gtk::Entry* WidthEntry = nullptr;
+    Gtk::Entry* HeightEntry = nullptr;
+
+
 
 };
 
