@@ -28,9 +28,12 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("CreateButton", CreateButton);
     m_refBuilder->get_widget("NewButton", NewButton);
     m_refBuilder->get_widget("WidthEntry", WidthEntry); 
-    m_refBuilder->get_widget("HeightEntry", HeightEntry);  
+    m_refBuilder->get_widget("HeightEntry", HeightEntry);
+    m_refBuilder->get_widget("ExportButton", ExportButton);  
+    m_refBuilder->get_widget("invalidLabel1", InvalidLabel1);  
+    m_refBuilder->get_widget("invalidLabel2", InvalidLabel2);  
 
-
+    
     CanvasPopover->set_relative_to(*NewButton);
     CanvasPopover->hide();
 
@@ -73,6 +76,9 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if(HeightEntry) HeightEntry->set_name("CButton");
     if(CreateButton) CreateButton->set_name("CButton");
     if(CancelButton) CancelButton->set_name("CButton");
+    if(NewButton) NewButton->set_name("TopButtons");
+    if(ExportButton) ExportButton->set_name("TopButtons");
+
     
 
 }
@@ -106,6 +112,8 @@ void MainWindow::on_NewButton_clicked()
 {
     std::cout << "new clicked" << std::endl;
     CanvasPopover->show_all();
+    InvalidLabel1->set_text("");
+    InvalidLabel2->set_text("");
 }
 
 void MainWindow::on_CancelButton_clicked()
@@ -119,7 +127,7 @@ void MainWindow::on_CancelButton_clicked()
 void MainWindow::on_CreateButton_clicked()
 {
     std::cout << "new clicked" << std::endl;
-    CanvasPopover->hide();
+
 
     Glib::ustring Width = WidthEntry->get_text();
     std::cout << "User typed: " << Width << std::endl;
@@ -127,6 +135,27 @@ void MainWindow::on_CreateButton_clicked()
     Glib::ustring Height = HeightEntry->get_text();
     std::cout << "User typed: " << Height << std::endl;
 
+
+    if (Width == "")
+    {
+        std::cout<<"Empty"<<std::endl;
+        InvalidLabel1->set_text("Invalid value");
+    }
+
+
+    if(Height == ""){
+        InvalidLabel2->set_text("Invalid value");
+    }
+
+    else{
+    CanvasPopover->hide();
     WidthEntry->set_text("");
     HeightEntry->set_text("");
+
+    
+
+    }
+    
+
+
 }

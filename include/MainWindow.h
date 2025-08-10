@@ -29,6 +29,7 @@ public:
     Gtk::Button* CancelButton = nullptr;
     Gtk::Button* CreateButton = nullptr;
     Gtk::Button* NewButton = nullptr;
+    Gtk::Button* ExportButton = nullptr;
 
     Gtk::Box* ToolBar = nullptr;
     Gtk::Box* HorizontalBar = nullptr;
@@ -39,6 +40,9 @@ public:
 
     Gtk::Entry* WidthEntry = nullptr;
     Gtk::Entry* HeightEntry = nullptr;
+
+    Gtk::Label* InvalidLabel1 = nullptr;
+    Gtk::Label* InvalidLabel2 = nullptr;
 
 
 

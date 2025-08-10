@@ -16,9 +16,10 @@
     padding: 15px;
 }
 
-#NewButton{
+#TopButtons{
     background: #3F3F43;
-
+    color: white;
+    margin: 0;
 }
 
 #HButton{

@@ -143,6 +143,38 @@
             <property name="y">310</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkLabel" id="invalidLabel1">
+            <property name="width-request">100</property>
+            <property name="height-request">38</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">
+</property>
+            <attributes>
+              <attribute name="foreground" value="#f17d7cc57cc5"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">134</property>
+            <property name="y">156</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="invalidLabel2">
+            <property name="width-request">100</property>
+            <property name="height-request">20</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <attributes>
+              <attribute name="foreground" value="#f17d7cc57cc5"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">131</property>
+            <property name="y">243</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
