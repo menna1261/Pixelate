@@ -33,6 +33,10 @@ public:
 
     Gtk::Box* ToolBar = nullptr;
     Gtk::Box* HorizontalBar = nullptr;
+    Gtk::Box* GtkBox1 = nullptr;
+
+    Gtk::Widget* colorWidget = nullptr;
+    Gtk::Widget* colorWidget2 = nullptr;
 
     Gtk::Window* window = nullptr;
 
@@ -43,6 +47,8 @@ public:
 
     Gtk::Label* InvalidLabel1 = nullptr;
     Gtk::Label* InvalidLabel2 = nullptr;
+
+    Gtk::Notebook* NoteBook =  nullptr;
 
 
 

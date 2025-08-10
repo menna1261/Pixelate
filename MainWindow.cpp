@@ -14,6 +14,7 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
         screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER
     );
 
+
     // Get widgets from the UI
     m_refBuilder->get_widget("Eraser", Eraser);
     m_refBuilder->get_widget("brushButton", Brush);
@@ -22,6 +23,7 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("ColorButton", ColorButton);
     m_refBuilder->get_widget("mainWindow", window);
     m_refBuilder->get_widget("GtkBox2", ToolBar);
+    m_refBuilder->get_widget("GtkBox", GtkBox1);
     m_refBuilder->get_widget("GtkBox3", HorizontalBar);
     m_refBuilder->get_widget("NewCanvas", CanvasPopover);
     m_refBuilder->get_widget("CancelButton", CancelButton);
@@ -33,9 +35,15 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("invalidLabel1", InvalidLabel1);  
     m_refBuilder->get_widget("invalidLabel2", InvalidLabel2);  
 
-    
+    m_refBuilder->get_widget("Notebook", NoteBook); 
+    m_refBuilder->get_widget("colorChooser1", colorWidget); 
+    m_refBuilder->get_widget("colorChooser2", colorWidget2); 
+
+
+
     CanvasPopover->set_relative_to(*NewButton);
     CanvasPopover->hide();
+    //colorWidget->show();
 
     // Connect signals
     if (Eraser)
@@ -78,6 +86,9 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if(CancelButton) CancelButton->set_name("CButton");
     if(NewButton) NewButton->set_name("TopButtons");
     if(ExportButton) ExportButton->set_name("TopButtons");
+   // if(NoteBook)  NoteBook->set_name("Notebook");
+    if(colorWidget) colorWidget->set_name("Notebook");
+    if(colorWidget2) colorWidget2->set_name("Notebook");
 
     
 
