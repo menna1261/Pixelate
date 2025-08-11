@@ -1,30 +1,28 @@
+#pragma once
 #include <gtkmm.h>
+#include <vector>
 
 class DrawingWindow : public Gtk::Window {
 public:
-
-    DrawingWindow(float width , float Height){
-        set_title("DrawingArea Example");
-
-        // Create DrawingArea
-       // drawing_area.set_size_request(width, Height); // width=400px, height=300px
-        set_default_size(width, Height);
-        // Add it to the window
-        //set_child(drawing_area); // For GTKmm 4
-         add(drawing_area);    // For GTKmm 3
-
-        // Optional: Connect to draw signal
-        drawing_area.signal_draw().connect(sigc::mem_fun(*this, &DrawingWindow::on_draw), false);
-
-        show();
-    }
+    DrawingWindow(int width, int height);
 
 protected:
-    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-        cr->set_source_rgb(1, 1, 1); // blue color
-        cr->paint();
-        return true;
-    }
+    // Struct for storing each point
+    struct Point {
+        double x, y;
+        double pressure;
+        bool new_stroke; // true if this point starts a new stroke
+        
+    };
 
+    // Drawing area widget
     Gtk::DrawingArea drawing_area;
+
+    // Store all drawn points
+    std::vector<Point> points;
+
+    // Event handlers
+    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
+    bool on_button_press_event(GdkEventButton* event) override;
+    bool on_motion_notify_event(GdkEventMotion* event) override;
 };

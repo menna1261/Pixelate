@@ -4,6 +4,7 @@
 #include <gtkmm/colorchooser.h> 
 #include <iomanip>
 #include <sstream>
+#include <string>
 
 Gdk::RGBA get_color_from_chooser(Gtk::Widget* chooser_widget);
 MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder)
@@ -256,7 +257,9 @@ void MainWindow::on_CreateButton_clicked()
     WidthEntry->set_text("");
     HeightEntry->set_text("");
 
-    auto drawingwindow = Gtk::make_managed<::DrawingWindow>(600, 700);
+    int Width_ = std::stoi(Width);
+    int Height_ = std::stoi(Height);
+    auto drawingwindow = Gtk::make_managed<::DrawingWindow>(Width_, Height_);
     drawingwindow->set_transient_for(*this); //make it a child of main window
     drawingwindow->set_keep_above(true);     // always on top
     drawingwindow->show();

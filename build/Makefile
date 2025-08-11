@@ -129,6 +129,30 @@ Pixelate/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/build
 .PHONY : Pixelate/fast
 
+DrawingWindow.o: DrawingWindow.cpp.o
+.PHONY : DrawingWindow.o
+
+# target to build an object file
+DrawingWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o
+.PHONY : DrawingWindow.cpp.o
+
+DrawingWindow.i: DrawingWindow.cpp.i
+.PHONY : DrawingWindow.i
+
+# target to preprocess a source file
+DrawingWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/DrawingWindow.cpp.i
+.PHONY : DrawingWindow.cpp.i
+
+DrawingWindow.s: DrawingWindow.cpp.s
+.PHONY : DrawingWindow.s
+
+# target to generate assembly for a file
+DrawingWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/DrawingWindow.cpp.s
+.PHONY : DrawingWindow.cpp.s
+
 MainWindow.o: MainWindow.cpp.o
 .PHONY : MainWindow.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Pixelate"
+	@echo "... DrawingWindow.o"
+	@echo "... DrawingWindow.i"
+	@echo "... DrawingWindow.s"
 	@echo "... MainWindow.o"
 	@echo "... MainWindow.i"
 	@echo "... MainWindow.s"
