@@ -2,9 +2,13 @@
 #include <gtkmm.h>
 #include <vector>
 
+
 class DrawingWindow : public Gtk::Window {
 public:
-    DrawingWindow(int width, int height);
+    DrawingWindow(int width, int height , Gdk::RGBA* current_color);
+    Gdk::RGBA* currentColor;
+
+    void set_current_color(Gdk::RGBA current_color);
 
 protected:
     // Struct for storing each point
@@ -12,6 +16,7 @@ protected:
         double x, y;
         double pressure;
         bool new_stroke; // true if this point starts a new stroke
+        double r, g, b;
         
     };
 

@@ -259,7 +259,8 @@ void MainWindow::on_CreateButton_clicked()
 
     int Width_ = std::stoi(Width);
     int Height_ = std::stoi(Height);
-    auto drawingwindow = Gtk::make_managed<::DrawingWindow>(Width_, Height_);
+    auto drawingwindow = Gtk::make_managed<::DrawingWindow>(Width_, Height_ , &current_color);
+    //drawingwindow->set_current_color(&current_color);
     drawingwindow->set_transient_for(*this); //make it a child of main window
     drawingwindow->set_keep_above(true);     // always on top
     drawingwindow->show();

@@ -4,6 +4,7 @@
 CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o
  /home/mennajaheen/Pixelate/DrawingWindow.cpp
  /home/mennajaheen/Pixelate/include/DrawingWindow.h
+ /home/mennajaheen/Pixelate/include/MainWindow.h
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h
  /usr/include/asm-generic/errno-base.h
@@ -306,6 +307,7 @@ CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o
  /usr/include/c++/15/initializer_list
  /usr/include/c++/15/ios
  /usr/include/c++/15/iosfwd
+ /usr/include/c++/15/iostream
  /usr/include/c++/15/istream
  /usr/include/c++/15/iterator
  /usr/include/c++/15/limits

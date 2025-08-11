@@ -1,6 +1,10 @@
 #include "DrawingWindow.h"
+#include<MainWindow.h>
+#include<iostream>
 
-DrawingWindow::DrawingWindow(int width, int height) {
+
+
+DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     set_default_size(width, height);
     set_title("Drawing Window");
 
@@ -21,24 +25,31 @@ DrawingWindow::DrawingWindow(int width, int height) {
     );
 
     show_all_children();
+
+    currentColor = current_color;
+
+
 }
+//  void DrawingWindow::set_current_color(Gdk::RGBA current_color){
+//     currentColor = current_color;
+//  }
 
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
+
+
     cr->set_source_rgb(1, 1, 1);
     cr->paint();
-    cr->set_source_rgb(0, 0, 0); // black color
+    
+for (size_t i = 1; i < points.size(); ++i) {
+    if (points[i].new_stroke) continue;
 
-    for (size_t i = 0; i < points.size(); ++i) {
-        cr->set_line_width(1.0 + points[i].pressure * 4.0); // thickness 1–5px
-
-        if (points[i].new_stroke) {
-            cr->move_to(points[i].x, points[i].y);
-        } else {
-            cr->line_to(points[i].x, points[i].y);
-        }
-    }
-
+    cr->set_source_rgb(points[i].r, points[i].g, points[i].b);
+    std::cout<<" inside the drawww " << points[i].r<< points[i].g<< points[i].b <<std::endl;
+    cr->move_to(points[i - 1].x, points[i - 1].y);
+    cr->line_to(points[i].x, points[i].y);
     cr->stroke();
+}
+
     return true;
 }
 
@@ -50,8 +61,8 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
             if (val >= 0.0 && val <= 1.0) pressure = val;
         }
 
-        points.push_back({event->x, event->y, pressure, true});
-        queue_draw();
+        points.push_back({event->x, event->y, pressure, true, currentColor->get_red(), currentColor->get_green(), currentColor->get_blue()});
+       queue_draw();
     }
     return true;
 }
@@ -65,7 +76,7 @@ bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
         }
 
         points.push_back({event->x, event->y, pressure, false});
-        queue_draw();
+       queue_draw();
     }
     return true;
 }
