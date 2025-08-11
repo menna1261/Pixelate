@@ -54,3 +54,8 @@
     background-color: #4D4D4D;
     background-image: none;
 }
+
+#my_notebook tab {
+    background-color: #444;
+    color: white;
+}

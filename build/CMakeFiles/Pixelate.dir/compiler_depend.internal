@@ -184,6 +184,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/bits/char_traits.h
  /usr/include/c++/15/bits/charconv.h
  /usr/include/c++/15/bits/chrono.h
+ /usr/include/c++/15/bits/codecvt.h
  /usr/include/c++/15/bits/concept_check.h
  /usr/include/c++/15/bits/cpp_type_traits.h
  /usr/include/c++/15/bits/cxxabi_forced.h
@@ -208,8 +209,11 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/bits/list.tcc
  /usr/include/c++/15/bits/locale_classes.h
  /usr/include/c++/15/bits/locale_classes.tcc
+ /usr/include/c++/15/bits/locale_conv.h
  /usr/include/c++/15/bits/locale_facets.h
  /usr/include/c++/15/bits/locale_facets.tcc
+ /usr/include/c++/15/bits/locale_facets_nonio.h
+ /usr/include/c++/15/bits/locale_facets_nonio.tcc
  /usr/include/c++/15/bits/localefwd.h
  /usr/include/c++/15/bits/mask_array.h
  /usr/include/c++/15/bits/memory_resource.h
@@ -225,6 +229,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/bits/postypes.h
  /usr/include/c++/15/bits/predefined_ops.h
  /usr/include/c++/15/bits/ptr_traits.h
+ /usr/include/c++/15/bits/quoted_string.h
  /usr/include/c++/15/bits/range_access.h
  /usr/include/c++/15/bits/refwrap.h
  /usr/include/c++/15/bits/requires_hosted.h
@@ -304,6 +309,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/ext/type_traits.h
  /usr/include/c++/15/functional
  /usr/include/c++/15/initializer_list
+ /usr/include/c++/15/iomanip
  /usr/include/c++/15/ios
  /usr/include/c++/15/iosfwd
  /usr/include/c++/15/iostream
@@ -311,6 +317,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/iterator
  /usr/include/c++/15/limits
  /usr/include/c++/15/list
+ /usr/include/c++/15/locale
  /usr/include/c++/15/map
  /usr/include/c++/15/memory
  /usr/include/c++/15/mutex
@@ -359,7 +366,9 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/c++/15/x86_64-redhat-linux/bits/error_constants.h
  /usr/include/c++/15/x86_64-redhat-linux/bits/gthr-default.h
  /usr/include/c++/15/x86_64-redhat-linux/bits/gthr.h
+ /usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h
  /usr/include/c++/15/x86_64-redhat-linux/bits/os_defines.h
+ /usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h
  /usr/include/cairo/cairo-deprecated.h
  /usr/include/cairo/cairo-features.h
  /usr/include/cairo/cairo-ft.h
@@ -1490,6 +1499,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /usr/include/harfbuzz/hb-version.h
  /usr/include/harfbuzz/hb.h
  /usr/include/inttypes.h
+ /usr/include/libintl.h
  /usr/include/limits.h
  /usr/include/linux/close_range.h
  /usr/include/linux/errno.h

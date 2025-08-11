@@ -183,6 +183,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/bits/char_traits.h \
   /usr/include/c++/15/bits/charconv.h \
   /usr/include/c++/15/bits/chrono.h \
+  /usr/include/c++/15/bits/codecvt.h \
   /usr/include/c++/15/bits/concept_check.h \
   /usr/include/c++/15/bits/cpp_type_traits.h \
   /usr/include/c++/15/bits/cxxabi_forced.h \
@@ -207,8 +208,11 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/bits/list.tcc \
   /usr/include/c++/15/bits/locale_classes.h \
   /usr/include/c++/15/bits/locale_classes.tcc \
+  /usr/include/c++/15/bits/locale_conv.h \
   /usr/include/c++/15/bits/locale_facets.h \
   /usr/include/c++/15/bits/locale_facets.tcc \
+  /usr/include/c++/15/bits/locale_facets_nonio.h \
+  /usr/include/c++/15/bits/locale_facets_nonio.tcc \
   /usr/include/c++/15/bits/localefwd.h \
   /usr/include/c++/15/bits/mask_array.h \
   /usr/include/c++/15/bits/memory_resource.h \
@@ -224,6 +228,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/bits/postypes.h \
   /usr/include/c++/15/bits/predefined_ops.h \
   /usr/include/c++/15/bits/ptr_traits.h \
+  /usr/include/c++/15/bits/quoted_string.h \
   /usr/include/c++/15/bits/range_access.h \
   /usr/include/c++/15/bits/refwrap.h \
   /usr/include/c++/15/bits/requires_hosted.h \
@@ -303,6 +308,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/ext/type_traits.h \
   /usr/include/c++/15/functional \
   /usr/include/c++/15/initializer_list \
+  /usr/include/c++/15/iomanip \
   /usr/include/c++/15/ios \
   /usr/include/c++/15/iosfwd \
   /usr/include/c++/15/iostream \
@@ -310,6 +316,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/iterator \
   /usr/include/c++/15/limits \
   /usr/include/c++/15/list \
+  /usr/include/c++/15/locale \
   /usr/include/c++/15/map \
   /usr/include/c++/15/memory \
   /usr/include/c++/15/mutex \
@@ -358,7 +365,9 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/c++/15/x86_64-redhat-linux/bits/error_constants.h \
   /usr/include/c++/15/x86_64-redhat-linux/bits/gthr-default.h \
   /usr/include/c++/15/x86_64-redhat-linux/bits/gthr.h \
+  /usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h \
   /usr/include/c++/15/x86_64-redhat-linux/bits/os_defines.h \
+  /usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h \
   /usr/include/cairo/cairo-deprecated.h \
   /usr/include/cairo/cairo-features.h \
   /usr/include/cairo/cairo-ft.h \
@@ -1489,6 +1498,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: /home/mennajaheen/Pixelate/MainWindow.
   /usr/include/harfbuzz/hb-version.h \
   /usr/include/harfbuzz/hb.h \
   /usr/include/inttypes.h \
+  /usr/include/libintl.h \
   /usr/include/limits.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
@@ -3495,8 +3505,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/pangomm-1.4/pangomm/layoutline.h:
 
-/usr/include/pangomm-1.4/pangomm/layout.h:
-
 /usr/include/pangomm-1.4/pangomm/language.h:
 
 /usr/include/pangomm-1.4/pangomm/item.h:
@@ -3554,6 +3562,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/linux/limits.h:
 
 /usr/include/linux/errno.h:
+
+/usr/include/libintl.h:
 
 /usr/include/inttypes.h:
 
@@ -4107,31 +4117,21 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/gtk-3.0/gtk/gtkimmulticontext.h:
 
-/usr/include/gtkmm-3.0/gtkmm/selectiondata.h:
+/usr/include/gtk-3.0/gtk/gtkimcontextinfo.h:
 
-/usr/include/gtkmm-3.0/gtkmm/cellareacontext.h:
+/usr/include/gtk-3.0/gtk/gtktextmark.h:
 
-/usr/include/giomm-2.4/giomm/remoteactiongroup.h:
+/usr/include/gtk-3.0/gtk/gtkimcontext.h:
 
-/usr/include/giomm-2.4/giomm/proxyresolver.h:
+/usr/include/gtk-3.0/gtk/gtkiconview.h:
 
-/usr/include/gtk-3.0/gtk/gtkdragsource.h:
+/usr/include/gtk-3.0/gtk/gtkicontheme.h:
 
-/usr/include/giomm-2.4/giomm/proxyaddress.h:
+/usr/include/gtk-3.0/gtk/gtkheaderbar.h:
 
-/usr/include/c++/15/bits/valarray_before.h:
+/usr/include/gtk-3.0/gtk/gtkgrid.h:
 
-/usr/include/giomm-2.4/giomm/proxy.h:
-
-/usr/include/c++/15/bits/stl_multimap.h:
-
-/usr/include/giomm-2.4/giomm/resource.h:
-
-/usr/include/giomm-2.4/giomm/menuattributeiter.h:
-
-/usr/include/asm-generic/types.h:
-
-/usr/include/glib-2.0/glib/gstrvbuilder.h:
+/usr/include/gtk-3.0/gtk/gtkglarea.h:
 
 /usr/include/giomm-2.4/giomm/networkservice.h:
 
@@ -4152,6 +4152,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/giomm-2.4/giomm/mount.h:
 
 /usr/include/gtk-3.0/gtk/gtkcheckbutton.h:
+
+/usr/include/giomm-2.4/giomm/menuattributeiter.h:
+
+/usr/include/asm-generic/types.h:
+
+/usr/include/glib-2.0/glib/gstrvbuilder.h:
 
 /usr/include/giomm-2.4/giomm/inputstream.h:
 
@@ -4241,10 +4247,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/atk-1.0/atk/atkregistry.h:
 
-/usr/include/giomm-2.4/giomm/dbuserrorutils.h:
-
-/usr/include/gtk-3.0/gtk/gtkgrid.h:
-
 /usr/include/giomm-2.4/giomm/dbuserror.h:
 
 /usr/include/giomm-2.4/giomm/dbusauthobserver.h:
@@ -4254,8 +4256,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/lib64/pangomm-1.4/include/pangommconfig.h:
 
 /usr/include/glib-2.0/gio/gioerror.h:
-
-/usr/include/giomm-2.4/giomm/dbusaddress.h:
 
 /usr/include/giomm-2.4/giomm/converterinputstream.h:
 
@@ -4272,6 +4272,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/giomm-2.4/giomm/asyncinitable.h:
 
 /usr/include/giomm-2.4/giomm/fileoutputstream.h:
+
+/usr/include/c++/15/bits/valarray_before.h:
+
+/usr/include/giomm-2.4/giomm/proxyaddress.h:
 
 /usr/include/giomm-2.4/giomm/inetsocketaddress.h:
 
@@ -4297,8 +4301,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/glib/goption.h:
 
-/usr/include/gtk-3.0/gtk/gtkiconview.h:
-
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-macros.h:
@@ -4319,12 +4321,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glibmm-2.4/glibmm/variantiter.h:
 
-/usr/include/giomm-2.4/giomm/charsetconverter.h:
-
-/usr/include/freetype2/freetype/config/integer-types.h:
-
-/usr/include/c++/15/bits/stringfwd.h:
-
 /usr/include/freetype2/freetype/config/ftstdlib.h:
 
 /usr/include/freetype2/freetype/config/ftoption.h:
@@ -4343,10 +4339,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/glib/gmain.h:
 
-/usr/include/gtkmm-3.0/gtkmm/targetlist.h:
-
-/usr/include/freetype2/freetype/config/ftconfig-64.h:
-
 /usr/include/gdkmm-3.0/gdkmm/cursor.h:
 
 /usr/include/c++/15/tr1/poly_laguerre.tcc:
@@ -4360,10 +4352,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/gtkmm-3.0/gtkmm/styleproperty.h:
 
 /usr/include/dirent.h:
-
-/usr/include/glib-2.0/glib/gconvert.h:
-
-/usr/include/glib-2.0/glib/gregex.h:
 
 /usr/include/ctype.h:
 
@@ -4416,6 +4404,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/cairo/cairo-pdf.h:
 
 /usr/include/glib-2.0/glib/guri.h:
+
+/usr/include/giomm-2.4/giomm/charsetconverter.h:
+
+/usr/include/freetype2/freetype/config/integer-types.h:
+
+/usr/include/c++/15/bits/stringfwd.h:
 
 /usr/include/c++/15/x86_64-redhat-linux/bits/error_constants.h:
 
@@ -4492,6 +4486,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/glib-2.0/gio/gactiongroup.h:
 
 /usr/include/c++/15/pstl/execution_defs.h:
+
+/usr/include/giomm-2.4/giomm/dbusaddress.h:
+
+/usr/include/c++/15/locale:
+
+/usr/include/glib-2.0/gio/gmemorymonitor.h:
 
 /usr/include/c++/15/limits:
 
@@ -4635,12 +4635,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/gio/gsimplepermission.h:
 
-/usr/include/giomm-2.4/giomm/permission.h:
-
-/usr/include/c++/15/bits/locale_facets.h:
-
-/usr/include/gnu/stubs.h:
-
 /usr/include/c++/15/bits/unique_ptr.h:
 
 /usr/include/gtkmm-3.0/gtkmm/cellrenderertext.h:
@@ -4654,6 +4648,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/gtkmm-3.0/gtkmm/treestore.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
+
+/usr/include/c++/15/bits/stl_set.h:
+
+/usr/include/glibmm-2.4/glibmm/optionentry.h:
 
 /usr/lib64/liblzma.so.5:
 
@@ -4742,6 +4740,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/glib-2.0/glib/gpattern.h:
 
 /usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
+
+/usr/include/c++/15/bits/stl_tempbuf.h:
 
 /usr/include/c++/15/bits/refwrap.h:
 
@@ -4867,7 +4867,13 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/bits/long-double.h:
 
+/usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h:
+
 /usr/include/c++/15/tr1/riemann_zeta.tcc:
+
+/usr/include/gtk-3.0/gtk/gtkimage.h:
+
+/usr/include/bits/siginfo-consts-arch.h:
 
 /usr/include/glib-2.0/gio/gfileinfo.h:
 
@@ -4963,9 +4969,11 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/bits/timex.h:
 
-/usr/include/bits/posix_opt.h:
+/usr/include/gtkmm-3.0/gtkmm/targetlist.h:
 
-/usr/include/atk-1.0/atk/atkobject.h:
+/usr/include/freetype2/freetype/config/ftconfig-64.h:
+
+/usr/include/c++/15/bits/locale_facets_nonio.tcc:
 
 /usr/include/bits/types/__locale_t.h:
 
@@ -5037,6 +5045,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/atk-1.0/atk/atknoopobject.h:
 
+/usr/include/giomm-2.4/giomm/dbuserrorutils.h:
+
+/usr/include/c++/15/bits/quoted_string.h:
+
 /usr/include/giomm-2.4/giomm/icon.h:
 
 /usr/include/bits/pthreadtypes.h:
@@ -5069,11 +5081,11 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/gtkmm-3.0/gtkmm/invisible.h:
 
-/usr/include/giomm-2.4/giomm/appinfo.h:
-
 /usr/include/glib-2.0/glib/gasyncqueue.h:
 
 /usr/include/bits/confname.h:
+
+/usr/include/giomm-2.4/giomm/appinfo.h:
 
 /usr/include/c++/15/bits/algorithmfwd.h:
 
@@ -5112,6 +5124,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/atk-1.0/atk/atknoopobjectfactory.h:
 
 /usr/include/atkmm-1.6/atkmm/implementor.h:
+
+/usr/include/giomm-2.4/giomm/socketlistener.h:
+
+/usr/include/glib-2.0/glib/gtypes.h:
 
 /usr/include/bits/thread-shared-types.h:
 
@@ -5156,6 +5172,14 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/gtkmm-3.0/gtkmm/scale.h:
 
 /usr/include/glib-2.0/gio/gmemoryoutputstream.h:
+
+/usr/include/pangomm-1.4/pangomm/layout.h:
+
+/usr/include/c++/15/iomanip:
+
+/usr/include/c++/15/cstdint:
+
+/usr/include/c++/15/bits/shared_ptr.h:
 
 /usr/include/gtk-3.0/gtk/gtklinkbutton.h:
 
@@ -5215,6 +5239,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/c++/15/bits/allocated_ptr.h:
 
+/usr/include/giomm-2.4/giomm/dbusobject.h:
+
+/usr/include/cairomm-1.0/cairomm/types.h:
+
+/usr/include/c++/15/bits/istream.tcc:
+
 /usr/include/atk-1.0/atk/atkversion.h:
 
 /usr/include/glib-2.0/gio/gvolume.h:
@@ -5273,6 +5303,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glibmm-2.4/glibmm/datetime.h:
 
+/usr/include/giomm-2.4/giomm/proxyresolver.h:
+
+/usr/include/gtk-3.0/gtk/gtkdragsource.h:
+
 /usr/include/bits/types/__fpos_t.h:
 
 /usr/include/c++/15/bits/specfun.h:
@@ -5281,17 +5315,23 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/glib/gprimes.h:
 
+/usr/include/c++/15/bits/list.tcc:
+
+/usr/include/c++/15/concepts:
+
+/usr/include/bits/typesizes.h:
+
 /usr/lib64/libfreetype.so.6:
 
 /usr/include/bits/types/struct_sched_param.h:
-
-/usr/include/giomm-2.4/giomm/resolver.h:
 
 /usr/include/glib-2.0/gobject/gobject-autocleanups.h:
 
 /usr/include/giomm-2.4/giomm/error.h:
 
 /usr/include/c++/15/bits/shared_ptr_atomic.h:
+
+/usr/include/giomm-2.4/giomm/resolver.h:
 
 /usr/include/giomm-2.4/giomm/tlsinteraction.h:
 
@@ -5354,6 +5394,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/bits/waitflags.h:
 
 /usr/include/glibmm-2.4/glibmm/containers.h:
+
+/usr/include/atk-1.0/atk/atkobject.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/c++/15/bits/locale_conv.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
 
@@ -5435,6 +5481,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/gdkmm-3.0/gdkmm/pixbufanimationiter.h:
 
+/usr/include/c++/15/bits/deque.tcc:
+
+/usr/include/c++/15/bits/streambuf.tcc:
+
 /usr/include/glibmm-2.4/glibmm/random.h:
 
 /usr/include/c++/15/bits/basic_string.tcc:
@@ -5442,6 +5492,20 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/lib64/libbrotlicommon.so.1:
 
 /usr/include/gtk-3.0/gtk/gtkexpander.h:
+
+/usr/include/giomm-2.4/giomm/dbusconnection.h:
+
+/usr/include/c++/15/bits/stl_tree.h:
+
+/usr/include/gtkmm-3.0/gtkmm/recentfilter.h:
+
+/usr/include/glibmm-2.4/glibmm/variantdbusstring.h:
+
+/usr/include/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/glib-2.0/glib/gerror.h:
+
+/usr/include/c++/15/bits/enable_special_members.h:
 
 /usr/lib64/libxcb-shm.so.0:
 
@@ -5480,6 +5544,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/c++/15/bits/locale_classes.tcc:
 
 /usr/include/gtkmm-3.0/gtkmm/builder.h:
+
+/usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h:
 
 /usr/include/c++/15/ext/string_conversions.h:
 
@@ -5533,12 +5599,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glibmm-2.4/glibmm/shell.h:
 
-/usr/include/c++/15/concepts:
-
-/usr/include/bits/typesizes.h:
-
-/usr/include/c++/15/bits/list.tcc:
-
 /usr/include/giomm-2.4/giomm/dbusinterfaceskeleton.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h:
@@ -5552,6 +5612,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/giomm-2.4/giomm/init.h:
 
 /usr/include/glibmm-2.4/glibmm/interface.h:
+
+/usr/include/c++/15/bits/locale_facets.h:
+
+/usr/include/giomm-2.4/giomm/permission.h:
+
+/usr/include/gnu/stubs.h:
 
 /usr/include/c++/15/bits/mask_array.h:
 
@@ -5567,9 +5633,9 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/gio/gsocket.h:
 
-/usr/include/c++/15/cstdint:
+/usr/include/c++/15/bits/stl_multimap.h:
 
-/usr/include/c++/15/bits/shared_ptr.h:
+/usr/include/giomm-2.4/giomm/proxy.h:
 
 /usr/include/c++/15/bits/std_function.h:
 
@@ -5597,18 +5663,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/freetype2/freetype/ftimage.h:
 
-/usr/include/gtkmm-3.0/gtkmm/layout.h:
-
-/usr/include/gtkmm-3.0/gtkmm/appchooserdialog.h:
-
-/usr/include/giomm-2.4/giomm/pollableinputstream.h:
-
-/usr/include/bits/stdio_lim.h:
-
-/usr/include/gtk-3.0/gdk/gdkkeys.h:
-
-/usr/include/glib-2.0/gmodule/gmodule-visibility.h:
-
 /usr/include/c++/15/iosfwd:
 
 /usr/include/gtk-3.0/gtk/gtkappchooserbutton.h:
@@ -5623,39 +5677,29 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/c++/15/bits/stl_bvector.h:
 
-/usr/include/c++/15/bits/stl_set.h:
+/usr/include/gtkmm-3.0/gtkmm/layout.h:
 
-/usr/include/glibmm-2.4/glibmm/optionentry.h:
+/usr/include/gtkmm-3.0/gtkmm/appchooserdialog.h:
 
-/usr/include/giomm-2.4/giomm/dbusobject.h:
+/usr/include/bits/stdio_lim.h:
 
-/usr/include/c++/15/bits/istream.tcc:
+/usr/include/gtk-3.0/gdk/gdkkeys.h:
 
-/usr/include/cairomm-1.0/cairomm/types.h:
+/usr/include/glib-2.0/gmodule/gmodule-visibility.h:
 
-/usr/include/c++/15/bits/streambuf.tcc:
+/usr/include/giomm-2.4/giomm/pollableinputstream.h:
 
-/usr/include/c++/15/bits/deque.tcc:
+/usr/include/gtkmm-3.0/gtkmm/selectiondata.h:
 
-/usr/include/glib-2.0/glib/gtypes.h:
+/usr/include/gtkmm-3.0/gtkmm/cellareacontext.h:
 
-/usr/include/giomm-2.4/giomm/socketlistener.h:
+/usr/include/giomm-2.4/giomm/remoteactiongroup.h:
 
-/usr/include/c++/15/bits/stl_tempbuf.h:
+/usr/include/giomm-2.4/giomm/resource.h:
 
-/usr/include/gtkmm-3.0/gtkmm/recentfilter.h:
+/usr/include/glib-2.0/glib/gregex.h:
 
-/usr/include/glibmm-2.4/glibmm/variantdbusstring.h:
-
-/usr/include/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/glib-2.0/glib/gerror.h:
-
-/usr/include/c++/15/bits/enable_special_members.h:
-
-/usr/include/giomm-2.4/giomm/dbusconnection.h:
-
-/usr/include/c++/15/bits/stl_tree.h:
+/usr/include/glib-2.0/glib/gconvert.h:
 
 /usr/include/gtkmm-3.0/gtkmm/fontchooser.h:
 
@@ -5761,7 +5805,9 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/gio/gdrive.h:
 
-/usr/include/gtk-3.0/gtk/gtkicontheme.h:
+/usr/include/gtk-3.0/gtk/gtkcellrendererpixbuf.h:
+
+/usr/include/glib-2.0/gio/gapplicationcommandline.h:
 
 /usr/include/glib-2.0/gio/gasyncresult.h:
 
@@ -5971,8 +6017,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glib-2.0/gio/gliststore.h:
 
-/usr/include/glib-2.0/gio/gmemorymonitor.h:
-
 /usr/include/glib-2.0/gio/gmenuexporter.h:
 
 /usr/include/gtkmm-3.0/gtkmm/treepath.h:
@@ -6090,6 +6134,12 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h:
 
 /usr/include/glib-2.0/gio/gtlspassword.h:
+
+/usr/include/gtk-3.0/gtk/gtkcelllayout.h:
+
+/usr/include/bits/floatn-common.h:
+
+/usr/include/glibmm-2.4/glibmm/error.h:
 
 /usr/include/gtk-3.0/gtk/gtkmenutoolbutton.h:
 
@@ -6246,6 +6296,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/glib-2.0/glib/gstring.h:
 
 /usr/include/gtk-3.0/gtk/gtkeventcontrollerscroll.h:
+
+/usr/include/c++/15/bits/codecvt.h:
 
 /usr/include/glib-2.0/glib/gtestutils.h:
 
@@ -6471,8 +6523,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/glibmm-2.4/glibmm/wrap.h:
 
-/usr/include/gtk-3.0/gtk/gtkglarea.h:
-
 /usr/include/gnu/stubs-64.h:
 
 /usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
@@ -6643,16 +6693,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/gtk-3.0/gtk/gtkcelleditable.h:
 
-/usr/include/bits/floatn-common.h:
-
-/usr/include/glibmm-2.4/glibmm/error.h:
-
-/usr/include/gtk-3.0/gtk/gtkcelllayout.h:
-
-/usr/include/glib-2.0/gio/gapplicationcommandline.h:
-
-/usr/include/gtk-3.0/gtk/gtkcellrendererpixbuf.h:
-
 /usr/include/gtk-3.0/gtk/gtkcellrenderertext.h:
 
 /usr/include/gtkmm-3.0/gtkmm/hvscale.h:
@@ -6687,6 +6727,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 /usr/include/giomm-2.4/giomm/zlibcompressor.h:
 
+/usr/include/c++/15/bits/locale_facets_nonio.h:
+
 /usr/include/gtk-3.0/gtk/gtkentry.h:
 
 /usr/lib64/libatspi.so.0:
@@ -6718,15 +6760,3 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 /usr/include/gtk-3.0/gtk/gtkgesturepan.h:
 
 /usr/include/gtk-3.0/gtk/gtkgesturestylus.h:
-
-/usr/include/gtk-3.0/gtk/gtkheaderbar.h:
-
-/usr/include/bits/siginfo-consts-arch.h:
-
-/usr/include/gtk-3.0/gtk/gtkimage.h:
-
-/usr/include/gtk-3.0/gtk/gtktextmark.h:
-
-/usr/include/gtk-3.0/gtk/gtkimcontext.h:
-
-/usr/include/gtk-3.0/gtk/gtkimcontextinfo.h:

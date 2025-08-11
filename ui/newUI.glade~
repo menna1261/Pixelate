@@ -259,12 +259,17 @@
                 <property name="halign">end</property>
                 <property name="valign">start</property>
                 <property name="margin-end">18</property>
+                <property name="margin-top">14</property>
+                <property name="show-border">False</property>
+                <property name="scrollable">True</property>
+                <property name="enable-popup">True</property>
                 <child>
                   <object class="GtkColorChooserWidget" id="colorChooser1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="rgba">rgb(246,211,45)</property>
                     <property name="show-editor">True</property>
+                    <signal name="color-activated" handler="on_colorChooser1_color_activated" swapped="no"/>
                   </object>
                 </child>
                 <child type="tab">
@@ -281,8 +286,6 @@
                   <object class="GtkColorChooserWidget" id="colorChooser2">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-start">1</property>
-                    <property name="margin-top">40</property>
                     <property name="rgba">rgb(246,211,45)</property>
                   </object>
                   <packing>
@@ -301,38 +304,10 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFixed">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">button</property>
-                        <property name="width-request">100</property>
-                        <property name="height-request">80</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="x">220</property>
-                        <property name="y">146</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
+                  <placeholder/>
                 </child>
                 <child type="tab">
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Recent Colors</property>
-                  </object>
-                  <packing>
-                    <property name="position">2</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -448,10 +423,12 @@
       </object>
     </child>
   </object>
-  <object class="GtkColorChooserDialog" id="testWidget">
+  <object class="GtkColorChooserDialog" id="testDialog">
     <property name="can-focus">False</property>
     <property name="type-hint">dialog</property>
     <property name="rgba">rgb(255,255,255)</property>
+    <signal name="color-activated" handler="on_testDialog_color_activated" swapped="no"/>
+    <signal name="response" handler="on_testDialog_response" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>

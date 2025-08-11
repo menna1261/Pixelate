@@ -17,15 +17,20 @@ public:
     void on_NewButton_clicked();
     void on_CancelButton_clicked();
     void on_CreateButton_clicked();
+    void on_testDialog_color_activated(const Gdk::RGBA& color);
+    void on_ColorButton_color_set();
+    Gdk::RGBA get_current_drawing_color() const;
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
+
+    Gdk::RGBA current_color;
 
     // Widgets you need to access
     Gtk::Button* Eraser = nullptr;
     Gtk::Button* Brush = nullptr;
     Gtk::Button* Bucket = nullptr;
     Gtk::Button* Zoom = nullptr;
-    Gtk::Button* ColorButton = nullptr;
+    Gtk::ColorButton* ColorButton = nullptr;
     Gtk::Button* CancelButton = nullptr;
     Gtk::Button* CreateButton = nullptr;
     Gtk::Button* NewButton = nullptr;
@@ -49,6 +54,8 @@ public:
     Gtk::Label* InvalidLabel2 = nullptr;
 
     Gtk::Notebook* NoteBook =  nullptr;
+
+    Gtk::ColorChooserDialog* testDialog = nullptr;
 
 
 

@@ -1,6 +1,10 @@
 #include "MainWindow.h"
 #include <iostream>
+#include <gtkmm/colorchooser.h> 
+#include <iomanip>
+#include <sstream>
 
+Gdk::RGBA get_color_from_chooser(Gtk::Widget* chooser_widget);
 MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder)
     : Gtk::Window(cobject), m_refBuilder(refBuilder)
 {
@@ -13,6 +17,11 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     context->add_provider_for_screen(
         screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER
     );
+
+
+
+  
+
 
 
     // Get widgets from the UI
@@ -35,15 +44,24 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("invalidLabel1", InvalidLabel1);  
     m_refBuilder->get_widget("invalidLabel2", InvalidLabel2);  
 
-    m_refBuilder->get_widget("Notebook", NoteBook); 
+   // m_refBuilder->get_widget("Notebook", NoteBook); 
     m_refBuilder->get_widget("colorChooser1", colorWidget); 
     m_refBuilder->get_widget("colorChooser2", colorWidget2); 
+    m_refBuilder->get_widget("testDialog", testDialog); 
 
+  //Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
 
+if (testDialog)
+{
+    testDialog->signal_color_activated().connect(
+        sigc::mem_fun(*this, &MainWindow::on_testDialog_color_activated)
+    );
+}
 
     CanvasPopover->set_relative_to(*NewButton);
     CanvasPopover->hide();
     //colorWidget->show();
+    testDialog->show();
 
     // Connect signals
     if (Eraser)
@@ -70,6 +88,12 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if(CancelButton)
         CancelButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CancelButton_clicked));
 
+    ColorButton->signal_color_set().connect(
+    sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
+);
+
+
+
     //Style Widgets with CSS
     if(Eraser) Eraser->set_name("HButton");
     if(Bucket) Bucket->set_name("HButton");
@@ -86,12 +110,80 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     if(CancelButton) CancelButton->set_name("CButton");
     if(NewButton) NewButton->set_name("TopButtons");
     if(ExportButton) ExportButton->set_name("TopButtons");
-   // if(NoteBook)  NoteBook->set_name("Notebook");
-    if(colorWidget) colorWidget->set_name("Notebook");
+   //if(NoteBook)  NoteBook->set_name("my_notebook");
+   //if(colorWidget) colorWidget->set_name("Notebook");
     if(colorWidget2) colorWidget2->set_name("Notebook");
 
-    
+    if (colorWidget) {
+    GtkWidget* gtk_widget = colorWidget->gobj();
+    if (GTK_IS_COLOR_CHOOSER(gtk_widget)) {
+        g_signal_connect(gtk_widget, "notify::rgba",
+                        G_CALLBACK(+[](GtkColorChooser* chooser, GParamSpec* pspec, gpointer user_data) {
+                            MainWindow* window = static_cast<MainWindow*>(user_data);
+                            
+                            GdkRGBA color;
+                            gtk_color_chooser_get_rgba(chooser, &color);
+                            
+                        int r = static_cast<int>(color.red * 255);
+                        int g = static_cast<int>(color.green * 255);
+                        int b = static_cast<int>(color.blue * 255);
 
+                        std::stringstream hex_stream;
+                        hex_stream << "#" << std::hex << std::uppercase << std::setfill('0') 
+                                << std::setw(2) << r 
+                                << std::setw(2) << g 
+                                << std::setw(2) << b;
+
+                            std::cout << "Color: " << hex_stream.str() << " [RGB(" << std::dec << r << ", " << g << ", " << b << ")]" << std::endl;
+                            
+                            // Update your drawing color here
+                            window->current_color.set_red(color.red);
+                            window->current_color.set_green(color.green);
+                            window->current_color.set_blue(color.blue);
+                            window->current_color.set_alpha(color.alpha);
+                        }), this);
+    }
+}
+
+if (colorWidget2) {
+    GtkWidget* gtk_widget2 = colorWidget2->gobj();
+    if (GTK_IS_COLOR_CHOOSER(gtk_widget2)) {
+        g_signal_connect(gtk_widget2, "notify::rgba",
+                        G_CALLBACK(+[](GtkColorChooser* chooser, GParamSpec* pspec, gpointer user_data) {
+                            MainWindow* window = static_cast<MainWindow*>(user_data);
+                            
+                            GdkRGBA color;
+                            gtk_color_chooser_get_rgba(chooser, &color);
+                            
+                        int r = static_cast<int>(color.red * 255);
+                        int g = static_cast<int>(color.green * 255);
+                        int b = static_cast<int>(color.blue * 255);
+
+                        std::stringstream hex_stream;
+                        hex_stream << "#" << std::hex << std::uppercase << std::setfill('0') 
+                                << std::setw(2) << r 
+                                << std::setw(2) << g 
+                                << std::setw(2) << b;
+
+                            std::cout << "Color: " << hex_stream.str() << " [RGB(" << std::dec << r << ", " << g << ", " << b << ")]" << std::endl;
+                            
+                            // Update the current drawing color
+                            window->current_color.set_red(color.red);
+                            window->current_color.set_green(color.green);
+                            window->current_color.set_blue(color.blue);
+                            window->current_color.set_alpha(color.alpha);
+                        }), this);
+        
+        std::cout << "Connected real-time color signal for colorChooser2" << std::endl;
+    }
+}
+
+
+
+}
+
+Gdk::RGBA MainWindow::get_current_drawing_color() const {
+    return current_color;
 }
 
 void MainWindow::on_Eraser_clicked()
@@ -166,7 +258,52 @@ void MainWindow::on_CreateButton_clicked()
     
 
     }
-    
-
-
 }
+
+
+
+void MainWindow::on_testDialog_color_activated(const Gdk::RGBA& color)
+{
+    std::cout<<"Signal Activated"<<std::endl;
+    int r = static_cast<int>(color.get_red() * 255);
+    int g = static_cast<int>(color.get_green() * 255);
+    int b = static_cast<int>(color.get_blue() * 255);
+
+    std::cout << "Color selected: " << r << ", " << g << ", " << b << std::endl;
+}
+
+void MainWindow::on_ColorButton_color_set() {
+    Gdk::RGBA color = ColorButton->get_rgba();
+
+    int r = static_cast<int>(color.get_red() * 255);
+    int g = static_cast<int>(color.get_green() * 255);
+    int b = static_cast<int>(color.get_blue() * 255);
+
+    //std::cout << "Color selected from button: "
+           //   << r << ", " << g << ", " << b << std::endl;
+}
+
+// Gdk::RGBA get_color_from_chooser(Gtk::Widget* chooser_widget) {
+//     if (!chooser_widget) return Gdk::RGBA();
+    
+//     GtkWidget* gtk_widget = chooser_widget->gobj();
+//     if (!GTK_IS_COLOR_CHOOSER(gtk_widget)) return Gdk::RGBA();
+    
+//     GdkRGBA color;
+//     gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(gtk_widget), &color);
+    
+//     Gdk::RGBA gdk_color;
+//     gdk_color.set_red(color.red);
+//     gdk_color.set_green(color.green);
+//     gdk_color.set_blue(color.blue);
+//     gdk_color.set_alpha(color.alpha);
+
+//     int r = static_cast<int>(gdk_color.get_red() * 255);
+//     int g = static_cast<int>(gdk_color.get_green() * 255);
+//     int b = static_cast<int>(gdk_color.get_blue() * 255);
+
+//     std::cout << "Color selected from notebook: "
+//               << r << ", " << g << ", " << b << std::endl;
+    
+//     return gdk_color;
+// }
