@@ -1447,8 +1447,10 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/gtkmm-3.0/gtkmm/treestore.h \
  /usr/include/gtkmm-3.0/gtkmm/uimanager.h \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
- /usr/include/gtkmm-3.0/gtkmm/volumebutton.h /usr/include/c++/15/iostream \
- /usr/include/c++/15/iomanip /usr/include/c++/15/locale \
+ /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
+ /home/mennajaheen/Pixelate/include/DrawingWindow.h \
+ /usr/include/c++/15/iostream /usr/include/c++/15/iomanip \
+ /usr/include/c++/15/locale \
  /usr/include/c++/15/bits/locale_facets_nonio.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h \

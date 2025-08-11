@@ -3,6 +3,7 @@
 
 CMakeFiles/Pixelate.dir/MainWindow.cpp.o
  /home/mennajaheen/Pixelate/MainWindow.cpp
+ /home/mennajaheen/Pixelate/include/DrawingWindow.h
  /home/mennajaheen/Pixelate/include/MainWindow.h
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h

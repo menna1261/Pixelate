@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include<DrawingWindow.h>
 #include <iostream>
 #include <gtkmm/colorchooser.h> 
 #include <iomanip>
@@ -17,21 +18,15 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     context->add_provider_for_screen(
         screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER
     );
-
-
-
-  
-
-
-
     // Get widgets from the UI
     m_refBuilder->get_widget("Eraser", Eraser);
     m_refBuilder->get_widget("brushButton", Brush);
     m_refBuilder->get_widget("FillButton", Bucket);
     m_refBuilder->get_widget("ZoomButton", Zoom);
-    m_refBuilder->get_widget("ColorButton", ColorButton);
+  //  m_refBuilder->get_widget("ColorButton", ColorButton);
     m_refBuilder->get_widget("mainWindow", window);
     m_refBuilder->get_widget("GtkBox2", ToolBar);
+
     m_refBuilder->get_widget("GtkBox", GtkBox1);
     m_refBuilder->get_widget("GtkBox3", HorizontalBar);
     m_refBuilder->get_widget("NewCanvas", CanvasPopover);
@@ -43,25 +38,30 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("ExportButton", ExportButton);  
     m_refBuilder->get_widget("invalidLabel1", InvalidLabel1);  
     m_refBuilder->get_widget("invalidLabel2", InvalidLabel2);  
-
+    m_refBuilder->get_widget("ColorSelection", ColorSelection); 
+    m_refBuilder->get_widget("SelectionWindow", SelectionWindow); 
+    m_refBuilder->get_widget("DrawingArea", DrawingArea); 
    // m_refBuilder->get_widget("Notebook", NoteBook); 
     m_refBuilder->get_widget("colorChooser1", colorWidget); 
     m_refBuilder->get_widget("colorChooser2", colorWidget2); 
-    m_refBuilder->get_widget("testDialog", testDialog); 
+    m_refBuilder->get_widget("DrawingWindow", DrawingWindow); 
+   // m_refBuilder->get_widget("testDialog", testDialog); 
 
   //Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
 
-if (testDialog)
-{
-    testDialog->signal_color_activated().connect(
-        sigc::mem_fun(*this, &MainWindow::on_testDialog_color_activated)
-    );
-}
+// if (testDialog)
+// {
+//     testDialog->signal_color_activated().connect(
+//         sigc::mem_fun(*this, &MainWindow::on_testDialog_color_activated)
+//     );
+// }
 
     CanvasPopover->set_relative_to(*NewButton);
     CanvasPopover->hide();
+  //  SelectionWindow->show();
     //colorWidget->show();
-    testDialog->show();
+   // testDialog->show();
+   //DrawingWindow->show();
 
     // Connect signals
     if (Eraser)
@@ -76,8 +76,8 @@ if (testDialog)
     if (Zoom)
         Zoom->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ZoomButton_clicked));
 
-    if (ColorButton)
-        ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
+    // if (ColorButton)
+    //     ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
 
     if(NewButton)
         NewButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_NewButton_clicked));
@@ -88,9 +88,9 @@ if (testDialog)
     if(CancelButton)
         CancelButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CancelButton_clicked));
 
-    ColorButton->signal_color_set().connect(
-    sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
-);
+    // ColorButton->signal_color_set().connect(
+    // sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
+
 
 
 
@@ -99,7 +99,7 @@ if (testDialog)
     if(Bucket) Bucket->set_name("HButton");
     if(Brush) Brush->set_name("HButton");
     if(Zoom) Zoom->set_name("HButton");
-    if(ColorButton) ColorButton->set_name("HButton");
+  //  if(ColorButton) ColorButton->set_name("HButton");
     if(window) window->set_name("mainWindow");
     if(ToolBar) ToolBar->set_name("GtkBox2");
     if(HorizontalBar) HorizontalBar->set_name("GtkBox3");
@@ -111,8 +111,9 @@ if (testDialog)
     if(NewButton) NewButton->set_name("TopButtons");
     if(ExportButton) ExportButton->set_name("TopButtons");
    //if(NoteBook)  NoteBook->set_name("my_notebook");
-   //if(colorWidget) colorWidget->set_name("Notebook");
+   if(colorWidget) colorWidget->set_name("Notebook");
     if(colorWidget2) colorWidget2->set_name("Notebook");
+    ColorSelection->set_name("NewCanvas");
 
     if (colorWidget) {
     GtkWidget* gtk_widget = colorWidget->gobj();
@@ -254,6 +255,11 @@ void MainWindow::on_CreateButton_clicked()
     CanvasPopover->hide();
     WidthEntry->set_text("");
     HeightEntry->set_text("");
+
+    auto drawingwindow = Gtk::make_managed<::DrawingWindow>(600, 700);
+    drawingwindow->set_transient_for(*this); //make it a child of main window
+    drawingwindow->set_keep_above(true);     // always on top
+    drawingwindow->show();
 
     
 

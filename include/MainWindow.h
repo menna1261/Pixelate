@@ -56,6 +56,12 @@ public:
     Gtk::Notebook* NoteBook =  nullptr;
 
     Gtk::ColorChooserDialog* testDialog = nullptr;
+    Gtk::ColorSelection* ColorSelection = nullptr;
+
+    Gtk::Window* SelectionWindow = nullptr;
+    Gtk::Window* DrawingWindow = nullptr;
+
+    Gtk::DrawingArea* DrawingArea = nullptr;
 
 
 
