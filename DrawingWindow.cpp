@@ -7,49 +7,49 @@
 DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     set_default_size(width, height);
     set_title("Drawing Window");
-
     add(drawing_area);
-
+    
     drawing_area.set_events(
         Gdk::BUTTON_PRESS_MASK |
         Gdk::BUTTON_RELEASE_MASK |
         Gdk::POINTER_MOTION_MASK
     );
-
+    
     drawing_area.signal_draw().connect(sigc::mem_fun(*this, &DrawingWindow::on_draw), false);
-
+    
     // Enable mouse/stylus events
     add_events(
         Gdk::BUTTON_PRESS_MASK |
         Gdk::POINTER_MOTION_MASK
     );
-
+    
     show_all_children();
-
     currentColor = current_color;
-
-
+    
+    // Initialize current stroke color
+    if (currentColor) {
+        current_stroke_color = *currentColor;
+    }
 }
-//  void DrawingWindow::set_current_color(Gdk::RGBA current_color){
-//     currentColor = current_color;
-//  }
 
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-
-
+    // Clear background
     cr->set_source_rgb(1, 1, 1);
     cr->paint();
     
-for (size_t i = 1; i < points.size(); ++i) {
-    if (points[i].new_stroke) continue;
-
-    cr->set_source_rgb(points[i].r, points[i].g, points[i].b);
-    std::cout<<" inside the drawww " << points[i].r<< points[i].g<< points[i].b <<std::endl;
-    cr->move_to(points[i - 1].x, points[i - 1].y);
-    cr->line_to(points[i].x, points[i].y);
-    cr->stroke();
-}
-
+    // Draw all strokes with their original colors
+    for (size_t i = 1; i < points.size(); ++i) {
+        if (points[i].new_stroke) continue;
+        
+        // Use the color stored with each point
+        const Gdk::RGBA& point_color = points[i].color;
+        cr->set_source_rgb(point_color.get_red(), point_color.get_green(), point_color.get_blue());
+        
+        cr->move_to(points[i - 1].x, points[i - 1].y);
+        cr->line_to(points[i].x, points[i].y);
+        cr->stroke();
+    }
+    
     return true;
 }
 
@@ -60,9 +60,15 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
             double val = event->axes[GDK_AXIS_PRESSURE];
             if (val >= 0.0 && val <= 1.0) pressure = val;
         }
-
-        points.push_back({event->x, event->y, pressure, true, currentColor->get_red(), currentColor->get_green(), currentColor->get_blue()});
-       queue_draw();
+        
+        // Capture the current color when starting a new stroke
+        if (currentColor) {
+            current_stroke_color = *currentColor;
+        }
+        
+        // Store the point with the current stroke color
+        points.push_back({event->x, event->y, pressure, true, current_stroke_color});
+        queue_draw();
     }
     return true;
 }
@@ -74,9 +80,10 @@ bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
             double val = event->axes[GDK_AXIS_PRESSURE];
             if (val >= 0.0 && val <= 1.0) pressure = val;
         }
-
-        points.push_back({event->x, event->y, pressure, false});
-       queue_draw();
+        
+        // Continue using the same color for this stroke (current_stroke_color)
+        points.push_back({event->x, event->y, pressure, false, current_stroke_color});
+        queue_draw();
     }
     return true;
 }

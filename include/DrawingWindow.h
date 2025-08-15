@@ -1,33 +1,30 @@
-#pragma once
+#ifndef DRAWINGWINDOW_H
+#define DRAWINGWINDOW_H
+
 #include <gtkmm.h>
 #include <vector>
 
+struct Point {
+    double x, y, pressure;
+    bool new_stroke;
+    Gdk::RGBA color;  // Store color with each point
+};
 
 class DrawingWindow : public Gtk::Window {
 public:
-    DrawingWindow(int width, int height , Gdk::RGBA* current_color);
-    Gdk::RGBA* currentColor;
-
-    void set_current_color(Gdk::RGBA current_color);
+    DrawingWindow(int width, int height, Gdk::RGBA* current_color);
 
 protected:
-    // Struct for storing each point
-    struct Point {
-        double x, y;
-        double pressure;
-        bool new_stroke; // true if this point starts a new stroke
-        double r, g, b;
-        
-    };
-
-    // Drawing area widget
-    Gtk::DrawingArea drawing_area;
-
-    // Store all drawn points
-    std::vector<Point> points;
-
-    // Event handlers
-    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
+    // Signal handlers
+    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
     bool on_button_press_event(GdkEventButton* event) override;
     bool on_motion_notify_event(GdkEventMotion* event) override;
+
+private:
+    Gtk::DrawingArea drawing_area;
+    std::vector<Point> points;
+    Gdk::RGBA* currentColor;  // Reference to MainWindow's current color
+    Gdk::RGBA current_stroke_color;  // Color of the current stroke being drawn
 };
+
+#endif // DRAWINGWINDOW_H
