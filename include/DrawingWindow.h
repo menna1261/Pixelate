@@ -19,6 +19,7 @@ protected:
     bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
     bool on_button_press_event(GdkEventButton* event) override;
     bool on_motion_notify_event(GdkEventMotion* event) override;
+    bool should_add_point(double x, double y);
 
 private:
     Gtk::DrawingArea drawing_area;
