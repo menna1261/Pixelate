@@ -23,6 +23,12 @@ public:
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
+    enum class Tool { None, Brush, Eraser, Fill, Zoom };
+    Tool current_tool = Tool::None;
+
+    public:
+        Tool get_current_tool() const { return current_tool; }
+
     Gdk::RGBA current_color;
 
     // Widgets you need to access
@@ -35,10 +41,14 @@ public:
     Gtk::Button* CreateButton = nullptr;
     Gtk::Button* NewButton = nullptr;
     Gtk::Button* ExportButton = nullptr;
+    Gtk::Scale* BrushScale = nullptr;
+    
 
     Gtk::Box* ToolBar = nullptr;
     Gtk::Box* HorizontalBar = nullptr;
     Gtk::Box* GtkBox1 = nullptr;
+    Gtk::Box* GtkBox = nullptr;
+    Gtk::Box* subGtkBox = nullptr;
 
     Gtk::Widget* colorWidget = nullptr;
     Gtk::Widget* colorWidget2 = nullptr;
