@@ -13,7 +13,7 @@ link_directories(${GTKMM_LIBRARY_DIRS})
 add_definitions(${GTKMM_CFLAGS_OTHER})
 
 # Add your source files
-add_executable(Pixelate main.cpp MainWindow.cpp DrawingWindow.cpp)
+add_executable(Pixelate main.cpp MainWindow.cpp DrawingWindow.cpp Singleton.cpp)
 include_directories(${GTKMM_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/include)
 # Link with GTKmm
 target_link_libraries(Pixelate ${GTKMM_LIBRARIES})

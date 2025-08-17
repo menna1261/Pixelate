@@ -177,6 +177,30 @@ MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/MainWindow.cpp.s
 .PHONY : MainWindow.cpp.s
 
+Singleton.o: Singleton.cpp.o
+.PHONY : Singleton.o
+
+# target to build an object file
+Singleton.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/Singleton.cpp.o
+.PHONY : Singleton.cpp.o
+
+Singleton.i: Singleton.cpp.i
+.PHONY : Singleton.i
+
+# target to preprocess a source file
+Singleton.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/Singleton.cpp.i
+.PHONY : Singleton.cpp.i
+
+Singleton.s: Singleton.cpp.s
+.PHONY : Singleton.s
+
+# target to generate assembly for a file
+Singleton.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pixelate.dir/build.make CMakeFiles/Pixelate.dir/Singleton.cpp.s
+.PHONY : Singleton.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -216,6 +240,9 @@ help:
 	@echo "... MainWindow.o"
 	@echo "... MainWindow.i"
 	@echo "... MainWindow.s"
+	@echo "... Singleton.o"
+	@echo "... Singleton.i"
+	@echo "... Singleton.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

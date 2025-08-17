@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/mennajaheen/Pixelate/DrawingWindow.cpp" "CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o.d"
   "/home/mennajaheen/Pixelate/MainWindow.cpp" "CMakeFiles/Pixelate.dir/MainWindow.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/MainWindow.cpp.o.d"
+  "/home/mennajaheen/Pixelate/Singleton.cpp" "CMakeFiles/Pixelate.dir/Singleton.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/Singleton.cpp.o.d"
   "/home/mennajaheen/Pixelate/main.cpp" "CMakeFiles/Pixelate.dir/main.cpp.o" "gcc" "CMakeFiles/Pixelate.dir/main.cpp.o.d"
   "" "Pixelate" "gcc" "CMakeFiles/Pixelate.dir/link.d"
   )

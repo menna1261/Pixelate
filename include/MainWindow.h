@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <gtkmm.h>
+#include "DrawingWindow.h"
+
+class DrawingWindow; 
 
 class MainWindow : public Gtk::Window
 {
@@ -69,9 +72,11 @@ public:
     Gtk::ColorSelection* ColorSelection = nullptr;
 
     Gtk::Window* SelectionWindow = nullptr;
-    Gtk::Window* DrawingWindow = nullptr;
+    Gtk::Window* DrawingWindow_ = nullptr;
 
     Gtk::DrawingArea* DrawingArea = nullptr;
+
+    DrawingWindow* CurrentDrawingWindow = nullptr;
 
 
 

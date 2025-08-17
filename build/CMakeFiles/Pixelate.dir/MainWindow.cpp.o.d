@@ -1449,6 +1449,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
  /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
  /home/mennajaheen/Pixelate/include/DrawingWindow.h \
+ /home/mennajaheen/Pixelate/include/DrawingWindow.h \
  /usr/include/c++/15/iostream /usr/include/c++/15/iomanip \
  /usr/include/c++/15/locale \
  /usr/include/c++/15/bits/locale_facets_nonio.h \
@@ -1457,4 +1458,5 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
  /usr/include/c++/15/bits/locale_facets_nonio.tcc \
  /usr/include/c++/15/bits/locale_conv.h \
- /usr/include/c++/15/bits/quoted_string.h
+ /usr/include/c++/15/bits/quoted_string.h \
+ /home/mennajaheen/Pixelate/Singleton.cpp

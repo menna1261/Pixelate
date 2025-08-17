@@ -1449,4 +1449,5 @@ CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o: \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
  /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
  /home/mennajaheen/Pixelate/include/MainWindow.h \
- /usr/include/c++/15/iostream
+ /home/mennajaheen/Pixelate/include/DrawingWindow.h \
+ /usr/include/c++/15/iostream /home/mennajaheen/Pixelate/Singleton.cpp

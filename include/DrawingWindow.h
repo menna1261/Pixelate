@@ -13,6 +13,7 @@ struct Point {
 class DrawingWindow : public Gtk::Window {
 public:
     DrawingWindow(int width, int height, Gdk::RGBA* current_color);
+    void FillBackGround( Gdk::RGBA* color);
 
 protected:
     // Signal handlers
@@ -20,12 +21,16 @@ protected:
     bool on_button_press_event(GdkEventButton* event) override;
     bool on_motion_notify_event(GdkEventMotion* event) override;
     bool should_add_point(double x, double y);
+    
 
 private:
+Gdk::RGBA* background_Color;
+    bool brushClicked;
     Gtk::DrawingArea drawing_area;
     std::vector<Point> points;
     Gdk::RGBA* currentColor;  // Reference to MainWindow's current color
     Gdk::RGBA current_stroke_color;  // Color of the current stroke being drawn
+    Cairo::RefPtr<Cairo::Context> crr;
 };
 
 #endif // DRAWINGWINDOW_H

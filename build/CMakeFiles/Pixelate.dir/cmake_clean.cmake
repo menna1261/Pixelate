@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o.d"
   "CMakeFiles/Pixelate.dir/MainWindow.cpp.o"
   "CMakeFiles/Pixelate.dir/MainWindow.cpp.o.d"
+  "CMakeFiles/Pixelate.dir/Singleton.cpp.o"
+  "CMakeFiles/Pixelate.dir/Singleton.cpp.o.d"
   "CMakeFiles/Pixelate.dir/main.cpp.o"
   "CMakeFiles/Pixelate.dir/main.cpp.o.d"
   "Pixelate"

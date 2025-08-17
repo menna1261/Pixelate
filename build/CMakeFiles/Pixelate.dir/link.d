@@ -5,6 +5,7 @@ Pixelate: \
   CMakeFiles/Pixelate.dir/main.cpp.o \
   CMakeFiles/Pixelate.dir/MainWindow.cpp.o \
   CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o \
+  CMakeFiles/Pixelate.dir/Singleton.cpp.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/libgtkmm-3.0.so \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/libatkmm-1.6.so \
   /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/libgdkmm-3.0.so \
@@ -114,6 +115,8 @@ CMakeFiles/Pixelate.dir/main.cpp.o:
 CMakeFiles/Pixelate.dir/MainWindow.cpp.o:
 
 CMakeFiles/Pixelate.dir/DrawingWindow.cpp.o:
+
+CMakeFiles/Pixelate.dir/Singleton.cpp.o:
 
 /usr/lib/gcc/x86_64-redhat-linux/15/../../../../lib64/libgtkmm-3.0.so:
 

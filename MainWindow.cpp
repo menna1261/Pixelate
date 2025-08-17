@@ -5,11 +5,16 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include "Singleton.cpp"
 
 Gdk::RGBA get_color_from_chooser(Gtk::Widget *chooser_widget);
 MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refBuilder)
     : Gtk::Window(cobject), m_refBuilder(refBuilder)
 {
+
+    Singleton::getInstance(); // Ensure Singleton is initialized
+
+
     // Load CSS
     auto css_provider = Gtk::CssProvider::create();
     css_provider->load_from_path("style.css");
@@ -18,6 +23,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     auto context = Gtk::StyleContext::create();
     context->add_provider_for_screen(
         screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+
+    
     // Get widgets from the UI
     m_refBuilder->get_widget("Eraser", Eraser);
     m_refBuilder->get_widget("brushButton", Brush);
@@ -46,7 +53,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     // m_refBuilder->get_widget("Notebook", NoteBook);
     m_refBuilder->get_widget("colorChooser1", colorWidget);
     m_refBuilder->get_widget("colorChooser2", colorWidget2);
-    m_refBuilder->get_widget("DrawingWindow", DrawingWindow);
+    m_refBuilder->get_widget("DrawingWindow", DrawingWindow_);
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -211,27 +218,35 @@ Gdk::RGBA MainWindow::get_current_drawing_color() const
 void MainWindow::on_Eraser_clicked()
 {
     std::cout << "Eraser button clicked!" << std::endl;
+    Singleton::getInstance().setEraserClicked(true);
 }
 
 void MainWindow::on_brushButton_clicked()
 {
     std::cout << "brushButton button clicked!" << std::endl;
-    current_tool = Tool::Brush;
+    Singleton::getInstance().setBrushClicked(true);
 }
 
 void MainWindow::on_ZoomButton_clicked()
 {
     std::cout << "zoom button clicked!" << std::endl;
+    Singleton::getInstance().setZoomClicked(true);
 }
 
 void MainWindow::on_FillButton_clicked()
 {
     std::cout << "fill button clicked!" << std::endl;
+    Singleton::getInstance().setBucketClicked(true);
+    Singleton::getInstance().background_color = &current_color;
+
+
 }
 
 void MainWindow::on_ColorButton_clicked()
 {
     std::cout << "color button clicked!" << std::endl;
+
+
 }
 
 void MainWindow::on_NewButton_clicked()
@@ -280,6 +295,7 @@ void MainWindow::on_CreateButton_clicked()
         int Width_ = std::stoi(Width);
         int Height_ = std::stoi(Height);
         auto drawingwindow = Gtk::make_managed<::DrawingWindow>(Width_, Height_, &current_color);
+        CurrentDrawingWindow = drawingwindow;
         // drawingwindow->set_current_color(&current_color);
         drawingwindow->set_transient_for(*this); // make it a child of main window
         drawingwindow->set_keep_above(true);     // always on top
