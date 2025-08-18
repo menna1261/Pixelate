@@ -14,6 +14,7 @@ class DrawingWindow : public Gtk::Window {
 public:
     DrawingWindow(int width, int height, Gdk::RGBA* current_color);
     void FillBackGround( Gdk::RGBA* color);
+    void fill_with_color(const Gdk::RGBA& color);
 
 protected:
     // Signal handlers
@@ -24,7 +25,8 @@ protected:
     
 
 private:
-Gdk::RGBA* background_Color;
+    bool fill_background = false; 
+    Gdk::RGBA fill_color;       
     bool brushClicked;
     Gtk::DrawingArea drawing_area;
     std::vector<Point> points;

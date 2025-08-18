@@ -34,20 +34,23 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     }
 }
 
-
+void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
+    fill_background = true;
+    fill_color = color;
+    queue_draw();  // Trigger redraw
+}
 
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 
-    if(Singleton::getInstance().BucketClicked){
-        background_Color = Singleton::getInstance().background_color;
-        cr->set_source_rgb(background_Color->get_red(), background_Color->get_green(), background_Color->get_blue());
+    if (fill_background) {
+        // Fill with the chosen color
+        cr->set_source_rgb(fill_color.get_red(), fill_color.get_green(), fill_color.get_blue());
+        cr->paint();
+    } else {
+        // Default white background
+        cr->set_source_rgb(1, 1, 1);
         cr->paint();
     }
-    // else{
-    // cr->set_source_rgb(1, 1, 1);
-    // cr->paint();
-    // }
-    
     if(!Singleton::getInstance().BrushClicked){
         std::cout << "Brush not clicked, not drawing." << std::endl;
         return false;

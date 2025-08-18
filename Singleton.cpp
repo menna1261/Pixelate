@@ -11,7 +11,7 @@ public:
     bool EraserClicked = false;
     bool BucketClicked = false;
     bool ZoomClicked = false;
-    Gdk::RGBA* background_color ;
+    Gdk::RGBA background_color ;
 
     void setBrushClicked(bool value) {
         std::cout << "Brush clicked: " << value << std::endl;

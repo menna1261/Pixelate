@@ -237,7 +237,9 @@ void MainWindow::on_FillButton_clicked()
 {
     std::cout << "fill button clicked!" << std::endl;
     Singleton::getInstance().setBucketClicked(true);
-    Singleton::getInstance().background_color = &current_color;
+        if(CurrentDrawingWindow) {
+        CurrentDrawingWindow->fill_with_color(current_color);
+    }
 
 
 }
