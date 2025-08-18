@@ -15,6 +15,7 @@ public:
     DrawingWindow(int width, int height, Gdk::RGBA* current_color);
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
+    sigc::signal<void(double, double, guint)> signal_mouse_clicked();
 
 protected:
     // Signal handlers
@@ -25,6 +26,7 @@ protected:
     
 
 private:
+    sigc::signal<void(double, double, guint)> m_signal_mouse_clicked;
     bool fill_background = false; 
     Gdk::RGBA fill_color;       
     bool brushClicked;

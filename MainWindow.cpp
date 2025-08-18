@@ -238,10 +238,28 @@ void MainWindow::on_FillButton_clicked()
     std::cout << "fill button clicked!" << std::endl;
     Singleton::getInstance().setBucketClicked(true);
         if(CurrentDrawingWindow) {
-        CurrentDrawingWindow->fill_with_color(current_color);
+        
+
+        CurrentDrawingWindow->signal_mouse_clicked().connect(
+    sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked)
+);
     }
 
 
+}
+
+void MainWindow::on_drawing_window_clicked(double x, double y, guint button) {
+    std::cout << "Mouse clicked in DrawingWindow at (" << x << ", " << y << ") with button " << button << std::endl;
+    
+    // Handle different tools here
+    if (button == 1) {  // Left click
+        if (Singleton::getInstance().BucketClicked) {
+            // Handle fill tool
+            std::cout << "Fill tool activated at click position" << std::endl;
+            CurrentDrawingWindow->fill_with_color(current_color);
+        }
+        // Add other tool handling here
+    }
 }
 
 void MainWindow::on_ColorButton_clicked()

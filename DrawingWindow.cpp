@@ -34,6 +34,10 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     }
 }
 
+sigc::signal<void(double, double, guint)> DrawingWindow::signal_mouse_clicked() {
+    return m_signal_mouse_clicked;
+}
+
 void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
     fill_background = true;
     fill_color = color;
@@ -147,6 +151,8 @@ bool DrawingWindow::should_add_point(double x, double y) {
 
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
 
+
+    m_signal_mouse_clicked.emit(event->x , event->y , event->button);
     if (!Singleton::getInstance().BrushClicked) {
       
         return false; // Ignore if brush is not clicked

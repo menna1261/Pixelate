@@ -23,6 +23,7 @@ public:
     void on_testDialog_color_activated(const Gdk::RGBA& color);
     void on_ColorButton_color_set();
     Gdk::RGBA get_current_drawing_color() const;
+    void on_drawing_window_clicked(double x, double y, guint button);
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
