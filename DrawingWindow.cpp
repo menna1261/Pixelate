@@ -45,69 +45,85 @@ void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
 }
 
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-
+    // Draw background
     if (fill_background) {
-        // Fill with the chosen color
         cr->set_source_rgb(fill_color.get_red(), fill_color.get_green(), fill_color.get_blue());
         cr->paint();
     } else {
-        // Default white background
         cr->set_source_rgb(1, 1, 1);
         cr->paint();
     }
-    // if(!Singleton::getInstance().BrushClicked){
-    //     std::cout << "Brush not clicked, not drawing." << std::endl;
-    //     return false;
-    // }
-    // Set line properties for smoother appearance
+    
     cr->set_line_cap(Cairo::LINE_CAP_ROUND);
     cr->set_line_join(Cairo::LINE_JOIN_ROUND);
     
     Gdk::RGBA last_color;
     bool color_set = false;
+    bool last_was_eraser = false;
     
-    // Draw smooth curves
     for (size_t i = 0; i < points.size(); ++i) {
         if (points[i].new_stroke) {
-            // Finish previous stroke if any
+            // Finish previous stroke
             if (color_set) {
                 cr->stroke();
             }
             
-            // Start new stroke with new color and pressure
             const Gdk::RGBA& point_color = points[i].color;
             double pressure = points[i].pressure;
+            bool is_eraser = points[i].is_eraser;
             
-            // Apply pressure to line width (1-5 pixels based on pressure)
-            cr->set_line_width(1.0+ pressure * 20.0);
+            // Set line width
+            cr->set_line_width(1.0 + pressure * 20.0);
             
-            // Apply pressure to opacity (30%-100% based on pressure)
-            cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                               point_color.get_blue(), 0.5 + pressure * 0.5);
+            if (is_eraser) {
+                // Eraser: paint with background color
+                if (fill_background) {
+                    cr->set_source_rgba(fill_color.get_red(), fill_color.get_green(), 
+                                       fill_color.get_blue(), 1.0);
+                } else {
+                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0); // White background
+                }
+            } else {
+                // Regular brush: use stroke color
+                cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
+                                   point_color.get_blue(), 0.5 + pressure * 0.5);
+            }
             
             cr->move_to(points[i].x, points[i].y);
             last_color = point_color;
+            last_was_eraser = is_eraser;
             color_set = true;
             
         } else if (i > 0 && !points[i-1].new_stroke) {
-            // Check if color changed (shouldn't happen mid-stroke, but just in case)
-            if (color_set && (points[i].color.get_red() != last_color.get_red() ||
-                             points[i].color.get_green() != last_color.get_green() ||
-                             points[i].color.get_blue() != last_color.get_blue())) {
-                // Finish current stroke and start new one with new color
-                cr->stroke();
+            // Check if we switched between brush and eraser mid-stroke (shouldn't happen, but just in case)
+            if (points[i].is_eraser != last_was_eraser) {
+                cr->stroke(); // Finish current stroke
+                
+                // Start new stroke with new mode
                 const Gdk::RGBA& point_color = points[i].color;
                 double pressure = points[i].pressure;
+                bool is_eraser = points[i].is_eraser;
                 
                 cr->set_line_width(1.0 + pressure * 20.0);
-                cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                                   point_color.get_blue(), 0.6 + pressure * 0.4);
+                
+                if (is_eraser) {
+                    if (fill_background) {
+                        cr->set_source_rgba(fill_color.get_red(), fill_color.get_green(), 
+                                           fill_color.get_blue(), 1.0);
+                    } else {
+                        cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
+                    }
+                } else {
+                    cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
+                                       point_color.get_blue(), 0.5 + pressure * 0.5);
+                }
+                
                 cr->move_to(points[i-1].x, points[i-1].y);
-                last_color = point_color;
+                last_was_eraser = is_eraser;
             }
             
+            // Continue drawing the stroke
             if (i == 1 || points[i-1].new_stroke) {
-                // First line of stroke
                 cr->line_to(points[i].x, points[i].y);
             } else if (i < points.size() - 1) {
                 // Smooth curve using cubic Bézier
@@ -118,7 +134,6 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
                 double x3 = points[i+1].x;
                 double y3 = points[i+1].y;
                 
-                // Control points for smoothness
                 double cp1x = x1 + (x2 - points[i-2].x) * 0.1;
                 double cp1y = y1 + (y2 - points[i-2].y) * 0.1;
                 double cp2x = x2 - (x3 - x1) * 0.1;
@@ -126,19 +141,17 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
                 
                 cr->curve_to(cp1x, cp1y, cp2x, cp2y, x2, y2);
             } else {
-                // Last point
                 cr->line_to(points[i].x, points[i].y);
             }
         }
     }
     
-    // Finish the last stroke
     if (color_set) {
         cr->stroke();
     }
+    
     return true;
 }
-
 bool DrawingWindow::should_add_point(double x, double y) {
     if (points.empty()) return true;
     
@@ -153,7 +166,7 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
 
 
     m_signal_mouse_clicked.emit(event->x , event->y , event->button);
-    if (!Singleton::getInstance().BrushClicked) {
+    if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
       
         return false; // Ignore if brush is not clicked
     }
@@ -177,7 +190,8 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
             current_stroke_color = *currentColor;
         }
         
-        points.push_back({event->x, event->y, pressure, true, current_stroke_color});
+        bool is_eraser = Singleton::getInstance().EraserClicked;
+        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser});
         queue_draw();
     }
     return true;
@@ -185,7 +199,7 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
 
 bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
 
-if(!Singleton::getInstance().BrushClicked) {
+if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
         return false; // Ignore if brush is not clicked
        
     }
@@ -204,7 +218,8 @@ if(!Singleton::getInstance().BrushClicked) {
         }
         
         if (should_add_point(event->x, event->y)) {
-            points.push_back({event->x, event->y, pressure, false, current_stroke_color});
+            bool is_eraser = Singleton::getInstance().EraserClicked;
+            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser});
             queue_draw();
         }
     }

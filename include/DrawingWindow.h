@@ -7,7 +7,8 @@
 struct Point {
     double x, y, pressure;
     bool new_stroke;
-    Gdk::RGBA color;  // Store color with each point
+    Gdk::RGBA color; 
+    bool is_eraser = false;
 };
 
 class DrawingWindow : public Gtk::Window {
