@@ -51,10 +51,10 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         cr->set_source_rgb(1, 1, 1);
         cr->paint();
     }
-    if(!Singleton::getInstance().BrushClicked){
-        std::cout << "Brush not clicked, not drawing." << std::endl;
-        return false;
-    }
+    // if(!Singleton::getInstance().BrushClicked){
+    //     std::cout << "Brush not clicked, not drawing." << std::endl;
+    //     return false;
+    // }
     // Set line properties for smoother appearance
     cr->set_line_cap(Cairo::LINE_CAP_ROUND);
     cr->set_line_join(Cairo::LINE_JOIN_ROUND);
@@ -148,6 +148,7 @@ bool DrawingWindow::should_add_point(double x, double y) {
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
 
     if (!Singleton::getInstance().BrushClicked) {
+      
         return false; // Ignore if brush is not clicked
     }
     if (event->button == 1) {
@@ -180,6 +181,7 @@ bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
 
 if(!Singleton::getInstance().BrushClicked) {
         return false; // Ignore if brush is not clicked
+       
     }
 
     if (event->state & GDK_BUTTON1_MASK) {
