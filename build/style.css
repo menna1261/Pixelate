@@ -26,6 +26,7 @@
     background: #4D4D4D;
     padding: 0;
     margin: 0;
+    
 
 }
 
@@ -53,6 +54,8 @@
 
     background-color: #4D4D4D;
     background-image: none;
+    border-color: darkred;
+    border-width: 10px;
 }
 
 #my_notebook tab {

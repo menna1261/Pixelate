@@ -45,6 +45,8 @@ public:
     Gtk::Button* CreateButton = nullptr;
     Gtk::Button* NewButton = nullptr;
     Gtk::Button* ExportButton = nullptr;
+    Gtk::Button* DelLayer = nullptr;
+    Gtk::Button* AddLayer = nullptr;
     Gtk::Scale* BrushScale = nullptr;
     
 
@@ -53,6 +55,7 @@ public:
     Gtk::Box* GtkBox1 = nullptr;
     Gtk::Box* GtkBox = nullptr;
     Gtk::Box* subGtkBox = nullptr;
+    Gtk::Box* ButtomArea = nullptr;
 
     Gtk::Widget* colorWidget = nullptr;
     Gtk::Widget* colorWidget2 = nullptr;
@@ -78,6 +81,9 @@ public:
     Gtk::DrawingArea* DrawingArea = nullptr;
 
     DrawingWindow* CurrentDrawingWindow = nullptr;
+
+    Gtk::Box* LayerArea = nullptr;
+    Gtk::Box* StrokeArea = nullptr;
 
 
 

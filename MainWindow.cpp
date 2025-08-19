@@ -54,6 +54,12 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("colorChooser1", colorWidget);
     m_refBuilder->get_widget("colorChooser2", colorWidget2);
     m_refBuilder->get_widget("DrawingWindow", DrawingWindow_);
+    m_refBuilder->get_widget("ButtomArea", ButtomArea);
+    m_refBuilder->get_widget("LayerArea", LayerArea);
+    m_refBuilder->get_widget("StrokeArea", StrokeArea);
+    m_refBuilder->get_widget("LayerArea", LayerArea);
+    m_refBuilder->get_widget("DelLayer", DelLayer);
+    m_refBuilder->get_widget("AddLayer", AddLayer);
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -137,6 +143,15 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
         colorWidget2->set_name("Notebook");
     // ColorSelection->set_name("NewCanvas");
 
+    // if(LayerArea)
+    //     LayerArea->set_name("NoteBook");
+
+    // if(ButtomArea)
+    //     ButtomArea->set_name("Notebook");
+    LayerArea->set_name("Notebook");
+    StrokeArea->set_name("Notebook");
+    DelLayer->set_name("HButton");
+    AddLayer->set_name("HButton");
     if (colorWidget)
     {
         GtkWidget *gtk_widget = colorWidget->gobj();
