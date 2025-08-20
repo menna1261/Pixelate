@@ -9,6 +9,9 @@ struct Point {
     bool new_stroke;
     Gdk::RGBA color; 
     bool is_eraser = false;
+    double PointStroke;
+    
+
 };
 
 class DrawingWindow : public Gtk::Window {
@@ -17,6 +20,8 @@ public:
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
+    double Stroke{};
+    double StrokeSize;
 
 protected:
     // Signal handlers

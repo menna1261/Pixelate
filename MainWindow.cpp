@@ -374,6 +374,7 @@ void MainWindow::on_ColorButton_color_set()
 
 void MainWindow::on_StrokeScale_value_changed(){
     double stroke = StrokeScale->get_value();
+    CurrentDrawingWindow->Stroke = stroke;
     std::cout<<stroke<<std::endl;
 }
 

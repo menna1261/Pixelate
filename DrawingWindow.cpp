@@ -73,7 +73,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
             bool is_eraser = points[i].is_eraser;
             
             // Set line width
-            cr->set_line_width(1.0 + pressure * 20.0);
+            cr->set_line_width(1.0 + pressure * points[i].PointStroke);
             
             if (is_eraser) {
                 // Eraser: paint with background color
@@ -104,7 +104,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
                 double pressure = points[i].pressure;
                 bool is_eraser = points[i].is_eraser;
                 
-                cr->set_line_width(1.0 + pressure * 20.0);
+                cr->set_line_width(1.0 + pressure * points[i].PointStroke);
                 
                 if (is_eraser) {
                     if (fill_background) {
@@ -189,9 +189,13 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
         if (currentColor) {
             current_stroke_color = *currentColor;
         }
+
+        if(Stroke){
+            StrokeSize = Stroke;
+        }
         
         bool is_eraser = Singleton::getInstance().EraserClicked;
-        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser});
+        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize});
         queue_draw();
     }
     return true;
@@ -219,7 +223,7 @@ if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserCli
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;
-            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser});
+            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser,StrokeSize});
             queue_draw();
         }
     }
