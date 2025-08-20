@@ -380,6 +380,7 @@ void MainWindow::on_StrokeScale_value_changed(){
 
 void MainWindow::on_OpacityScale_value_changed(){
     double Opacity  = OpacityScale->get_value();
+    CurrentDrawingWindow->Opacity = Opacity;
     std::cout<<"Opacity : " <<Opacity<<std::endl;
 }
 

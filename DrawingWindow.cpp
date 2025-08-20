@@ -86,7 +86,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
             } else {
                 // Regular brush: use stroke color
                 cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                                   point_color.get_blue(), 0.5 + pressure * 0.5);
+                                   point_color.get_blue(), 0.5 + pressure * (points[i].PointOpacity)/100);
             }
             
             cr->move_to(points[i].x, points[i].y);
@@ -193,9 +193,13 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
         if(Stroke){
             StrokeSize = Stroke;
         }
+
+        if(Opacity){
+            OpacityVal = Opacity;
+        }
         
         bool is_eraser = Singleton::getInstance().EraserClicked;
-        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize});
+        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize, OpacityVal});
         queue_draw();
     }
     return true;
@@ -223,7 +227,7 @@ if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserCli
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;
-            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser,StrokeSize});
+            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser,StrokeSize, OpacityVal});
             queue_draw();
         }
     }

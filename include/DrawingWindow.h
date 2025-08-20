@@ -10,6 +10,7 @@ struct Point {
     Gdk::RGBA color; 
     bool is_eraser = false;
     double PointStroke;
+    double PointOpacity;
     
 
 };
@@ -22,6 +23,8 @@ public:
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     double Stroke{};
     double StrokeSize;
+    double Opacity;
+    double OpacityVal;
 
 protected:
     // Signal handlers
