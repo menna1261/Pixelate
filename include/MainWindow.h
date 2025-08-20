@@ -24,6 +24,8 @@ public:
     void on_ColorButton_color_set();
     Gdk::RGBA get_current_drawing_color() const;
     void on_drawing_window_clicked(double x, double y, guint button);
+    void on_StrokeScale_value_changed();
+    void on_OpacityScale_value_changed();
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
@@ -47,8 +49,8 @@ public:
     Gtk::Button* ExportButton = nullptr;
     Gtk::Button* DelLayer = nullptr;
     Gtk::Button* AddLayer = nullptr;
-    Gtk::Scale* BrushScale = nullptr;
-    
+    Gtk::Scale* StrokeScale = nullptr;
+    Gtk::Scale* OpacityScale = nullptr;
 
     Gtk::Box* ToolBar = nullptr;
     Gtk::Box* HorizontalBar = nullptr;

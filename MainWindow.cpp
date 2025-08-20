@@ -12,6 +12,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     : Gtk::Window(cobject), m_refBuilder(refBuilder)
 {
 
+    std::cout<<"==============================================================="<<std::endl;
+
     Singleton::getInstance(); // Ensure Singleton is initialized
 
 
@@ -60,6 +62,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("LayerArea", LayerArea);
     m_refBuilder->get_widget("DelLayer", DelLayer);
     m_refBuilder->get_widget("AddLayer", AddLayer);
+    m_refBuilder->get_widget("StrokeScale", StrokeScale);
+    m_refBuilder->get_widget("OpacityScale", OpacityScale);
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -103,6 +107,12 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     if (CancelButton)
         CancelButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CancelButton_clicked));
 
+    if(StrokeScale)
+        StrokeScale->signal_value_changed().connect(sigc::mem_fun(*this, &MainWindow::on_StrokeScale_value_changed));
+
+    if(OpacityScale)
+        OpacityScale->signal_value_changed().connect(sigc::mem_fun(*this, &MainWindow::on_OpacityScale_value_changed));
+
     // ColorButton->signal_color_set().connect(
     // sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
 
@@ -141,6 +151,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
         colorWidget->set_name("Notebook");
     if (colorWidget2)
         colorWidget2->set_name("Notebook");
+
+    
     // ColorSelection->set_name("NewCanvas");
 
     // if(LayerArea)
@@ -358,6 +370,16 @@ void MainWindow::on_ColorButton_color_set()
 
     // std::cout << "Color selected from button: "
     //    << r << ", " << g << ", " << b << std::endl;
+}
+
+void MainWindow::on_StrokeScale_value_changed(){
+    double stroke = StrokeScale->get_value();
+    std::cout<<stroke<<std::endl;
+}
+
+void MainWindow::on_OpacityScale_value_changed(){
+    double Opacity  = OpacityScale->get_value();
+    std::cout<<"Opacity : " <<Opacity<<std::endl;
 }
 
 // Gdk::RGBA get_color_from_chooser(Gtk::Widget* chooser_widget) {

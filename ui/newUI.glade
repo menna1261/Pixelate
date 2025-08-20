@@ -310,7 +310,7 @@
                       <object class="GtkColorChooserWidget" id="colorChooser1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="rgba">rgb(87,227,137)</property>
+                        <property name="rgba">rgb(97,53,131)</property>
                         <property name="show-editor">True</property>
                         <signal name="color-activated" handler="on_colorChooser1_color_activated" swapped="no"/>
                       </object>
@@ -448,6 +448,9 @@
                                 <property name="adjustment">adjustment2</property>
                                 <property name="round-digits">1</property>
                                 <property name="value-pos">right</property>
+                                <signal name="change-value" handler="on_OpacityScale_change_value" swapped="no"/>
+                                <signal name="move-slider" handler="on_OpacityScale_move_slider" swapped="no"/>
+                                <signal name="value-changed" handler="on_OpacityScale_value_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="x">17</property>
