@@ -64,6 +64,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("AddLayer", AddLayer);
     m_refBuilder->get_widget("StrokeScale", StrokeScale);
     m_refBuilder->get_widget("OpacityScale", OpacityScale);
+    m_refBuilder->get_widget("layers_listbox", layers_listbox);
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -97,6 +98,11 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 
     // if (ColorButton)
     //     ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
+    if(AddLayer)
+        AddLayer->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_AddLayer_clicked));
+
+    if(DelLayer)
+        DelLayer->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_DelLayer_clicked));
 
     if (NewButton)
         NewButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_NewButton_clicked));
@@ -112,6 +118,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 
     if(OpacityScale)
         OpacityScale->signal_value_changed().connect(sigc::mem_fun(*this, &MainWindow::on_OpacityScale_value_changed));
+
+    
 
     // ColorButton->signal_color_set().connect(
     // sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
@@ -151,6 +159,12 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
         colorWidget->set_name("Notebook");
     if (colorWidget2)
         colorWidget2->set_name("Notebook");
+
+    layers_listbox->set_name("Notebook");
+    if(AddLayer)
+        AddLayer->set_name("HButton");
+    if(DelLayer)
+        DelLayer->set_name("HButton");
 
     
     // ColorSelection->set_name("NewCanvas");
@@ -384,27 +398,83 @@ void MainWindow::on_OpacityScale_value_changed(){
     std::cout<<"Opacity : " <<Opacity<<std::endl;
 }
 
-// Gdk::RGBA get_color_from_chooser(Gtk::Widget* chooser_widget) {
-//     if (!chooser_widget) return Gdk::RGBA();
+void MainWindow::on_AddLayer_clicked(){
+    
+    std::string layer_name = "Layer" + std::to_string(++layer_counter);
+    
+    // Create button that looks like a label
+    auto* layer_button = Gtk::manage(new Gtk::Button(layer_name));
+    layer_button->set_relief(Gtk::RELIEF_NONE); // Remove button appearance
+    layer_button->set_halign(Gtk::ALIGN_START);
+    layer_button->set_margin_left(12);
+    layer_button->set_margin_right(12);
+    layer_button->set_margin_top(8);
+    layer_button->set_margin_bottom(8);
+    layer_button->set_size_request(-1, 40);
+    layer_button->set_relief(Gtk::RELIEF_NONE);
+    layer_button->set_name("HButton");
+    
+    // Connect click signal
+    layer_button->signal_clicked().connect([layer_name]() {
+        std::cout << "Clicked on: " << layer_name << std::endl;
+    });
+    
+    // Create row and add button
+    auto* row = Gtk::manage(new Gtk::ListBoxRow());
+    row->set_size_request(-1, 40);
+    
+    row->add(*layer_button);
+    row->show_all();
+    
+    layers_listbox->insert(*row, 0);
+   // layers_listbox->select_row(*row);
+}
 
-//     GtkWidget* gtk_widget = chooser_widget->gobj();
-//     if (!GTK_IS_COLOR_CHOOSER(gtk_widget)) return Gdk::RGBA();
+void MainWindow::on_DelLayer_clicked(){
 
-//     GdkRGBA color;
-//     gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(gtk_widget), &color);
+}
+Gtk::Widget* MainWindow::create_layer_widget(const std::string& layer_name) {
+    // Create a horizontal box to hold layer elements
+    auto* layer_box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 20));
+    layer_box->set_margin_top(5);
+    layer_box->set_margin_bottom(5);
+    layer_box->set_margin_left(10);
+    layer_box->set_margin_right(10);
 
-//     Gdk::RGBA gdk_color;
-//     gdk_color.set_red(color.red);
-//     gdk_color.set_green(color.green);
-//     gdk_color.set_blue(color.blue);
-//     gdk_color.set_alpha(color.alpha);
+    layer_box->set_name("LayerWidget");
+    
+   
+    auto* layer_button = Gtk::manage(new Gtk::ToggleButton(layer_name));
+    layer_button->set_hexpand(true);
 
-//     int r = static_cast<int>(gdk_color.get_red() * 255);
-//     int g = static_cast<int>(gdk_color.get_green() * 255);
-//     int b = static_cast<int>(gdk_color.get_blue() * 255);
+    auto* layer_label = Gtk::manage(new Gtk::Label(layer_name));
+    layer_label->set_halign(Gtk::ALIGN_START);
+    layer_label->set_hexpand(true);
 
-//     std::cout << "Color selected from notebook: "
-//               << r << ", " << g << ", " << b << std::endl;
+    
+    // Pack widgets
+    // layer_box->pack_start(*layer_button, true, true, 0);
+    // layer_box->pack_start(*visibility_button, false, false, 0);
+    // layer_box->pack_start(*delete_button, false, false, 0);
+    
+    // Connect signals
+    layer_button->signal_clicked().connect([this, layer_name]() {
+        // Handle layer selection
+        std::cout << "Layer selected: " << layer_name << std::endl;
+        // Add your layer switching logic here
+    });
+    
+    // visibility_button->signal_clicked().connect([this, layer_name]() {
+    //     // Handle visibility toggle
+    //     std::cout << "Toggle visibility for: " << layer_name << std::endl;
+    // });
+    
+    DelLayer->signal_clicked().connect([this, layer_box]() {
+        // Handle layer deletion
+        layer_box->get_parent()->remove(*layer_box);
+    });
+    
+    layer_box->show_all();
+    return layer_box;
+}
 
-//     return gdk_color;
-// }

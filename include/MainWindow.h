@@ -26,6 +26,9 @@ public:
     void on_drawing_window_clicked(double x, double y, guint button);
     void on_StrokeScale_value_changed();
     void on_OpacityScale_value_changed();
+    void on_AddLayer_clicked();
+    void on_DelLayer_clicked();
+    Gtk::Widget* create_layer_widget(const std::string& layer_name);
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
@@ -36,7 +39,7 @@ public:
         Tool get_current_tool() const { return current_tool; }
 
     Gdk::RGBA current_color;
-
+    int layer_counter = 0;
     // Widgets you need to access
     Gtk::Button* Eraser = nullptr;
     Gtk::Button* Brush = nullptr;
@@ -58,6 +61,7 @@ public:
     Gtk::Box* GtkBox = nullptr;
     Gtk::Box* subGtkBox = nullptr;
     Gtk::Box* ButtomArea = nullptr;
+    Gtk::ListBox* layers_listbox = nullptr;
 
     Gtk::Widget* colorWidget = nullptr;
     Gtk::Widget* colorWidget2 = nullptr;

@@ -206,20 +206,14 @@
     <property name="page-increment">10</property>
   </object>
   <object class="GtkImage" id="image1">
-    <property name="width-request">-1</property>
-    <property name="height-request">0</property>
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">../../Downloads/trash-can 1(1).png</property>
+  </object>
+  <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="pixbuf">../../Downloads/plus(1) 1(1).png</property>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="width-request">-1</property>
-    <property name="height-request">0</property>
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
-    <property name="pixbuf">../../Downloads/trash-can 1(1).png</property>
   </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="can-focus">False</property>
@@ -479,55 +473,80 @@
                         <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkFixed" id="Fixed">
-                            <property name="width-request">233</property>
-                            <property name="height-request">250</property>
+                          <object class="GtkBox">
+                            <property name="width-request">0</property>
+                            <property name="height-request">295</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkButton" id="AddLayer">
-                                <property name="width-request">20</property>
-                                <property name="height-request">11</property>
+                              <object class="GtkScrolledWindow" id="ScrollWindow">
+                                <property name="height-request">257</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">end</property>
-                                <property name="valign">end</property>
-                                <property name="image">image1</property>
-                                <property name="image-position">bottom</property>
+                                <property name="shadow-type">in</property>
+                                <child>
+                                  <object class="GtkViewport" id="ViewPort">
+                                    <property name="height-request">257</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkListBox" id="layers_listbox">
+                                        <property name="width-request">0</property>
+                                        <property name="height-request">257</property>
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
-                                <property name="x">11</property>
-                                <property name="y">246</property>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="DelLayer">
-                                <property name="width-request">20</property>
-                                <property name="height-request">11</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="image">image2</property>
-                                <property name="image-position">bottom</property>
-                              </object>
-                              <packing>
-                                <property name="x">55</property>
-                                <property name="y">245</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="width-request">74</property>
-                                <property name="height-request">44</property>
+                              <object class="GtkFixed" id="Fixed3">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Layers</property>
-                                <attributes>
-                                  <attribute name="weight" value="semibold"/>
-                                  <attribute name="foreground" value="#ffffffffffff"/>
-                                </attributes>
+                                <child>
+                                  <object class="GtkButton" id="AddLayer">
+                                    <property name="width-request">25</property>
+                                    <property name="height-request">20</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-start">2</property>
+                                    <property name="margin-bottom">2</property>
+                                    <property name="image">image2</property>
+                                    <signal name="clicked" handler="on_AddLayer_clicked" swapped="no"/>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton" id="DelLayer">
+                                    <property name="width-request">25</property>
+                                    <property name="height-request">20</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-bottom">2</property>
+                                    <property name="image">image1</property>
+                                    <signal name="clicked" handler="on_DelLayer_clicked" swapped="no"/>
+                                  </object>
+                                  <packing>
+                                    <property name="x">42</property>
+                                  </packing>
+                                </child>
                               </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">1</property>
+                              </packing>
                             </child>
                           </object>
                           <packing>

@@ -55,10 +55,31 @@
     background-color: #4D4D4D;
     background-image: none;
     border-color: darkred;
-    border-width: 10px;
+    
 }
 
 #my_notebook tab {
     background-color: #444;
     color: white;
+}
+
+#LayerWidget{
+    padding: 10px;
+    background-color: #383838;
+    border-radius: 8px;
+
+}
+
+#layers-listbox listboxrow:selected {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#layers-listbox listboxrow:selected:hover {
+    background-color: #27ae60;
+}
+
+#layers-listbox listboxrow {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px;
 }
