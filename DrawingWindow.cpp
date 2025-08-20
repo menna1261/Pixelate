@@ -19,6 +19,8 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     
     drawing_area.add_events(Gdk::ALL_EVENTS_MASK);  
     drawing_area.signal_draw().connect(sigc::mem_fun(*this, &DrawingWindow::on_draw), false);
+    signal_draw_cursor().connect(sigc::mem_fun(*this, &DrawingWindow::signal_cursor));
+
   //  drawing_area.signal_draw().connect(sigc::mem_fun(*this, &DrawingWindow::FillBackGround), false);
     
     add_events(
@@ -36,6 +38,10 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
 
 sigc::signal<void(double, double, guint)> DrawingWindow::signal_mouse_clicked() {
     return m_signal_mouse_clicked;
+}
+
+sigc::signal<void()>DrawingWindow::signal_draw_cursor(){
+    return m_signal_draw_cursor;
 }
 
 void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
@@ -164,7 +170,7 @@ bool DrawingWindow::should_add_point(double x, double y) {
 
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
 
-
+    m_signal_draw_cursor.emit();
     m_signal_mouse_clicked.emit(event->x , event->y , event->button);
     if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
       
@@ -232,4 +238,43 @@ if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserCli
         }
     }
     return true;
+}
+
+
+//TBH Claude wrote this function
+void DrawingWindow::signal_cursor() {
+    // Calculate cursor size (clamp between reasonable bounds)
+    int cursor_diameter = std::max(8, std::min(64, (int)Stroke));
+    int cursor_size = cursor_diameter + 4; // Add padding
+    
+    // Create surface for drawing cursor
+    auto surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, cursor_size, cursor_size);
+    auto cr = Cairo::Context::create(surface);
+    
+    // Clear background (transparent)
+    cr->set_operator(Cairo::OPERATOR_CLEAR);
+    cr->paint();
+    cr->set_operator(Cairo::OPERATOR_OVER);
+    
+    // Draw brush size circle
+    cr->set_source_rgba(0.0, 0.0, 0.0, 0.8); // Semi-transparent black
+    cr->set_line_width(1.0);
+    cr->arc(cursor_size/2.0, cursor_size/2.0, cursor_diameter/2.0, 0, 2 * M_PI);
+    cr->stroke();
+    
+    // Draw center crosshair
+    cr->move_to(cursor_size/2.0 - 4, cursor_size/2.0);
+    cr->line_to(cursor_size/2.0 + 4, cursor_size/2.0);
+    cr->move_to(cursor_size/2.0, cursor_size/2.0 - 4);
+    cr->line_to(cursor_size/2.0, cursor_size/2.0 + 4);
+    cr->stroke();
+    
+    // Convert Cairo surface to GdkPixbuf
+    auto pixbuf = Gdk::Pixbuf::create(surface, 0, 0, cursor_size, cursor_size);
+    
+    // Create and set cursor
+    auto display = get_display();
+    auto cursor = Gdk::Cursor::create(display, pixbuf, cursor_size/2, cursor_size/2);
+    
+    drawing_area.get_window()->set_cursor(cursor);
 }

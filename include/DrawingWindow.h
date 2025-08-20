@@ -20,7 +20,10 @@ public:
     DrawingWindow(int width, int height, Gdk::RGBA* current_color);
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
+    void createBrushSizeCursor();
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
+    sigc::signal<void()> signal_draw_cursor();
+    void signal_cursor();
     double Stroke{};
     double StrokeSize;
     double Opacity;
@@ -36,6 +39,7 @@ protected:
 
 private:
     sigc::signal<void(double, double, guint)> m_signal_mouse_clicked;
+    sigc::signal<void()> m_signal_draw_cursor;
     bool fill_background = false; 
     Gdk::RGBA fill_color;       
     bool brushClicked;
