@@ -12,7 +12,6 @@ struct Point {
     double PointStroke;
     double PointOpacity;
     
-
 };
 
 class DrawingWindow : public Gtk::Window {
@@ -21,6 +20,9 @@ public:
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
     void createBrushSizeCursor();
+    void CreateNewLayer();
+    void ActivateLayer(int index);
+    int getLayerIndex();
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     sigc::signal<void()> signal_draw_cursor();
     void signal_cursor();
@@ -28,6 +30,7 @@ public:
     double StrokeSize;
     double Opacity;
     double OpacityVal;
+    int layerCount = 0;
 
 protected:
     // Signal handlers
@@ -45,6 +48,8 @@ private:
     bool brushClicked;
     Gtk::DrawingArea drawing_area;
     std::vector<Point> points;
+    std::vector<Point>CurrentLayer;
+    std::vector<std::pair<std::vector<Point>,int >>Layers;
     Gdk::RGBA* currentColor;  // Reference to MainWindow's current color
     Gdk::RGBA current_stroke_color;  // Color of the current stroke being drawn
     Cairo::RefPtr<Cairo::Context> crr;

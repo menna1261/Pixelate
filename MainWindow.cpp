@@ -412,69 +412,84 @@ void MainWindow::on_AddLayer_clicked(){
     layer_button->set_margin_bottom(8);
     layer_button->set_size_request(-1, 40);
     layer_button->set_relief(Gtk::RELIEF_NONE);
-    layer_button->set_name("HButton");
-    
+   // layer_button->set_name("HButton");
+
     // Connect click signal
-    layer_button->signal_clicked().connect([layer_name]() {
-        std::cout << "Clicked on: " << layer_name << std::endl;
+    layer_button->signal_clicked().connect([this, layer_name]() {
+
+    std::string prefix = "Layer";
+    if (layer_name.substr(0, prefix.length()) == prefix) {
+        std::string number_str = layer_name.substr(prefix.length());
+        int number = std::stoi(number_str);
+        std::cout << "Clicked on: " << layer_name <<"  id:  " <<number << std::endl;
+        if(CurrentDrawingWindow)
+            CurrentDrawingWindow->ActivateLayer(number);
+    }
+        
     });
     
     // Create row and add button
     auto* row = Gtk::manage(new Gtk::ListBoxRow());
-    row->set_size_request(-1, 40);
+    row->set_size_request(80, 40);
     
     row->add(*layer_button);
     row->show_all();
     
     layers_listbox->insert(*row, 0);
+    CurrentDrawingWindow->CreateNewLayer();
    // layers_listbox->select_row(*row);
 }
 
 void MainWindow::on_DelLayer_clicked(){
 
 }
-Gtk::Widget* MainWindow::create_layer_widget(const std::string& layer_name) {
-    // Create a horizontal box to hold layer elements
-    auto* layer_box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 20));
-    layer_box->set_margin_top(5);
-    layer_box->set_margin_bottom(5);
-    layer_box->set_margin_left(10);
-    layer_box->set_margin_right(10);
+// Gtk::Widget* MainWindow::create_layer_widget(const std::string& layer_name) {
+//     // Create a horizontal box to hold layer elements
+//     auto* layer_box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 20));
+//     layer_box->set_margin_top(5);
+//     layer_box->set_margin_bottom(5);
+//     layer_box->set_margin_left(10);
+//     layer_box->set_margin_right(10);
 
-    layer_box->set_name("LayerWidget");
+//     layer_box->set_name("LayerWidget");
     
    
-    auto* layer_button = Gtk::manage(new Gtk::ToggleButton(layer_name));
-    layer_button->set_hexpand(true);
+//     auto* layer_button = Gtk::manage(new Gtk::Button(layer_name));
+//     layer_button->set_hexpand(true);
 
-    auto* layer_label = Gtk::manage(new Gtk::Label(layer_name));
-    layer_label->set_halign(Gtk::ALIGN_START);
-    layer_label->set_hexpand(true);
+//     auto* layer_label = Gtk::manage(new Gtk::Label(layer_name));
+//     layer_label->set_halign(Gtk::ALIGN_START);
+//     layer_label->set_hexpand(true);
 
     
-    // Pack widgets
-    // layer_box->pack_start(*layer_button, true, true, 0);
-    // layer_box->pack_start(*visibility_button, false, false, 0);
-    // layer_box->pack_start(*delete_button, false, false, 0);
+//     // Pack widgets
+//     // layer_box->pack_start(*layer_button, true, true, 0);
+//     // layer_box->pack_start(*visibility_button, false, false, 0);
+//     // layer_box->pack_start(*delete_button, false, false, 0);
     
-    // Connect signals
-    layer_button->signal_clicked().connect([this, layer_name]() {
-        // Handle layer selection
-        std::cout << "Layer selected: " << layer_name << std::endl;
-        // Add your layer switching logic here
-    });
+//     // Connect signals
+//     layer_button->signal_clicked().connect([this, layer_name]() {
+//         // Handle layer selection
+//         //int id = std::to_integer(layer_name[5]);
+//         std::string id = layer_name[5]+"";
+        
+//         std::cout << "Layer selected: " << layer_name <<"id: " <<id << std::endl;
+//         //CurrentDrawingWindow->ActivateLayer(id);
+//         // Add your layer switching logic here
+//     });
     
-    // visibility_button->signal_clicked().connect([this, layer_name]() {
-    //     // Handle visibility toggle
-    //     std::cout << "Toggle visibility for: " << layer_name << std::endl;
-    // });
+//     // visibility_button->signal_clicked().connect([this, layer_name]() {
+//     //     // Handle visibility toggle
+//     //     std::cout << "Toggle visibility for: " << layer_name << std::endl;
+//     // });
     
-    DelLayer->signal_clicked().connect([this, layer_box]() {
-        // Handle layer deletion
-        layer_box->get_parent()->remove(*layer_box);
-    });
+//     DelLayer->signal_clicked().connect([this, layer_box]() {
+//         // Handle layer deletion
+//         layer_box->get_parent()->remove(*layer_box);
+//     });
     
-    layer_box->show_all();
-    return layer_box;
-}
+//     layer_box->show_all();
+    
+//     return layer_box;
+// }
 

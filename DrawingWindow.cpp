@@ -278,3 +278,23 @@ void DrawingWindow::signal_cursor() {
     
     drawing_area.get_window()->set_cursor(cursor);
 }
+
+void DrawingWindow::CreateNewLayer(){
+    ++layerCount;
+    std::vector<Point> new_layer;
+    Layers.push_back(std::make_pair(new_layer, layerCount));
+    std::cout<<"New layer is added" <<std::endl;
+}
+
+void DrawingWindow::ActivateLayer(int index){
+
+    std::cout<<"Activating Layer : " <<index<<std::endl;
+
+        //CurrentLayer = Layers[index].first;
+        if(Layers.size()!=0)
+        std::cout<<"============ :  " <<Layers[index-1].second<<std::endl;
+        else
+            std::cout<<"NULL"<<std::endl;
+
+}
+
