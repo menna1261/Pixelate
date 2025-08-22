@@ -47,7 +47,7 @@ sigc::signal<void()>DrawingWindow::signal_draw_cursor(){
 void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
     fill_background = true;
     fill_color = color;
-    queue_draw();  // Trigger redraw
+    queue_draw();  
 }
 
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
@@ -63,23 +63,34 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     cr->set_line_cap(Cairo::LINE_CAP_ROUND);
     cr->set_line_join(Cairo::LINE_JOIN_ROUND);
     
+    // Draw ALL layers
+    for (const auto& layer : Layers) {
+        const std::vector<Point>& layer_points = layer.first;
+        draw_layer_points(cr, layer_points);
+    }
+    
+    std::cout << "Drawing all layers, active: " << CurrentIndex << std::endl;
+    return true;
+}
+
+void DrawingWindow::draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr, 
+                                     const std::vector<Point>& layer_points) {
     Gdk::RGBA last_color;
     bool color_set = false;
     bool last_was_eraser = false;
     
-    for (size_t i = 0; i < points.size(); ++i) {
-        if (points[i].new_stroke) {
+    for (size_t i = 0; i < layer_points.size(); ++i) {
+        if (layer_points[i].new_stroke) {
             // Finish previous stroke
             if (color_set) {
                 cr->stroke();
             }
             
-            const Gdk::RGBA& point_color = points[i].color;
-            double pressure = points[i].pressure;
-            bool is_eraser = points[i].is_eraser;
-            
-            // Set line width
-            cr->set_line_width(1.0 + pressure * points[i].PointStroke);
+            const Gdk::RGBA& point_color = layer_points[i].color;
+            double pressure = layer_points[i].pressure;
+            bool is_eraser = layer_points[i].is_eraser;
+         
+            cr->set_line_width(1.0 + pressure * layer_points[i].PointStroke);
             
             if (is_eraser) {
                 // Eraser: paint with background color
@@ -87,67 +98,40 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
                     cr->set_source_rgba(fill_color.get_red(), fill_color.get_green(), 
                                        fill_color.get_blue(), 1.0);
                 } else {
-                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0); // White background
+                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
                 }
             } else {
                 // Regular brush: use stroke color
                 cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                                   point_color.get_blue(), 0.5 + pressure * (points[i].PointOpacity)/100);
+                                   point_color.get_blue(), 0.5 + pressure * (layer_points[i].PointOpacity)/100);
             }
             
-            cr->move_to(points[i].x, points[i].y);
+            cr->move_to(layer_points[i].x, layer_points[i].y);
             last_color = point_color;
             last_was_eraser = is_eraser;
             color_set = true;
             
-        } else if (i > 0 && !points[i-1].new_stroke) {
-            // Check if we switched between brush and eraser mid-stroke (shouldn't happen, but just in case)
-            if (points[i].is_eraser != last_was_eraser) {
-                cr->stroke(); // Finish current stroke
-                
-                // Start new stroke with new mode
-                const Gdk::RGBA& point_color = points[i].color;
-                double pressure = points[i].pressure;
-                bool is_eraser = points[i].is_eraser;
-                
-                cr->set_line_width(1.0 + pressure * points[i].PointStroke);
-                
-                if (is_eraser) {
-                    if (fill_background) {
-                        cr->set_source_rgba(fill_color.get_red(), fill_color.get_green(), 
-                                           fill_color.get_blue(), 1.0);
-                    } else {
-                        cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
-                    }
-                } else {
-                    cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                                       point_color.get_blue(), 0.5 + pressure * 0.5);
-                }
-                
-                cr->move_to(points[i-1].x, points[i-1].y);
-                last_was_eraser = is_eraser;
-            }
-            
-            // Continue drawing the stroke
-            if (i == 1 || points[i-1].new_stroke) {
-                cr->line_to(points[i].x, points[i].y);
-            } else if (i < points.size() - 1) {
+        } else if (i > 0 && !layer_points[i-1].new_stroke) {
+
+            if (i == 1 || layer_points[i-1].new_stroke) {
+                cr->line_to(layer_points[i].x, layer_points[i].y);
+            } else if (i < layer_points.size() - 1) {
                 // Smooth curve using cubic Bézier
-                double x1 = points[i-1].x;
-                double y1 = points[i-1].y;
-                double x2 = points[i].x;
-                double y2 = points[i].y;
-                double x3 = points[i+1].x;
-                double y3 = points[i+1].y;
+                double x1 = layer_points[i-1].x;
+                double y1 = layer_points[i-1].y;
+                double x2 = layer_points[i].x;
+                double y2 = layer_points[i].y;
+                double x3 = layer_points[i+1].x;
+                double y3 = layer_points[i+1].y;
                 
-                double cp1x = x1 + (x2 - points[i-2].x) * 0.1;
-                double cp1y = y1 + (y2 - points[i-2].y) * 0.1;
+                double cp1x = x1 + (x2 - layer_points[i-2].x) * 0.1;
+                double cp1y = y1 + (y2 - layer_points[i-2].y) * 0.1;
                 double cp2x = x2 - (x3 - x1) * 0.1;
                 double cp2y = y2 - (y3 - y1) * 0.1;
                 
                 cr->curve_to(cp1x, cp1y, cp2x, cp2y, x2, y2);
             } else {
-                cr->line_to(points[i].x, points[i].y);
+                cr->line_to(layer_points[i].x, layer_points[i].y);
             }
         }
     }
@@ -155,17 +139,21 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     if (color_set) {
         cr->stroke();
     }
-    
-    return true;
 }
+
+
+
 bool DrawingWindow::should_add_point(double x, double y) {
-    if (points.empty()) return true;
+    if (CurrentIndex <= 0 || CurrentIndex > Layers.size()) return true;
     
-    double dx = x - points.back().x;
-    double dy = y - points.back().y;
+    auto& current_layer_points = Layers[CurrentIndex-1].first;
+    if (current_layer_points.empty()) return true;
+    
+    double dx = x - current_layer_points.back().x;
+    double dy = y - current_layer_points.back().y;
     double distance = sqrt(dx*dx + dy*dy);
     
-    return distance > 2.0; // Only add points if they're far enough apart
+    return distance > 2.0;
 }
 
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
@@ -205,7 +193,12 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
         }
         
         bool is_eraser = Singleton::getInstance().EraserClicked;
-        points.push_back({event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize, OpacityVal});
+        Point new_point = {event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
+        
+        // Add point to the ACTIVE layer, not the global points vector
+        if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
+            Layers[CurrentIndex-1].first.push_back(new_point);
+        }
         queue_draw();
     }
     return true;
@@ -233,7 +226,12 @@ if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserCli
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;
-            points.push_back({event->x, event->y, pressure, false, current_stroke_color, is_eraser,StrokeSize, OpacityVal});
+        Point new_point = {event->x, event->y, pressure, false, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
+        
+        // Add point to the ACTIVE layer, not the global points vector
+        if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
+            Layers[CurrentIndex-1].first.push_back(new_point);
+        }
             queue_draw();
         }
     }
@@ -289,12 +287,11 @@ void DrawingWindow::CreateNewLayer(){
 void DrawingWindow::ActivateLayer(int index){
 
     std::cout<<"Activating Layer : " <<index<<std::endl;
-
-        //CurrentLayer = Layers[index].first;
+        CurrentIndex = index;
         if(Layers.size()!=0)
         std::cout<<"============ :  " <<Layers[index-1].second<<std::endl;
         else
             std::cout<<"NULL"<<std::endl;
-
+    queue_draw();
 }
 

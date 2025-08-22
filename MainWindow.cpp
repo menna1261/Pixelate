@@ -436,6 +436,7 @@ void MainWindow::on_AddLayer_clicked(){
     row->show_all();
     
     layers_listbox->insert(*row, 0);
+    if(CurrentDrawingWindow)
     CurrentDrawingWindow->CreateNewLayer();
    // layers_listbox->select_row(*row);
 }
