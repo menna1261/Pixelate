@@ -17,6 +17,7 @@ struct Point {
 class DrawingWindow : public Gtk::Window {
 public:
     DrawingWindow(int width, int height, Gdk::RGBA* current_color);
+   // void markCurrentLayerDirty();
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
     void createBrushSizeCursor();
@@ -33,6 +34,7 @@ public:
     double OpacityVal;
     int layerCount = 0;
     int CurrentIndex=0;
+    
 
 protected:
     // Signal handlers
@@ -55,6 +57,24 @@ private:
     Gdk::RGBA* currentColor;  // Reference to MainWindow's current color
     Gdk::RGBA current_stroke_color;  // Color of the current stroke being drawn
     Cairo::RefPtr<Cairo::Context> crr;
+    private:
+    struct LayerCache {
+        Cairo::RefPtr<Cairo::ImageSurface> surface;
+        bool needsRedraw = true;
+        size_t lastPointCount = 0;
+    };
+    
+    std::vector<LayerCache> layerCaches;
+    int canvasWidth = 0, canvasHeight = 0;
+    bool surfacesInitialized = false;
+    
+    void markLayerDirty(int layerIndex);
+    void ensureSurfacesSize(int width, int height);
+    void draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+                                    const std::vector<Point>& layer_points);
+    void draw_single_stroke_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+                                     const std::vector<Point>& points,
+                                     size_t start, size_t end);
 };
 
 #endif // DRAWINGWINDOW_H

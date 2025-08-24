@@ -50,8 +50,56 @@ void DrawingWindow::fill_with_color(const Gdk::RGBA& color) {
     queue_draw();  
 }
 
+void DrawingWindow::ensureSurfacesSize(int width, int height) {
+    // Only recreate surfaces if size changed
+    if (canvasWidth == width && canvasHeight == height && surfacesInitialized && layerCaches.size() == Layers.size()) {
+        return;
+    }
+    
+    canvasWidth = width;
+    canvasHeight = height;
+    
+    // Resize cache vector to match layers
+    layerCaches.resize(Layers.size());
+    
+    // Create or recreate surfaces only when needed
+    for (size_t i = 0; i < layerCaches.size(); ++i) {
+        if (!layerCaches[i].surface || layerCaches[i].surface->get_width() != width || layerCaches[i].surface->get_height() != height) {
+            layerCaches[i].surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
+            layerCaches[i].needsRedraw = true;
+        }
+    }
+    
+    surfacesInitialized = true;
+}
+
+void DrawingWindow::markLayerDirty(int layerIndex) {
+    // Ensure the cache vector is big enough
+    while (layerCaches.size() <= layerIndex) {
+        layerCaches.emplace_back();
+    }
+    
+    if (layerIndex >= 0 && layerIndex < layerCaches.size()) {
+        layerCaches[layerIndex].needsRedraw = true;
+    }
+}
+
 bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-    // Draw background
+    // Get canvas dimensions
+    Gtk::Allocation allocation = drawing_area.get_allocation();
+    int width = allocation.get_width();
+    int height = allocation.get_height();
+    
+    // Safety check for valid dimensions
+    //This mf made the code crash multiple times
+    if (width <= 0 || height <= 0) {
+        return true;
+    }
+    
+    // Ensure surfaces are correct size
+    ensureSurfacesSize(width, height);
+    
+    // Draw background ONCE
     if (fill_background) {
         cr->set_source_rgb(fill_color.get_red(), fill_color.get_green(), fill_color.get_blue());
         cr->paint();
@@ -60,89 +108,153 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         cr->paint();
     }
     
-    cr->set_line_cap(Cairo::LINE_CAP_ROUND);
-    cr->set_line_join(Cairo::LINE_JOIN_ROUND);
-    
-    // Draw ALL layers
-    for (const auto& layer : Layers) {
+    // Process each layer
+    for (size_t layer_idx = 0; layer_idx < Layers.size(); ++layer_idx) {
+        const auto& layer = Layers[layer_idx];
         const std::vector<Point>& layer_points = layer.first;
-        draw_layer_points(cr, layer_points);
-    }
-    
-    std::cout << "Drawing all layers, active: " << CurrentIndex << std::endl;
-    return true;
-}
-
-void DrawingWindow::draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr, 
-                                     const std::vector<Point>& layer_points) {
-    Gdk::RGBA last_color;
-    bool color_set = false;
-    bool last_was_eraser = false;
-    
-    for (size_t i = 0; i < layer_points.size(); ++i) {
-        if (layer_points[i].new_stroke) {
-            // Finish previous stroke
-            if (color_set) {
-                cr->stroke();
-            }
-            
-            const Gdk::RGBA& point_color = layer_points[i].color;
-            double pressure = layer_points[i].pressure;
-            bool is_eraser = layer_points[i].is_eraser;
-         
-            cr->set_line_width(1.0 + pressure * layer_points[i].PointStroke);
-            
-            if (is_eraser) {
-                // Eraser: paint with background color
-                if (fill_background) {
-                    cr->set_source_rgba(fill_color.get_red(), fill_color.get_green(), 
-                                       fill_color.get_blue(), 1.0);
-                } else {
-                    cr->set_source_rgba(1.0, 1.0, 1.0, 1.0);
-                }
-            } else {
-                // Regular brush: use stroke color
-                cr->set_source_rgba(point_color.get_red(), point_color.get_green(), 
-                                   point_color.get_blue(), 0.5 + pressure * (layer_points[i].PointOpacity)/100);
-            }
-            
-            cr->move_to(layer_points[i].x, layer_points[i].y);
-            last_color = point_color;
-            last_was_eraser = is_eraser;
-            color_set = true;
-            
-        } else if (i > 0 && !layer_points[i-1].new_stroke) {
-
-            if (i == 1 || layer_points[i-1].new_stroke) {
-                cr->line_to(layer_points[i].x, layer_points[i].y);
-            } else if (i < layer_points.size() - 1) {
-                // Smooth curve using cubic Bézier
-                double x1 = layer_points[i-1].x;
-                double y1 = layer_points[i-1].y;
-                double x2 = layer_points[i].x;
-                double y2 = layer_points[i].y;
-                double x3 = layer_points[i+1].x;
-                double y3 = layer_points[i+1].y;
+        
+        // Skip empty layers
+        if (layer_points.empty()) continue;
+        
+        // Safety check for cache bounds
+        if (layer_idx >= layerCaches.size()) {
+            std::cerr << "Cache size mismatch! layer_idx: " << layer_idx << ", cache size: " << layerCaches.size() << std::endl;
+            continue;
+        }
+        
+        LayerCache& cache = layerCaches[layer_idx];
+        
+        // Safety check for surface existence
+        if (!cache.surface) {
+            std::cerr << "Surface is null for layer " << layer_idx << std::endl;
+            cache.surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
+            cache.needsRedraw = true;
+        }
+        
+        // Check if layer actually changed (smart invalidation)
+        bool layerChanged = cache.needsRedraw || 
+                           cache.lastPointCount != layer_points.size();
+        
+        // Only re-render if layer actually changed
+        if (layerChanged) {
+            try {
+                auto layer_cr = Cairo::Context::create(cache.surface);
                 
-                double cp1x = x1 + (x2 - layer_points[i-2].x) * 0.1;
-                double cp1y = y1 + (y2 - layer_points[i-2].y) * 0.1;
-                double cp2x = x2 - (x3 - x1) * 0.1;
-                double cp2y = y2 - (y3 - y1) * 0.1;
+                // Clear the layer surface (ONCE)
+                layer_cr->set_operator(Cairo::OPERATOR_CLEAR);
+                layer_cr->paint();
+                layer_cr->set_operator(Cairo::OPERATOR_OVER);
                 
-                cr->curve_to(cp1x, cp1y, cp2x, cp2y, x2, y2);
-            } else {
-                cr->line_to(layer_points[i].x, layer_points[i].y);
+                // Set up drawing properties (ONCE per layer)
+                layer_cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+                layer_cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+                
+                // Draw this layer's content
+                draw_layer_points_optimized(layer_cr, layer_points);
+                
+                // Update cache state
+                cache.needsRedraw = false;
+                cache.lastPointCount = layer_points.size();
+            } catch (const std::exception& e) {
+                std::cerr << "Error rendering layer " << layer_idx << ": " << e.what() << std::endl;
+                continue;
             }
+        }
+        
+        try {
+            // Composite cached surface onto main canvas (fast operation)
+            cr->set_source(cache.surface, 0, 0);
+            cr->set_operator(Cairo::OPERATOR_OVER);
+            cr->paint();
+        } catch (const std::exception& e) {
+            std::cerr << "Error compositing layer " << layer_idx << ": " << e.what() << std::endl;
         }
     }
     
-    if (color_set) {
-        cr->stroke();
+    return true;
+}
+
+// Optimized drawing function with fewer Cairo calls
+void DrawingWindow::draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+                                               const std::vector<Point>& layer_points) {
+    if (layer_points.empty() || !cr) return;
+    
+    try {
+        // Group consecutive points by stroke properties to minimize context switches
+        size_t i = 0;
+        while (i < layer_points.size()) {
+            if (!layer_points[i].new_stroke && i > 0) {
+                i++;
+                continue;
+            }
+            
+            // Find the end of this stroke
+            size_t stroke_end = i + 1;
+            while (stroke_end < layer_points.size() && !layer_points[stroke_end].new_stroke) {
+                stroke_end++;
+            }
+            
+            // Draw entire stroke at once
+            draw_single_stroke_optimized(cr, layer_points, i, stroke_end);
+            
+            i = stroke_end;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error in draw_layer_points_optimized: " << e.what() << std::endl;
     }
 }
 
-
-
+void DrawingWindow::draw_single_stroke_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+                                                const std::vector<Point>& points,
+                                                size_t start, size_t end) {
+    if (start >= points.size() || start >= end || !cr) return;
+    
+    try {
+        const Point& first_point = points[start];
+        
+        // Set stroke properties ONCE per stroke
+        cr->set_line_width(1.0 + first_point.pressure * first_point.PointStroke);
+        
+        if (first_point.is_eraser) {
+            cr->set_operator(Cairo::OPERATOR_CLEAR);
+            cr->set_source_rgba(0.0, 0.0, 0.0, 1.0);
+        } else {
+            cr->set_operator(Cairo::OPERATOR_OVER);
+            cr->set_source_rgba(first_point.color.get_red(), 
+                               first_point.color.get_green(),
+                               first_point.color.get_blue(), 
+                               0.5 + first_point.pressure * first_point.PointOpacity / 100);
+        }
+        
+        // Build path ONCE
+        cr->move_to(first_point.x, first_point.y);
+        
+        for (size_t i = start + 1; i < end && i < points.size(); ++i) {
+            const Point& point = points[i];
+            
+            if (i < end - 1 && i > start + 1 && (i - 2) < points.size()) {
+                // Use smooth curves for middle points - with bounds checking
+                const Point& prev = points[i-1];
+                const Point& next = points[i+1];
+                const Point& prev2 = points[i-2];
+                
+                double cp1x = prev.x + (point.x - prev2.x) * 0.1;
+                double cp1y = prev.y + (point.y - prev2.y) * 0.1;
+                double cp2x = point.x - (next.x - prev.x) * 0.1;
+                double cp2y = point.y - (next.y - prev.y) * 0.1;
+                
+                cr->curve_to(cp1x, cp1y, cp2x, cp2y, point.x, point.y);
+            } else {
+                cr->line_to(point.x, point.y);
+            }
+        }
+        
+        // Stroke ONCE per stroke
+        cr->stroke();
+    } catch (const std::exception& e) {
+        std::cerr << "Error in draw_single_stroke_optimized: " << e.what() << std::endl;
+    }
+}
 bool DrawingWindow::should_add_point(double x, double y) {
     if (CurrentIndex <= 0 || CurrentIndex > Layers.size()) return true;
     
@@ -157,68 +269,64 @@ bool DrawingWindow::should_add_point(double x, double y) {
 }
 
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
-
     m_signal_draw_cursor.emit();
-    m_signal_mouse_clicked.emit(event->x , event->y , event->button);
+    m_signal_mouse_clicked.emit(event->x, event->y, event->button);
+    
     if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
-      
-        return false; // Ignore if brush is not clicked
+        return false;
     }
+    
     if (event->button == 1) {
-        double pressure = 0.5; // default for mouse
-        
-        // GTK3 way to get pressure
+        double pressure = 0.5;
         if (event->device) {
             gdouble value;
             GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
-            
             if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
                 pressure = value;
-                std::cout << "Got pressure: " << pressure << std::endl;
-            } else {
-                std::cout << "No pressure axis found" << std::endl;
             }
         }
         
         if (currentColor) {
             current_stroke_color = *currentColor;
         }
-
-        if(Stroke){
+        if (Stroke) {
             StrokeSize = Stroke;
         }
-
-        if(Opacity){
+        if (Opacity) {
             OpacityVal = Opacity;
         }
         
         bool is_eraser = Singleton::getInstance().EraserClicked;
         Point new_point = {event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
         
-        // Add point to the ACTIVE layer, not the global points vector
+        // Add point and mark layer dirty
         if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
             Layers[CurrentIndex-1].first.push_back(new_point);
+            
+            // Ensure we have enough cache slots BEFORE marking dirty
+            while (layerCaches.size() < Layers.size()) {
+                layerCaches.emplace_back();
+                layerCaches.back().needsRedraw = true;
+            }
+            
+            markLayerDirty(CurrentIndex - 1);  // Only mark current layer dirty
         }
+        
         queue_draw();
     }
     return true;
 }
 
 bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
-
-if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
-        return false; // Ignore if brush is not clicked
-       
+    if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
+        return false;
     }
 
     if (event->state & GDK_BUTTON1_MASK) {
-        double pressure = 0.5; // default
-        
-        // GTK3 way to get pressure
+        double pressure = 0.5;
         if (event->device) {
             gdouble value;
             GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
-            
             if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
                 pressure = value;
             }
@@ -226,16 +334,32 @@ if(!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserCli
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;
-        Point new_point = {event->x, event->y, pressure, false, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
-        
-        // Add point to the ACTIVE layer, not the global points vector
-        if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
-            Layers[CurrentIndex-1].first.push_back(new_point);
-        }
+            Point new_point = {event->x, event->y, pressure, false, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
+            
+            if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
+                Layers[CurrentIndex-1].first.push_back(new_point);
+                markLayerDirty(CurrentIndex - 1);  // Only mark current layer dirty
+            }
+            
             queue_draw();
         }
     }
     return true;
+}
+
+void DrawingWindow::CreateNewLayer() {
+    ++layerCount;
+    std::vector<Point> new_layer;
+    Layers.push_back(std::make_pair(new_layer, layerCount));
+    
+    // Add cache entry for new layer - this is crucial!
+    layerCaches.emplace_back();
+    layerCaches.back().needsRedraw = true;
+    
+    // Force surface recreation to match new layer count
+    surfacesInitialized = false;
+    
+    std::cout << "New layer added, total: " << Layers.size() << std::endl;
 }
 
 
@@ -277,12 +401,6 @@ void DrawingWindow::signal_cursor() {
     drawing_area.get_window()->set_cursor(cursor);
 }
 
-void DrawingWindow::CreateNewLayer(){
-    ++layerCount;
-    std::vector<Point> new_layer;
-    Layers.push_back(std::make_pair(new_layer, layerCount));
-    std::cout<<"New layer is added" <<std::endl;
-}
 
 void DrawingWindow::ActivateLayer(int index){
 
