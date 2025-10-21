@@ -20,9 +20,11 @@ public:
    // void markCurrentLayerDirty();
     void FillBackGround( Gdk::RGBA* color);
     void fill_with_color(const Gdk::RGBA& color);
+    void ApplyZoom();
     void createBrushSizeCursor();
     void CreateNewLayer();
     void ActivateLayer(int index);
+    void ClearLayers();
     int getLayerIndex();
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     sigc::signal<void()> signal_draw_cursor();
@@ -34,6 +36,7 @@ public:
     double OpacityVal;
     int layerCount = 0;
     int CurrentIndex=0;
+    double ZoomFactor = 1.0;
     
 
 protected:

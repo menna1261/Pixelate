@@ -34,6 +34,8 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     if (currentColor) {
         current_stroke_color = *currentColor;
     }
+
+     ZoomFactor = 1.0;
 }
 
 sigc::signal<void(double, double, guint)> DrawingWindow::signal_mouse_clicked() {
@@ -98,6 +100,8 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     
     // Ensure surfaces are correct size
     ensureSurfacesSize(width, height);
+
+
     
     // Draw background ONCE
     if (fill_background) {
@@ -108,6 +112,10 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         cr->paint();
     }
     
+        if (ZoomFactor && Singleton::getInstance().ZoomClicked) {
+        cr->save(); // Save current state
+        cr->scale(ZoomFactor, ZoomFactor);
+    }
     // Process each layer
     for (size_t layer_idx = 0; layer_idx < Layers.size(); ++layer_idx) {
         const auto& layer = Layers[layer_idx];
@@ -131,7 +139,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
             cache.needsRedraw = true;
         }
         
-        // Check if layer actually changed (smart invalidation)
+        // Check if layer actually changed 
         bool layerChanged = cache.needsRedraw || 
                            cache.lastPointCount != layer_points.size();
         
@@ -169,6 +177,10 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         } catch (const std::exception& e) {
             std::cerr << "Error compositing layer " << layer_idx << ": " << e.what() << std::endl;
         }
+    }
+
+        if (ZoomFactor && Singleton::getInstance().ZoomClicked) {
+        cr->restore();
     }
     
     return true;
@@ -352,7 +364,7 @@ void DrawingWindow::CreateNewLayer() {
     std::vector<Point> new_layer;
     Layers.push_back(std::make_pair(new_layer, layerCount));
     
-    // Add cache entry for new layer - this is crucial!
+    // Add cache entry for new layer
     layerCaches.emplace_back();
     layerCaches.back().needsRedraw = true;
     
@@ -365,36 +377,35 @@ void DrawingWindow::CreateNewLayer() {
 
 //TBH Claude wrote this function
 void DrawingWindow::signal_cursor() {
-    // Calculate cursor size (clamp between reasonable bounds)
-    int cursor_diameter = std::max(8, std::min(64, (int)Stroke));
-    int cursor_size = cursor_diameter + 4; // Add padding
     
-    // Create surface for drawing cursor
+    int cursor_diameter = std::max(8, std::min(64, (int)Stroke));
+    int cursor_size = cursor_diameter + 4; 
+   
     auto surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, cursor_size, cursor_size);
     auto cr = Cairo::Context::create(surface);
     
-    // Clear background (transparent)
+   
     cr->set_operator(Cairo::OPERATOR_CLEAR);
     cr->paint();
     cr->set_operator(Cairo::OPERATOR_OVER);
     
-    // Draw brush size circle
-    cr->set_source_rgba(0.0, 0.0, 0.0, 0.8); // Semi-transparent black
+    
+    cr->set_source_rgba(0.0, 0.0, 0.0, 0.8); 
     cr->set_line_width(1.0);
     cr->arc(cursor_size/2.0, cursor_size/2.0, cursor_diameter/2.0, 0, 2 * M_PI);
     cr->stroke();
     
-    // Draw center crosshair
+    
     cr->move_to(cursor_size/2.0 - 4, cursor_size/2.0);
     cr->line_to(cursor_size/2.0 + 4, cursor_size/2.0);
     cr->move_to(cursor_size/2.0, cursor_size/2.0 - 4);
     cr->line_to(cursor_size/2.0, cursor_size/2.0 + 4);
     cr->stroke();
     
-    // Convert Cairo surface to GdkPixbuf
+    
     auto pixbuf = Gdk::Pixbuf::create(surface, 0, 0, cursor_size, cursor_size);
     
-    // Create and set cursor
+   
     auto display = get_display();
     auto cursor = Gdk::Cursor::create(display, pixbuf, cursor_size/2, cursor_size/2);
     
@@ -413,3 +424,15 @@ void DrawingWindow::ActivateLayer(int index){
     queue_draw();
 }
 
+void DrawingWindow::Clearlayers(){
+    
+}
+
+void DrawingWindow::ApplyZoom(){
+
+    ZoomFactor = 10;
+    queue_draw();
+}
+
+
+   

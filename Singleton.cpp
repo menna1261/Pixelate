@@ -3,7 +3,7 @@
 class Singleton {
 public:
     static Singleton& getInstance() {
-        static Singleton instance; // Guaranteed to be destroyed, instantiated on first use
+        static Singleton instance; //instantiated on first use
         return instance;
     }
 
@@ -42,8 +42,6 @@ public:
     // Delete copy constructor and assignment operator to prevent copies
     Singleton(const Singleton&) = delete;
     Singleton& operator=(const Singleton&) = delete;
-    Singleton() {
-        // Initialize any resources or state here
-    }
+    Singleton() {}
 
 };

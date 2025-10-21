@@ -16,6 +16,7 @@
     <property name="width-request">600</property>
     <property name="height-request">600</property>
     <property name="can-focus">False</property>
+    <property name="deletable">False</property>
     <child>
       <object class="GtkDrawingArea">
         <property name="visible">True</property>
@@ -381,27 +382,6 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkScale" id="StrokeScale">
-                                <property name="width-request">211</property>
-                                <property name="height-request">49</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="halign">center</property>
-                                <property name="adjustment">adjustment1</property>
-                                <property name="lower-stepper-sensitivity">on</property>
-                                <property name="upper-stepper-sensitivity">on</property>
-                                <property name="show-fill-level">True</property>
-                                <property name="fill-level">100</property>
-                                <property name="round-digits">1</property>
-                                <property name="value-pos">right</property>
-                                <signal name="value-changed" handler="on_StrokeScale_value_changed" swapped="no"/>
-                              </object>
-                              <packing>
-                                <property name="x">15</property>
-                                <property name="y">57</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkLabel">
                                 <property name="width-request">75</property>
                                 <property name="height-request">41</property>
@@ -451,6 +431,27 @@
                                 <property name="y">146</property>
                               </packing>
                             </child>
+                            <child>
+                              <object class="GtkScale" id="StrokeScale">
+                                <property name="width-request">211</property>
+                                <property name="height-request">49</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="halign">center</property>
+                                <property name="adjustment">adjustment1</property>
+                                <property name="lower-stepper-sensitivity">on</property>
+                                <property name="upper-stepper-sensitivity">on</property>
+                                <property name="show-fill-level">True</property>
+                                <property name="fill-level">100</property>
+                                <property name="round-digits">1</property>
+                                <property name="value-pos">right</property>
+                                <signal name="value-changed" handler="on_StrokeScale_value_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="x">15</property>
+                                <property name="y">57</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -481,15 +482,19 @@
                             <property name="orientation">vertical</property>
                             <child>
                               <object class="GtkScrolledWindow" id="ScrollWindow">
+                                <property name="height-request">257</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="shadow-type">in</property>
                                 <child>
                                   <object class="GtkViewport" id="ViewPort">
+                                    <property name="height-request">257</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <child>
                                       <object class="GtkListBox" id="layers_listbox">
+                                        <property name="width-request">0</property>
+                                        <property name="height-request">257</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                       </object>

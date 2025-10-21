@@ -65,6 +65,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("StrokeScale", StrokeScale);
     m_refBuilder->get_widget("OpacityScale", OpacityScale);
     m_refBuilder->get_widget("layers_listbox", layers_listbox);
+    
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -268,11 +269,7 @@ void MainWindow::on_brushButton_clicked()
     Singleton::getInstance().setBrushClicked(true);
 }
 
-void MainWindow::on_ZoomButton_clicked()
-{
-    std::cout << "zoom button clicked!" << std::endl;
-    Singleton::getInstance().setZoomClicked(true);
-}
+
 
 void MainWindow::on_FillButton_clicked()
 {
@@ -289,6 +286,13 @@ void MainWindow::on_FillButton_clicked()
 
 }
 
+void MainWindow::on_ZoomButton_clicked()
+{
+    std::cout << "zoom button clicked!" << std::endl;
+    Singleton::getInstance().setZoomClicked(true);
+            CurrentDrawingWindow->signal_mouse_clicked().connect(
+    sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
+}
 void MainWindow::on_drawing_window_clicked(double x, double y, guint button) {
     std::cout << "Mouse clicked in DrawingWindow at (" << x << ", " << y << ") with button " << button << std::endl;
     
@@ -298,6 +302,10 @@ void MainWindow::on_drawing_window_clicked(double x, double y, guint button) {
             // Handle fill tool
             std::cout << "Fill tool activated at click position" << std::endl;
             CurrentDrawingWindow->fill_with_color(current_color);
+        }
+
+        else if(Singleton::getInstance().ZoomClicked){
+            CurrentDrawingWindow->ApplyZoom();
         }
         // Add other tool handling here
     }
@@ -400,19 +408,35 @@ void MainWindow::on_OpacityScale_value_changed(){
 
 void MainWindow::on_AddLayer_clicked(){
     
+    if(!CurrentDrawingWindow){
+        std::cout << "Can't create layer" << std::endl;
+        
+        // Clear the listbox when drawing window doesn't exist
+        auto children = layers_listbox->get_children();
+        for (auto child : children) {
+            layers_listbox->remove(*child);
+        }
+        
+        // Reset layer counter
+        layer_counter = 0;
+        
+        return;
+    }
+    
     std::string layer_name = "Layer" + std::to_string(++layer_counter);
     
     // Create button that looks like a label
     auto* layer_button = Gtk::manage(new Gtk::Button(layer_name));
-    layer_button->set_relief(Gtk::RELIEF_NONE); // Remove button appearance
+    //layer_button->set_relief(Gtk::RELIEF_NONE); // Remove button appearance
+    //m_refBuilder->get_widget("LayerButton",layer_button );
     layer_button->set_halign(Gtk::ALIGN_START);
-    layer_button->set_margin_left(12);
-    layer_button->set_margin_right(12);
-    layer_button->set_margin_top(8);
-    layer_button->set_margin_bottom(8);
-    layer_button->set_size_request(-1, 40);
+    layer_button->set_margin_left(5);
+    layer_button->set_margin_right(5);
+    layer_button->set_margin_top(2);
+    layer_button->set_margin_bottom(2);
+    layer_button->set_size_request(210, 40);
     layer_button->set_relief(Gtk::RELIEF_NONE);
-   // layer_button->set_name("HButton");
+    layer_button->set_name("lbutton");
 
     // Connect click signal
     layer_button->signal_clicked().connect([this, layer_name]() {
@@ -422,6 +446,7 @@ void MainWindow::on_AddLayer_clicked(){
         std::string number_str = layer_name.substr(prefix.length());
         int number = std::stoi(number_str);
         std::cout << "Clicked on: " << layer_name <<"  id:  " <<number << std::endl;
+        selected_layer = number;
         if(CurrentDrawingWindow)
             CurrentDrawingWindow->ActivateLayer(number);
     }
@@ -437,12 +462,29 @@ void MainWindow::on_AddLayer_clicked(){
     
     layers_listbox->insert(*row, 0);
     if(CurrentDrawingWindow)
-    CurrentDrawingWindow->CreateNewLayer();
+        CurrentDrawingWindow->CreateNewLayer();
+
    // layers_listbox->select_row(*row);
 }
 
 void MainWindow::on_DelLayer_clicked(){
 
+    auto  children = layers_listbox->get_children();
+
+    for(auto* child : children){
+
+        Gtk::ListBoxRow* row = dynamic_cast<Gtk::ListBoxRow*>(child);
+
+        if (row ){
+            Gtk::Button* button = dynamic_cast<Gtk::Button*>(row->get_child());
+
+            if(button){
+                if(button->get_label() == "Layer"+ std::__cxx11::to_string(selected_layer)){
+                    layers_listbox->remove(*child);
+                }
+            }
+        }
+    }
 }
 // Gtk::Widget* MainWindow::create_layer_widget(const std::string& layer_name) {
 //     // Create a horizontal box to hold layer elements

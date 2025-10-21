@@ -40,6 +40,7 @@ public:
 
     Gdk::RGBA current_color;
     int layer_counter = 0;
+    int selected_layer;
     // Widgets you need to access
     Gtk::Button* Eraser = nullptr;
     Gtk::Button* Brush = nullptr;
