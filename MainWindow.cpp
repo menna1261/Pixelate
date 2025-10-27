@@ -447,13 +447,14 @@ void MainWindow::on_AddLayer_clicked(){
         int number = std::stoi(number_str);
         std::cout << "Clicked on: " << layer_name <<"  id:  " <<number << std::endl;
         selected_layer = number;
+        
         if(CurrentDrawingWindow)
             CurrentDrawingWindow->ActivateLayer(number);
     }
         
     });
     
-    // Create row and add button
+    // Create row and add buttonj
     auto* row = Gtk::manage(new Gtk::ListBoxRow());
     row->set_size_request(80, 40);
     
@@ -480,12 +481,39 @@ void MainWindow::on_DelLayer_clicked(){
 
             if(button){
                 if(button->get_label() == "Layer"+ std::__cxx11::to_string(selected_layer)){
+                    std::cout<<"selscted layer is " <<selected_layer;
                     layers_listbox->remove(*child);
                 }
             }
         }
     }
+    layer_counter--;
+    reOrderLayers();
 }
+
+void MainWindow::reOrderLayers(){
+    auto  children = layers_listbox->get_children();
+
+    int counter = layer_counter;
+    for(auto* child : children){
+
+        Gtk::ListBoxRow* row = dynamic_cast<Gtk::ListBoxRow*>(child);
+
+        if (row ){
+            Gtk::Button* button = dynamic_cast<Gtk::Button*>(row->get_child());
+
+            if(button){
+                if(counter>=0){
+
+                    button->set_label("Layer" + std::__cxx11::to_string(counter+1));
+                    counter--;
+                }
+                
+            }
+        }
+    }
+}
+
 // Gtk::Widget* MainWindow::create_layer_widget(const std::string& layer_name) {
 //     // Create a horizontal box to hold layer elements
 //     auto* layer_box = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 20));

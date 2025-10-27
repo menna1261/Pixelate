@@ -424,9 +424,6 @@ void DrawingWindow::ActivateLayer(int index){
     queue_draw();
 }
 
-void DrawingWindow::Clearlayers(){
-    
-}
 
 void DrawingWindow::ApplyZoom(){
 

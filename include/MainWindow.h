@@ -28,6 +28,7 @@ public:
     void on_OpacityScale_value_changed();
     void on_AddLayer_clicked();
     void on_DelLayer_clicked();
+    void reOrderLayers();
     Gtk::Widget* create_layer_widget(const std::string& layer_name);
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;

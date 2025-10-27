@@ -33,7 +33,13 @@
 #lbutton{
     background: #a3a6a7;
     color:#e0e0e0;
+    
 }
+
+
+#lbuttonClicked{
+    background-color:rgb(0, 255, 115);}
+
 
 #Image{
 
