@@ -29,6 +29,7 @@ public:
     void on_AddLayer_clicked();
     void on_DelLayer_clicked();
     void reOrderLayers();
+    bool on_DrawingWindow_delete_event(GdkEventAny* event);
     Gtk::Widget* create_layer_widget(const std::string& layer_name);
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;

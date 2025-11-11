@@ -320,6 +320,9 @@ void MainWindow::on_ColorButton_clicked()
 
 void MainWindow::on_NewButton_clicked()
 {
+    if(CurrentDrawingWindow){
+        return;
+    }
     std::cout << "new clicked" << std::endl;
     CanvasPopover->show_all();
     InvalidLabel1->set_text("");
@@ -363,13 +366,24 @@ void MainWindow::on_CreateButton_clicked()
 
         int Width_ = std::stoi(Width);
         int Height_ = std::stoi(Height);
-        auto drawingwindow = Gtk::make_managed<::DrawingWindow>(Width_, Height_, &current_color);
-        CurrentDrawingWindow = drawingwindow;
+        CurrentDrawingWindow = new DrawingWindow(Width_, Height_, &current_color);
+
+        // Connect the delete event BEFORE showing
+        CurrentDrawingWindow->signal_delete_event().connect(
+            sigc::mem_fun(*this, &MainWindow::on_DrawingWindow_delete_event)
+        );
         // drawingwindow->set_current_color(&current_color);
-        drawingwindow->set_transient_for(*this); // make it a child of main window
-        drawingwindow->set_keep_above(true);     // always on top
-        drawingwindow->show();
+        CurrentDrawingWindow->set_transient_for(*this); // make it a child of main window
+        CurrentDrawingWindow->set_keep_above(true);     // always on top
+        CurrentDrawingWindow->show();
     }
+}
+
+bool MainWindow::on_DrawingWindow_delete_event(GdkEventAny* event){
+
+    std::cout <<" window is destroyed "<<std::endl;
+    CurrentDrawingWindow = nullptr;
+    return false;
 }
 
 void MainWindow::on_testDialog_color_activated(const Gdk::RGBA &color)
