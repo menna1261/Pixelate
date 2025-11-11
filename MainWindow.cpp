@@ -383,6 +383,13 @@ bool MainWindow::on_DrawingWindow_delete_event(GdkEventAny* event){
 
     std::cout <<" window is destroyed "<<std::endl;
     CurrentDrawingWindow = nullptr;
+        auto children = layers_listbox->get_children();
+        for (auto child : children) {
+            layers_listbox->remove(*child);
+        }
+        
+        // Reset layer counter
+        layer_counter = 0;
     return false;
 }
 
@@ -409,12 +416,22 @@ void MainWindow::on_ColorButton_color_set()
 }
 
 void MainWindow::on_StrokeScale_value_changed(){
+
+    if(!CurrentDrawingWindow){
+        return;
+    }
+
     double stroke = StrokeScale->get_value();
     CurrentDrawingWindow->Stroke = stroke;
     std::cout<<stroke<<std::endl;
 }
 
 void MainWindow::on_OpacityScale_value_changed(){
+
+        if(!CurrentDrawingWindow){
+        return;
+    }
+
     double Opacity  = OpacityScale->get_value();
     CurrentDrawingWindow->Opacity = Opacity;
     std::cout<<"Opacity : " <<Opacity<<std::endl;
@@ -502,7 +519,7 @@ void MainWindow::on_DelLayer_clicked(){
         }
     }
     layer_counter--;
-    reOrderLayers();
+  // reOrderLayers();
 }
 
 void MainWindow::reOrderLayers(){
