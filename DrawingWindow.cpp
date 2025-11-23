@@ -424,6 +424,17 @@ void DrawingWindow::ActivateLayer(int index){
     queue_draw();
 }
 
+void DrawingWindow::DeleteLayer(int index){
+    int layerSize = Layers[index-1].first.size();
+    Layers[index-1].first.clear();
+
+    std::cout<<"Layer " << index <<"is cleared"<<std::endl;
+
+    // for(int i = 0 ; i <layerSize;i++){
+    //     Layers[index-1].first[i] = nullptr;
+    // }
+
+}
 
 void DrawingWindow::ApplyZoom(){
 

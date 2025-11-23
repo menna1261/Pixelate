@@ -12,10 +12,9 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     : Gtk::Window(cobject), m_refBuilder(refBuilder)
 {
 
-    std::cout<<"==============================================================="<<std::endl;
+    std::cout << "===============================================================" << std::endl;
 
     Singleton::getInstance(); // Ensure Singleton is initialized
-
 
     // Load CSS
     auto css_provider = Gtk::CssProvider::create();
@@ -26,7 +25,6 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     context->add_provider_for_screen(
         screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    
     // Get widgets from the UI
     m_refBuilder->get_widget("Eraser", Eraser);
     m_refBuilder->get_widget("brushButton", Brush);
@@ -37,7 +35,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("GtkBox2", ToolBar);
     m_refBuilder->get_widget("GtkBox", GtkBox);
     m_refBuilder->get_widget("subGtkBox", subGtkBox);
-   //m_refBuilder->get_widget("BrushScale", BrushScale);
+    // m_refBuilder->get_widget("BrushScale", BrushScale);
     m_refBuilder->get_widget("GtkBox1", GtkBox1);
     m_refBuilder->get_widget("GtkBox3", HorizontalBar);
     m_refBuilder->get_widget("NewCanvas", CanvasPopover);
@@ -65,7 +63,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("StrokeScale", StrokeScale);
     m_refBuilder->get_widget("OpacityScale", OpacityScale);
     m_refBuilder->get_widget("layers_listbox", layers_listbox);
-    
+
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -99,10 +97,10 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 
     // if (ColorButton)
     //     ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
-    if(AddLayer)
+    if (AddLayer)
         AddLayer->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_AddLayer_clicked));
 
-    if(DelLayer)
+    if (DelLayer)
         DelLayer->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_DelLayer_clicked));
 
     if (NewButton)
@@ -114,13 +112,11 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     if (CancelButton)
         CancelButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_CancelButton_clicked));
 
-    if(StrokeScale)
+    if (StrokeScale)
         StrokeScale->signal_value_changed().connect(sigc::mem_fun(*this, &MainWindow::on_StrokeScale_value_changed));
 
-    if(OpacityScale)
+    if (OpacityScale)
         OpacityScale->signal_value_changed().connect(sigc::mem_fun(*this, &MainWindow::on_OpacityScale_value_changed));
-
-    
 
     // ColorButton->signal_color_set().connect(
     // sigc::mem_fun(*this, &MainWindow::on_ColorButton_color_set)
@@ -162,12 +158,11 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
         colorWidget2->set_name("Notebook");
 
     layers_listbox->set_name("Notebook");
-    if(AddLayer)
+    if (AddLayer)
         AddLayer->set_name("HButton");
-    if(DelLayer)
+    if (DelLayer)
         DelLayer->set_name("HButton");
 
-    
     // ColorSelection->set_name("NewCanvas");
 
     // if(LayerArea)
@@ -269,42 +264,43 @@ void MainWindow::on_brushButton_clicked()
     Singleton::getInstance().setBrushClicked(true);
 }
 
-
-
 void MainWindow::on_FillButton_clicked()
 {
     std::cout << "fill button clicked!" << std::endl;
     Singleton::getInstance().setBucketClicked(true);
-        if(CurrentDrawingWindow) {
-        
+    if (CurrentDrawingWindow)
+    {
 
         CurrentDrawingWindow->signal_mouse_clicked().connect(
-    sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked)
-);
+            sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
     }
-
-
 }
 
 void MainWindow::on_ZoomButton_clicked()
 {
     std::cout << "zoom button clicked!" << std::endl;
     Singleton::getInstance().setZoomClicked(true);
-            CurrentDrawingWindow->signal_mouse_clicked().connect(
-    sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
-}
-void MainWindow::on_drawing_window_clicked(double x, double y, guint button) {
+    if (CurrentDrawingWindow)
+    {
+    CurrentDrawingWindow->signal_mouse_clicked().connect(
+        sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
+}}
+void MainWindow::on_drawing_window_clicked(double x, double y, guint button)
+{
     std::cout << "Mouse clicked in DrawingWindow at (" << x << ", " << y << ") with button " << button << std::endl;
-    
+
     // Handle different tools here
-    if (button == 1) {  // Left click
-        if (Singleton::getInstance().BucketClicked) {
+    if (button == 1)
+    { // Left click
+        if (Singleton::getInstance().BucketClicked)
+        {
             // Handle fill tool
             std::cout << "Fill tool activated at click position" << std::endl;
             CurrentDrawingWindow->fill_with_color(current_color);
         }
 
-        else if(Singleton::getInstance().ZoomClicked){
+        else if (Singleton::getInstance().ZoomClicked)
+        {
             CurrentDrawingWindow->ApplyZoom();
         }
         // Add other tool handling here
@@ -314,13 +310,12 @@ void MainWindow::on_drawing_window_clicked(double x, double y, guint button) {
 void MainWindow::on_ColorButton_clicked()
 {
     std::cout << "color button clicked!" << std::endl;
-
-
 }
 
 void MainWindow::on_NewButton_clicked()
 {
-    if(CurrentDrawingWindow){
+    if (CurrentDrawingWindow)
+    {
         return;
     }
     std::cout << "new clicked" << std::endl;
@@ -370,8 +365,7 @@ void MainWindow::on_CreateButton_clicked()
 
         // Connect the delete event BEFORE showing
         CurrentDrawingWindow->signal_delete_event().connect(
-            sigc::mem_fun(*this, &MainWindow::on_DrawingWindow_delete_event)
-        );
+            sigc::mem_fun(*this, &MainWindow::on_DrawingWindow_delete_event));
         // drawingwindow->set_current_color(&current_color);
         CurrentDrawingWindow->set_transient_for(*this); // make it a child of main window
         CurrentDrawingWindow->set_keep_above(true);     // always on top
@@ -379,17 +373,19 @@ void MainWindow::on_CreateButton_clicked()
     }
 }
 
-bool MainWindow::on_DrawingWindow_delete_event(GdkEventAny* event){
+bool MainWindow::on_DrawingWindow_delete_event(GdkEventAny *event)
+{
 
-    std::cout <<" window is destroyed "<<std::endl;
+    std::cout << " window is destroyed " << std::endl;
     CurrentDrawingWindow = nullptr;
-        auto children = layers_listbox->get_children();
-        for (auto child : children) {
-            layers_listbox->remove(*child);
-        }
-        
-        // Reset layer counter
-        layer_counter = 0;
+    auto children = layers_listbox->get_children();
+    for (auto child : children)
+    {
+        layers_listbox->remove(*child);
+    }
+
+    // Reset layer counter
+    layer_counter = 0;
     return false;
 }
 
@@ -415,51 +411,58 @@ void MainWindow::on_ColorButton_color_set()
     //    << r << ", " << g << ", " << b << std::endl;
 }
 
-void MainWindow::on_StrokeScale_value_changed(){
+void MainWindow::on_StrokeScale_value_changed()
+{
 
-    if(!CurrentDrawingWindow){
+    if (!CurrentDrawingWindow)
+    {
         return;
     }
 
     double stroke = StrokeScale->get_value();
     CurrentDrawingWindow->Stroke = stroke;
-    std::cout<<stroke<<std::endl;
+    std::cout << stroke << std::endl;
 }
 
-void MainWindow::on_OpacityScale_value_changed(){
+void MainWindow::on_OpacityScale_value_changed()
+{
 
-        if(!CurrentDrawingWindow){
+    if (!CurrentDrawingWindow)
+    {
         return;
     }
 
-    double Opacity  = OpacityScale->get_value();
+    double Opacity = OpacityScale->get_value();
     CurrentDrawingWindow->Opacity = Opacity;
-    std::cout<<"Opacity : " <<Opacity<<std::endl;
+    std::cout << "Opacity : " << Opacity << std::endl;
 }
 
-void MainWindow::on_AddLayer_clicked(){
-    
-    if(!CurrentDrawingWindow){
+void MainWindow::on_AddLayer_clicked()
+{
+
+    if (!CurrentDrawingWindow)
+    {
         std::cout << "Can't create layer" << std::endl;
-        
+
         // Clear the listbox when drawing window doesn't exist
         auto children = layers_listbox->get_children();
-        for (auto child : children) {
+        for (auto child : children)
+        {
             layers_listbox->remove(*child);
         }
-        
+
         // Reset layer counter
         layer_counter = 0;
-        
+
         return;
     }
-    
+
     std::string layer_name = "Layer" + std::to_string(++layer_counter);
-    
+
     // Create button that looks like a label
-    auto* layer_button = Gtk::manage(new Gtk::Button(layer_name));
-    //layer_button->set_relief(Gtk::RELIEF_NONE); // Remove button appearance
-    //m_refBuilder->get_widget("LayerButton",layer_button );
+    auto *layer_button = Gtk::manage(new Gtk::Button(layer_name));
+    // layer_button->set_relief(Gtk::RELIEF_NONE); // Remove button appearance
+    // m_refBuilder->get_widget("LayerButton",layer_button );
     layer_button->set_halign(Gtk::ALIGN_START);
     layer_button->set_margin_left(5);
     layer_button->set_margin_right(5);
@@ -470,76 +473,92 @@ void MainWindow::on_AddLayer_clicked(){
     layer_button->set_name("lbutton");
 
     // Connect click signal
-    layer_button->signal_clicked().connect([this, layer_name]() {
+    layer_button->signal_clicked().connect([this, layer_name]()
+                                           {
+                                               std::string prefix = "Layer";
+                                               if (layer_name.substr(0, prefix.length()) == prefix)
+                                               {
+                                                   std::string number_str = layer_name.substr(prefix.length());
+                                                   int number = std::stoi(number_str);
+                                                   std::cout << "Clicked on: " << layer_name << "  id:  " << number << std::endl;
+                                                   selected_layer = number;
 
-    std::string prefix = "Layer";
-    if (layer_name.substr(0, prefix.length()) == prefix) {
-        std::string number_str = layer_name.substr(prefix.length());
-        int number = std::stoi(number_str);
-        std::cout << "Clicked on: " << layer_name <<"  id:  " <<number << std::endl;
-        selected_layer = number;
-        
-        if(CurrentDrawingWindow)
-            CurrentDrawingWindow->ActivateLayer(number);
-    }
-        
-    });
-    
+                                                   if (CurrentDrawingWindow)
+                                                       CurrentDrawingWindow->ActivateLayer(number);
+                                               }
+                                           });
+
     // Create row and add buttonj
-    auto* row = Gtk::manage(new Gtk::ListBoxRow());
+    auto *row = Gtk::manage(new Gtk::ListBoxRow());
     row->set_size_request(80, 40);
-    
+
     row->add(*layer_button);
     row->show_all();
-    
+
     layers_listbox->insert(*row, 0);
-    if(CurrentDrawingWindow)
+    if (CurrentDrawingWindow)
         CurrentDrawingWindow->CreateNewLayer();
 
-   // layers_listbox->select_row(*row);
+    // layers_listbox->select_row(*row);
 }
 
-void MainWindow::on_DelLayer_clicked(){
+void MainWindow::on_DelLayer_clicked()
+{
+    std::cout << "========selected layer is " << selected_layer<<std::endl;
+    if (!CurrentDrawingWindow){
+        return;
+    }
 
-    auto  children = layers_listbox->get_children();
+    auto children = layers_listbox->get_children();
 
-    for(auto* child : children){
+    for (auto *child : children)
+    {
 
-        Gtk::ListBoxRow* row = dynamic_cast<Gtk::ListBoxRow*>(child);
+        Gtk::ListBoxRow *row = dynamic_cast<Gtk::ListBoxRow *>(child);
 
-        if (row ){
-            Gtk::Button* button = dynamic_cast<Gtk::Button*>(row->get_child());
+        if (row)
+        {
+            Gtk::Button *button = dynamic_cast<Gtk::Button *>(row->get_child());
 
-            if(button){
-                if(button->get_label() == "Layer"+ std::__cxx11::to_string(selected_layer)){
-                    std::cout<<"selscted layer is " <<selected_layer;
+            if (button)
+            {
+                if (button->get_label() == "Layer" + std::__cxx11::to_string(selected_layer))
+                {
+                    std::cout << "selscted layer is " << selected_layer <<std::endl;
                     layers_listbox->remove(*child);
+                    layer_counter--;
                 }
             }
         }
     }
-    layer_counter--;
-  // reOrderLayers();
+
+    //CurrentDrawingWindow->DeleteLayer(selected_layer);
+   
+    // reOrderLayers();
 }
 
-void MainWindow::reOrderLayers(){
-    auto  children = layers_listbox->get_children();
+void MainWindow::reOrderLayers()
+{
+    auto children = layers_listbox->get_children();
 
     int counter = layer_counter;
-    for(auto* child : children){
+    for (auto *child : children)
+    {
 
-        Gtk::ListBoxRow* row = dynamic_cast<Gtk::ListBoxRow*>(child);
+        Gtk::ListBoxRow *row = dynamic_cast<Gtk::ListBoxRow *>(child);
 
-        if (row ){
-            Gtk::Button* button = dynamic_cast<Gtk::Button*>(row->get_child());
+        if (row)
+        {
+            Gtk::Button *button = dynamic_cast<Gtk::Button *>(row->get_child());
 
-            if(button){
-                if(counter>=0){
+            if (button)
+            {
+                if (counter >= 0)
+                {
 
-                    button->set_label("Layer" + std::__cxx11::to_string(counter+1));
+                    button->set_label("Layer" + std::__cxx11::to_string(counter + 1));
                     counter--;
                 }
-                
             }
         }
     }
@@ -554,8 +573,7 @@ void MainWindow::reOrderLayers(){
 //     layer_box->set_margin_right(10);
 
 //     layer_box->set_name("LayerWidget");
-    
-   
+
 //     auto* layer_button = Gtk::manage(new Gtk::Button(layer_name));
 //     layer_button->set_hexpand(true);
 
@@ -563,35 +581,33 @@ void MainWindow::reOrderLayers(){
 //     layer_label->set_halign(Gtk::ALIGN_START);
 //     layer_label->set_hexpand(true);
 
-    
 //     // Pack widgets
 //     // layer_box->pack_start(*layer_button, true, true, 0);
 //     // layer_box->pack_start(*visibility_button, false, false, 0);
 //     // layer_box->pack_start(*delete_button, false, false, 0);
-    
+
 //     // Connect signals
 //     layer_button->signal_clicked().connect([this, layer_name]() {
 //         // Handle layer selection
 //         //int id = std::to_integer(layer_name[5]);
 //         std::string id = layer_name[5]+"";
-        
+
 //         std::cout << "Layer selected: " << layer_name <<"id: " <<id << std::endl;
 //         //CurrentDrawingWindow->ActivateLayer(id);
 //         // Add your layer switching logic here
 //     });
-    
+
 //     // visibility_button->signal_clicked().connect([this, layer_name]() {
 //     //     // Handle visibility toggle
 //     //     std::cout << "Toggle visibility for: " << layer_name << std::endl;
 //     // });
-    
+
 //     DelLayer->signal_clicked().connect([this, layer_box]() {
 //         // Handle layer deletion
 //         layer_box->get_parent()->remove(*layer_box);
 //     });
-    
+
 //     layer_box->show_all();
-    
+
 //     return layer_box;
 // }
-

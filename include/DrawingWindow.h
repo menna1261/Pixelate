@@ -25,6 +25,7 @@ public:
     void CreateNewLayer();
     void ActivateLayer(int index);
     void ClearLayers();
+    void DeleteLayer(int index);
     int getLayerIndex();
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     sigc::signal<void()> signal_draw_cursor();
