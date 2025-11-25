@@ -29,7 +29,7 @@ public:
     int getLayerIndex();
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     sigc::signal<void()> signal_draw_cursor();
-    void draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr, const std::vector<Point>& layer_points);
+   // void draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr, const std::vector<Point>& layer_points);
     void signal_cursor();
     double Stroke{};
     double StrokeSize;
@@ -74,9 +74,9 @@ private:
     
     void markLayerDirty(int layerIndex);
     void ensureSurfacesSize(int width, int height);
-    void draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+    void draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr,
                                     const std::vector<Point>& layer_points);
-    void draw_single_stroke_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+    void draw_single_stroke(const Cairo::RefPtr<Cairo::Context>& cr,
                                      const std::vector<Point>& points,
                                      size_t start, size_t end);
 };

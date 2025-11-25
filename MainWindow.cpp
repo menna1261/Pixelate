@@ -308,7 +308,7 @@ void MainWindow::on_drawing_window_clicked(double x, double y, guint button)
 {
     std::cout << "Mouse clicked in DrawingWindow at (" << x << ", " << y << ") with button " << button << std::endl;
 
-    // Handle different tools here
+    // Handle different tools hereCurrentDrawingWindow->signal_mouse_clicked()
     if (button == 1)
     { // Left click
         if (Singleton::getInstance().BucketClicked)

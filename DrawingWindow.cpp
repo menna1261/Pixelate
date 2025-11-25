@@ -133,6 +133,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
         LayerCache& cache = layerCaches[layer_idx];
         
         // Safety check for surface existence
+        // Wouldn't happen because it's already handled in ensureSurfacesSize() but just in case
         if (!cache.surface) {
             std::cerr << "Surface is null for layer " << layer_idx << std::endl;
             cache.surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
@@ -158,7 +159,7 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
                 layer_cr->set_line_join(Cairo::LINE_JOIN_ROUND);
                 
                 // Draw this layer's content
-                draw_layer_points_optimized(layer_cr, layer_points);
+                draw_layer_points(layer_cr, layer_points);
                 
                 // Update cache state
                 cache.needsRedraw = false;
@@ -186,8 +187,10 @@ bool DrawingWindow::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     return true;
 }
 
-// Optimized drawing function with fewer Cairo calls
-void DrawingWindow::draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+
+// The prpose of this function is to find the start and end points of each stroke and pass it
+// to the draw_single_stroke_optimized()
+void DrawingWindow::draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr,
                                                const std::vector<Point>& layer_points) {
     if (layer_points.empty() || !cr) return;
     
@@ -207,7 +210,7 @@ void DrawingWindow::draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Conte
             }
             
             // Draw entire stroke at once
-            draw_single_stroke_optimized(cr, layer_points, i, stroke_end);
+            draw_single_stroke(cr, layer_points, i, stroke_end);
             
             i = stroke_end;
         }
@@ -216,7 +219,7 @@ void DrawingWindow::draw_layer_points_optimized(const Cairo::RefPtr<Cairo::Conte
     }
 }
 
-void DrawingWindow::draw_single_stroke_optimized(const Cairo::RefPtr<Cairo::Context>& cr,
+void DrawingWindow::draw_single_stroke(const Cairo::RefPtr<Cairo::Context>& cr,
                                                 const std::vector<Point>& points,
                                                 size_t start, size_t end) {
     if (start >= points.size() || start >= end || !cr) return;
@@ -267,6 +270,9 @@ void DrawingWindow::draw_single_stroke_optimized(const Cairo::RefPtr<Cairo::Cont
         std::cerr << "Error in draw_single_stroke_optimized: " << e.what() << std::endl;
     }
 }
+
+//This function calculates the distance between the current point and the prevouis one , only 
+//Add a point if it's far enough from the last one ( distance > 2.0 )
 bool DrawingWindow::should_add_point(double x, double y) {
     if (CurrentIndex <= 0 || CurrentIndex > Layers.size()) return true;
     
@@ -280,8 +286,11 @@ bool DrawingWindow::should_add_point(double x, double y) {
     return distance > 2.0;
 }
 
+//The GdkEventButton has all the information about the mouse click : position , which button , etc
 bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
     m_signal_draw_cursor.emit();
+
+    //Purpose: Other UI components might need to react to clicks (color picker, layer panel)
     m_signal_mouse_clicked.emit(event->x, event->y, event->button);
     
     if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
@@ -290,6 +299,9 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
     
     if (event->button == 1) {
         double pressure = 0.5;
+
+        // checks if the event is coming from an external device : Graphics tablet 
+        //The purpose is to extract the pressure value from the device
         // if (event->device) {
         //     gdouble value;
         //     GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
@@ -309,13 +321,15 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
         }
         
         bool is_eraser = Singleton::getInstance().EraserClicked;
+
+        //Create a new point at the position where the mouse was clicked
         Point new_point = {event->x, event->y, pressure, true, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
         
         // Add point and mark layer dirty
         if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
             Layers[CurrentIndex-1].first.push_back(new_point);
             
-            // Ensure we have enough cache slots BEFORE marking dirty
+            // Ensure we have enough cache slots BEFORE marking dirty - useless but just in case
             while (layerCaches.size() < Layers.size()) {
                 layerCaches.emplace_back();
                 layerCaches.back().needsRedraw = true;
@@ -324,11 +338,15 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
             markLayerDirty(CurrentIndex - 1);  // Only mark current layer dirty
         }
         
-        
+        //What this function does is : tell GTKmm to schedule a redraw (call on_draw()) int the next frame after 16ms
+        // 60 FPS to rerender the new added point and make it appear on screen
         queue_draw();
     }
-    return true;
+    return true; //means that the signal was handled
 }
+
+// called: Every time mouse moves over the window (potentially hundreds of times per second)
+// The GdkEventMotion has motion data not just mouse clicks
 
 bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
     if (!Singleton::getInstance().BrushClicked && !Singleton::getInstance().EraserClicked) {
@@ -347,13 +365,15 @@ bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;
+
+            //here we mark the new_stroke as false because we are still pressing on the mouse (continous stroke)
             Point new_point = {event->x, event->y, pressure, false, current_stroke_color, is_eraser, StrokeSize, OpacityVal};
             
             if (CurrentIndex > 0 && CurrentIndex <= Layers.size()) {
                 Layers[CurrentIndex-1].first.push_back(new_point);
                 markLayerDirty(CurrentIndex - 1);  // Only mark current layer dirty
             }
-            
+            //again trigger it after adding each point
             queue_draw();
         }
     }
