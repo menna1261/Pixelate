@@ -290,13 +290,13 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
     
     if (event->button == 1) {
         double pressure = 0.5;
-        if (event->device) {
-            gdouble value;
-            GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
-            if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
-                pressure = value;
-            }
-        }
+        // if (event->device) {
+        //     gdouble value;
+        //     GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
+        //     if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
+        //         pressure = value;
+        //     }
+        // }
         
         if (currentColor) {
             current_stroke_color = *currentColor;
@@ -324,6 +324,7 @@ bool DrawingWindow::on_button_press_event(GdkEventButton* event) {
             markLayerDirty(CurrentIndex - 1);  // Only mark current layer dirty
         }
         
+        
         queue_draw();
     }
     return true;
@@ -335,14 +336,14 @@ bool DrawingWindow::on_motion_notify_event(GdkEventMotion* event) {
     }
 
     if (event->state & GDK_BUTTON1_MASK) {
-        double pressure = 0.5;
-        if (event->device) {
-            gdouble value;
-            GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
-            if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
-                pressure = value;
-            }
-        }
+        double pressure = 1.0;
+        // if (event->device) {
+        //     gdouble value;
+        //     GdkAxisUse axis_use = GDK_AXIS_PRESSURE;
+        //     if (gdk_device_get_axis(event->device, event->axes, axis_use, &value)) {
+        //         pressure = value;
+        //     }
+        // }
         
         if (should_add_point(event->x, event->y)) {
             bool is_eraser = Singleton::getInstance().EraserClicked;

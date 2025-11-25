@@ -439,7 +439,7 @@ void MainWindow::on_StrokeScale_value_changed()
     }
 
     double stroke = StrokeScale->get_value();
-    CurrentDrawingWindow->Stroke = stroke;
+    CurrentDrawingWindow->Stroke = stroke * 3;
     std::cout << stroke << std::endl;
 }
 

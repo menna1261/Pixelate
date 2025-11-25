@@ -216,6 +216,21 @@
     <property name="can-focus">False</property>
     <property name="pixbuf">../../Downloads/plus(1) 1(1).png</property>
   </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">assets/brush-stroke.png</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">assets/brush-stroke.png</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">assets/eraser.png</property>
+  </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="can-focus">False</property>
     <property name="default-width">1200</property>
@@ -592,8 +607,8 @@
         </child>
         <child>
           <object class="GtkBox" id="GtkBox3">
-            <property name="width-request">-1</property>
-            <property name="height-request">20</property>
+            <property name="width-request">20</property>
+            <property name="height-request">45</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="halign">center</property>
@@ -663,6 +678,32 @@
                 <property name="position">3</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkButton" id="bt1">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="image">image4</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="bt2">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="image">image5</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -673,5 +714,10 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="test2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="pixbuf">assets/eraser.png</property>
   </object>
 </interface>
