@@ -481,8 +481,9 @@ void MainWindow::on_AddLayer_clicked()
     layer_button->set_relief(Gtk::RELIEF_NONE);
     layer_button->set_name("lbutton");
 
+    int counter = 0;
     // Connect click signal
-    layer_button->signal_clicked().connect([this, layer_name]()
+    layer_button->signal_clicked().connect([this, layer_name, layer_button, &counter]()
                                            {
                                                std::string prefix = "Layer";
                                                if (layer_name.substr(0, prefix.length()) == prefix)
@@ -490,7 +491,31 @@ void MainWindow::on_AddLayer_clicked()
                                                    std::string number_str = layer_name.substr(prefix.length());
                                                    int number = std::stoi(number_str);
                                                    std::cout << "Clicked on: " << layer_name << "  id:  " << number << std::endl;
+                                                   layer_button->set_name("lbuttonClicked");
                                                    selected_layer = number;
+
+                                                   auto children = layers_listbox->get_children();
+
+                                                   for(auto* child : children){
+
+                                                        Gtk::ListBoxRow* row = dynamic_cast<Gtk::ListBoxRow *>(child);
+
+                                                        if(row){
+                                                            Gtk::Button* layerButton = dynamic_cast<Gtk::Button* >(row->get_child());
+                                                            if(layerButton){
+                                                                
+                                                                //std::cout<<"counter : " << *counter <<std::endl;
+                                                                if (layerButton->get_label() == "Layer" + std::__cxx11::to_string(selected_layer)){
+                                                                    continue;
+                                                            }
+
+                                                            layerButton->set_name("lbutton");
+                                                        }
+                                                        }
+                                                       // counter++;
+
+                                                   }
+                                                   
 
                                                    if (CurrentDrawingWindow)
                                                        CurrentDrawingWindow->ActivateLayer(number);
