@@ -1,5 +1,6 @@
 #include <gtkmm.h>
 #include<iostream>
+#include<string>
 class Singleton {
 public:
     static Singleton& getInstance() {

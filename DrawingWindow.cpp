@@ -421,7 +421,7 @@ void DrawingWindow::ActivateLayer(int index){
         std::cout<<"============ :  " <<Layers[index-1].second<<std::endl;
         else
             std::cout<<"NULL"<<std::endl;
-    queue_draw();
+    //queue_draw();
 }
 
 void DrawingWindow::DeleteLayer(int index){

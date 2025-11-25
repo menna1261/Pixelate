@@ -525,7 +525,7 @@
                                     <property name="receives-default">True</property>
                                     <property name="halign">start</property>
                                     <property name="margin-start">4</property>
-                                    <property name="margin-top">2</property>
+                                    <property name="margin-top">6</property>
                                     <property name="margin-bottom">8</property>
                                     <property name="image">image2</property>
                                     <signal name="clicked" handler="on_AddLayer_clicked" swapped="no"/>
@@ -538,7 +538,7 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
-                                    <property name="margin-top">2</property>
+                                    <property name="margin-top">6</property>
                                     <property name="margin-bottom">2</property>
                                     <property name="image">image1</property>
                                     <signal name="clicked" handler="on_DelLayer_clicked" swapped="no"/>

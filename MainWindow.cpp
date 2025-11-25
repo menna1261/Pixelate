@@ -254,18 +254,32 @@ Gdk::RGBA MainWindow::get_current_drawing_color() const
 
 void MainWindow::on_Eraser_clicked()
 {
+    Brush->set_opacity(1.0);
+    Eraser->set_opacity(0.5);
+    Bucket->set_opacity(1.0);
+    Zoom->set_opacity(1.0);
     std::cout << "Eraser button clicked!" << std::endl;
     Singleton::getInstance().setEraserClicked(true);
 }
 
 void MainWindow::on_brushButton_clicked()
 {
+    Brush->set_opacity(0.5);
+    Eraser->set_opacity(1.0);
+    Bucket->set_opacity(1.0);
+    Zoom->set_opacity(1.0);
+
     std::cout << "brushButton button clicked!" << std::endl;
     Singleton::getInstance().setBrushClicked(true);
 }
 
 void MainWindow::on_FillButton_clicked()
 {
+    Brush->set_opacity(1.0);
+    Eraser->set_opacity(1.0);
+    Bucket->set_opacity(0.5);
+    Zoom->set_opacity(1.0);
+
     std::cout << "fill button clicked!" << std::endl;
     Singleton::getInstance().setBucketClicked(true);
     if (CurrentDrawingWindow)
@@ -278,6 +292,11 @@ void MainWindow::on_FillButton_clicked()
 
 void MainWindow::on_ZoomButton_clicked()
 {
+    Brush->set_opacity(1.0);
+    Eraser->set_opacity(1.0);
+    Bucket->set_opacity(1.0);
+    Zoom->set_opacity(0.5);
+
     std::cout << "zoom button clicked!" << std::endl;
     Singleton::getInstance().setZoomClicked(true);
     if (CurrentDrawingWindow)
@@ -444,16 +463,6 @@ void MainWindow::on_AddLayer_clicked()
     {
         std::cout << "Can't create layer" << std::endl;
 
-        // Clear the listbox when drawing window doesn't exist
-        auto children = layers_listbox->get_children();
-        for (auto child : children)
-        {
-            layers_listbox->remove(*child);
-        }
-
-        // Reset layer counter
-        layer_counter = 0;
-
         return;
     }
 
@@ -526,6 +535,7 @@ void MainWindow::on_DelLayer_clicked()
                 {
                     std::cout << "selscted layer is " << selected_layer <<std::endl;
                     layers_listbox->remove(*child);
+                    CurrentDrawingWindow->DeleteLayer(selected_layer);
                     layer_counter--;
                 }
             }

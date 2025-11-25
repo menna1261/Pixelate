@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     try
     {
-        builder = Gtk::Builder::create_from_file("../ui/newUI.glade"); // Change filename if needed
+        builder = Gtk::Builder::create_from_file("../ui/newUI.glade"); 
     }
     catch (const Glib::FileError& ex)
     {
