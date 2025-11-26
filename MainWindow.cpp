@@ -95,6 +95,10 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     if (Zoom)
         Zoom->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ZoomButton_clicked));
 
+    if(ExportButton){
+        ExportButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ExportButton_clicked));
+    }
+
     // if (ColorButton)
     //     ColorButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ColorButton_clicked));
     if (AddLayer)
@@ -250,6 +254,15 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 Gdk::RGBA MainWindow::get_current_drawing_color() const
 {
     return current_color;
+}
+
+void MainWindow::on_ExportButton_clicked(){
+
+    if(!CurrentDrawingWindow){
+        return;
+    }
+
+    CurrentDrawingWindow->Export();
 }
 
 void MainWindow::on_Eraser_clicked()

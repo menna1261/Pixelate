@@ -20,6 +20,7 @@ public:
     void on_NewButton_clicked();
     void on_CancelButton_clicked();
     void on_CreateButton_clicked();
+    void on_ExportButton_clicked();
     void on_testDialog_color_activated(const Gdk::RGBA& color);
     void on_ColorButton_color_set();
     Gdk::RGBA get_current_drawing_color() const;

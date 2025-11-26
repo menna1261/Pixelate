@@ -464,4 +464,48 @@ void DrawingWindow::ApplyZoom(){
 }
 
 
+
+void DrawingWindow::Export(){
+
+
+    Gtk::Allocation allocation = drawing_area.get_allocation();
+    int width = allocation.get_width();
+    int height = allocation.get_height();
+
+
+    auto finalSurface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
+
+    auto cr = Cairo::Context::create(finalSurface);
+
+    if(fill_background){
+        float r = fill_color.get_red();
+        float g = fill_color.get_green();
+        float b = fill_color.get_blue();
+
+        cr->set_source_rgb(r,g,b);
+        cr->paint();
+    }
+
+    else{
+        cr->set_source_rgb(1,1,1); //default : white bg
+        cr->paint();
+    }
+
+    for(int i = 0 ; i<layerCaches.size();i++){
+        cr->set_source(layerCaches[i].surface,0,0);
+        cr->set_operator(Cairo::OPERATOR_OVER);
+        cr->paint();
+
+    }
+
+
+    for(int i = 0 ; i<Layers.size(); i++){
+        auto _cache = layerCaches[i];
+        cairo_surface_t* raw_surface = finalSurface->cobj();
+        cairo_surface_write_to_png(raw_surface, "Menna2.png");
+
+
+    }
+}
+
    
