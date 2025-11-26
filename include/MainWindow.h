@@ -84,11 +84,13 @@ public:
 
     Gtk::ColorChooserDialog* testDialog = nullptr;
     Gtk::ColorSelection* ColorSelection = nullptr;
+    Gtk::FileChooserDialog* FileChooser = nullptr;
 
     Gtk::Window* SelectionWindow = nullptr;
     Gtk::Window* DrawingWindow_ = nullptr;
 
     Gtk::DrawingArea* DrawingArea = nullptr;
+
 
     DrawingWindow* CurrentDrawingWindow = nullptr;
 

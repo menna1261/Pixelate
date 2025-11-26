@@ -63,6 +63,7 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("StrokeScale", StrokeScale);
     m_refBuilder->get_widget("OpacityScale", OpacityScale);
     m_refBuilder->get_widget("layers_listbox", layers_listbox);
+    m_refBuilder->get_widget("FileChooser",FileChooser);
 
     // m_refBuilder->get_widget("testDialog", testDialog);
 
@@ -261,6 +262,11 @@ void MainWindow::on_ExportButton_clicked(){
     if(!CurrentDrawingWindow){
         return;
     }
+
+   if(!FileChooser){
+    std::cout<<"file chooser not loaded"<<std::endl;
+   }
+   FileChooser->show();
 
     CurrentDrawingWindow->Export();
 }
