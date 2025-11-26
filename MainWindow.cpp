@@ -64,7 +64,8 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
     m_refBuilder->get_widget("OpacityScale", OpacityScale);
     m_refBuilder->get_widget("layers_listbox", layers_listbox);
     m_refBuilder->get_widget("FileChooser",FileChooser);
-
+    m_refBuilder->get_widget("FileChooserCancel", FileChooserCancel);
+    m_refBuilder->get_widget("FileChooserOK", FileChooserOK);
     // m_refBuilder->get_widget("testDialog", testDialog);
 
     // Gdk::RGBA current_color = get_color_from_chooser(colorWidget);
@@ -78,10 +79,21 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 
     CanvasPopover->set_relative_to(*NewButton);
     CanvasPopover->hide();
-    //  SelectionWindow->show();
-    // colorWidget->show();
-    // testDialog->show();
-    // DrawingWindow->show();
+
+    if (FileChooser) {
+        std::cout << "FileChooserDialog loaded" << std::endl;
+        
+        // Configure dialog
+        FileChooser->set_action(Gtk::FILE_CHOOSER_ACTION_SAVE);
+        FileChooser->set_current_name("drawing.png");
+        FileChooser->set_do_overwrite_confirmation(true);
+        
+        // Add PNG filter
+        auto filter_png = Gtk::FileFilter::create();
+        filter_png->set_name("PNG Images (*.png)");
+        filter_png->add_pattern("*.png");
+        FileChooser->add_filter(filter_png);
+    }
 
     // Connect signals
     if (Eraser)
@@ -98,6 +110,14 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
 
     if(ExportButton){
         ExportButton->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_ExportButton_clicked));
+    }
+
+    if(FileChooserOK){
+        FileChooserOK->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_FileChooserOK_clicked));
+    }
+
+    if(FileChooserCancel){
+        FileChooserCancel->signal_clicked().connect(sigc::mem_fun(*this, &MainWindow::on_FileChooserCancel_clicked));
     }
 
     // if (ColorButton)
@@ -167,6 +187,10 @@ MainWindow::MainWindow(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>
         AddLayer->set_name("HButton");
     if (DelLayer)
         DelLayer->set_name("HButton");
+
+    // if(FileChooser){
+    //     FileChooser->set_name("FileDialog");
+    // }
 
     // ColorSelection->set_name("NewCanvas");
 
@@ -257,6 +281,33 @@ Gdk::RGBA MainWindow::get_current_drawing_color() const
     return current_color;
 }
 
+void MainWindow::on_FileChooserOK_clicked(){
+
+    std::string filepath = FileChooser->get_filename();
+    if (filepath.empty()) {
+        std::cerr << "No file selected" << std::endl;
+        return;
+    }
+    
+    // Ensure .png extension
+    if (filepath.size() < 4 || filepath.substr(filepath.size() - 4) != ".png") {
+        filepath += ".png";
+    }
+    
+    std::cout << "Selected path: " << filepath << std::endl;
+    
+    // Hide the dialog
+    FileChooser->hide();
+
+    if(CurrentDrawingWindow){
+        CurrentDrawingWindow->Export(filepath);
+    }
+}
+
+void MainWindow::on_FileChooserCancel_clicked(){
+    std::cout<<"cancel clicked " <<std::endl;
+}
+
 void MainWindow::on_ExportButton_clicked(){
 
     if(!CurrentDrawingWindow){
@@ -266,9 +317,11 @@ void MainWindow::on_ExportButton_clicked(){
    if(!FileChooser){
     std::cout<<"file chooser not loaded"<<std::endl;
    }
-   FileChooser->show();
 
-    CurrentDrawingWindow->Export();
+    
+    FileChooser->set_transient_for(*this);
+    FileChooser->show();
+
 }
 
 void MainWindow::on_Eraser_clicked()
@@ -277,7 +330,6 @@ void MainWindow::on_Eraser_clicked()
     Eraser->set_opacity(0.5);
     Bucket->set_opacity(1.0);
     Zoom->set_opacity(1.0);
-    std::cout << "Eraser button clicked!" << std::endl;
     Singleton::getInstance().setEraserClicked(true);
 }
 
@@ -287,8 +339,6 @@ void MainWindow::on_brushButton_clicked()
     Eraser->set_opacity(1.0);
     Bucket->set_opacity(1.0);
     Zoom->set_opacity(1.0);
-
-    std::cout << "brushButton button clicked!" << std::endl;
     Singleton::getInstance().setBrushClicked(true);
 }
 
@@ -298,12 +348,9 @@ void MainWindow::on_FillButton_clicked()
     Eraser->set_opacity(1.0);
     Bucket->set_opacity(0.5);
     Zoom->set_opacity(1.0);
-
-    std::cout << "fill button clicked!" << std::endl;
     Singleton::getInstance().setBucketClicked(true);
     if (CurrentDrawingWindow)
     {
-
         CurrentDrawingWindow->signal_mouse_clicked().connect(
             sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
     }
@@ -315,14 +362,15 @@ void MainWindow::on_ZoomButton_clicked()
     Eraser->set_opacity(1.0);
     Bucket->set_opacity(1.0);
     Zoom->set_opacity(0.5);
-
-    std::cout << "zoom button clicked!" << std::endl;
     Singleton::getInstance().setZoomClicked(true);
+
     if (CurrentDrawingWindow)
     {
     CurrentDrawingWindow->signal_mouse_clicked().connect(
         sigc::mem_fun(*this, &MainWindow::on_drawing_window_clicked));
-}}
+    }
+}
+
 void MainWindow::on_drawing_window_clicked(double x, double y, guint button)
 {
     std::cout << "Mouse clicked in DrawingWindow at (" << x << ", " << y << ") with button " << button << std::endl;

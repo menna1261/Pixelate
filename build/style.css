@@ -47,6 +47,10 @@
     margin: 0;
 }
 
+#FileDialog{
+
+    background:#333333;
+}
 #NewCanvas{
 
     background-color: #4D4D4D;

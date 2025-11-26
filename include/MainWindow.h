@@ -29,6 +29,8 @@ public:
     void on_OpacityScale_value_changed();
     void on_AddLayer_clicked();
     void on_DelLayer_clicked();
+    void on_FileChooserOK_clicked();
+    void on_FileChooserCancel_clicked();
     void reOrderLayers();
     bool on_DrawingWindow_delete_event(GdkEventAny* event);
     Gtk::Widget* create_layer_widget(const std::string& layer_name);
@@ -56,6 +58,8 @@ public:
     Gtk::Button* ExportButton = nullptr;
     Gtk::Button* DelLayer = nullptr;
     Gtk::Button* AddLayer = nullptr;
+    Gtk::Button* FileChooserCancel = nullptr;
+    Gtk::Button* FileChooserOK = nullptr;
     Gtk::Scale* StrokeScale = nullptr;
     Gtk::Scale* OpacityScale = nullptr;
 

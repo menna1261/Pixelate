@@ -27,7 +27,7 @@ public:
     void ClearLayers();
     void DeleteLayer(int index);
     int getLayerIndex();
-    void Export();
+    void Export(std::string filepath);
     sigc::signal<void(double, double, guint)> signal_mouse_clicked();
     sigc::signal<void()> signal_draw_cursor();
    // void draw_layer_points(const Cairo::RefPtr<Cairo::Context>& cr, const std::vector<Point>& layer_points);

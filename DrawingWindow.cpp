@@ -465,7 +465,7 @@ void DrawingWindow::ApplyZoom(){
 
 
 
-void DrawingWindow::Export(){
+void DrawingWindow::Export(std::string filepath){
 
 
     Gtk::Allocation allocation = drawing_area.get_allocation();
@@ -498,11 +498,12 @@ void DrawingWindow::Export(){
 
     }
 
+    
 
     for(int i = 0 ; i<Layers.size(); i++){
         auto _cache = layerCaches[i];
         cairo_surface_t* raw_surface = finalSurface->cobj();
-        cairo_surface_write_to_png(raw_surface, "Menna2.png");
+        cairo_surface_write_to_png(raw_surface, filepath.c_str());
 
 
     }
