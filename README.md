@@ -4,6 +4,10 @@
 <img width="1920" height="1047" alt="Screenshot From 2025-11-26 01-20-43" src="https://github.com/user-attachments/assets/a449bd05-dc1a-4455-afbc-7b49706cb449" />
 
 
+
+**Medium Article :**
+https://medium.com/@mennajaheen/pixelate-466ba9e77f4e
+
 # Features :
 - Create New Canvas / Export as PNG
 - Brush/Eraser/Fill Background color
