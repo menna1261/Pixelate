@@ -21,7 +21,7 @@
   - GTKmm 3.0 development libraries
   - Cairomm 1.0+ development libraries (typically included with GTKmm)
 
-# Building from Source:
+**Building from Source:**
 
     git clone https://github.com/menna1261/Pixelate.git
     mkdir build
