@@ -1,0 +1,8 @@
+#inspired by mohyware <3
+
+build/
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile

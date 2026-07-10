@@ -1,81 +1,114 @@
 CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
- /home/mennajaheen/Pixelate/MainWindow.cpp /usr/include/stdc-predef.h \
- /home/mennajaheen/Pixelate/include/MainWindow.h \
- /usr/include/gtkmm-3.0/gtkmm.h /usr/include/glibmm-2.4/glibmm.h \
- /usr/lib64/glibmm-2.4/include/glibmmconfig.h \
+ /home/menna/Pixelate/MainWindow.cpp /usr/include/stdc-predef.h \
+ /home/menna/Pixelate/include/MainWindow.h /usr/include/gtkmm-3.0/gtkmm.h \
+ /usr/include/glibmm-2.4/glibmm.h \
+ /usr/lib/x86_64-linux-gnu/glibmm-2.4/include/glibmmconfig.h \
  /usr/include/glibmm-2.4/glibmm/thread.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
- /usr/lib64/glib-2.0/include/glibconfig.h \
+ /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/limits.h \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/syslimits.h \
- /usr/include/limits.h /usr/include/bits/libc-header-start.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
- /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
- /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/include/bits/posix1_lim.h /usr/include/bits/local_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/timesize.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/bits/pthread_stack_min-dynamic.h \
- /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
- /usr/include/bits/uio_lim.h \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/float.h \
- /usr/include/glib-2.0/glib/gversionmacros.h \
- /usr/include/glib-2.0/glib/glib-visibility.h /usr/include/time.h \
- /usr/include/bits/time.h /usr/include/bits/types.h \
- /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
- /usr/include/bits/timex.h /usr/include/bits/types/struct_timeval.h \
- /usr/include/bits/types/clock_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/struct_tm.h \
- /usr/include/bits/types/struct_timespec.h /usr/include/bits/endian.h \
- /usr/include/bits/endianness.h /usr/include/bits/types/clockid_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/include/bits/types/struct_itimerspec.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
+ /usr/include/glib-2.0/glib/gversionmacros.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/string.h /usr/include/strings.h \
  /usr/include/glib-2.0/glib/garray.h \
  /usr/include/glib-2.0/glib/gasyncqueue.h \
  /usr/include/glib-2.0/glib/gthread.h \
  /usr/include/glib-2.0/glib/gatomic.h \
- /usr/include/glib-2.0/glib/glib-typeof.h /usr/include/c++/15/type_traits \
- /usr/include/c++/15/x86_64-redhat-linux/bits/c++config.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/os_defines.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/cpu_defines.h \
- /usr/include/c++/15/pstl/pstl_config.h \
- /usr/include/c++/15/bits/version.h /usr/include/glib-2.0/glib/gerror.h \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/stdarg.h \
+ /usr/include/glib-2.0/glib/glib-typeof.h /usr/include/c++/11/type_traits \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
+ /usr/include/c++/11/pstl/pstl_config.h \
+ /usr/include/glib-2.0/glib/gerror.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
  /usr/include/glib-2.0/glib/gquark.h /usr/include/glib-2.0/glib/gutils.h \
- /usr/include/c++/15/stdlib.h /usr/include/c++/15/cstdlib \
- /usr/include/stdlib.h /usr/include/bits/waitflags.h \
- /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/sys/types.h \
- /usr/include/bits/stdint-intn.h /usr/include/endian.h \
- /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
- /usr/include/sys/select.h /usr/include/bits/select.h \
- /usr/include/bits/types/sigset_t.h /usr/include/bits/types/__sigset_t.h \
- /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
- /usr/include/bits/pthreadtypes-arch.h \
- /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
- /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-float.h /usr/include/c++/15/bits/std_abs.h \
+ /usr/include/c++/11/stdlib.h /usr/include/c++/11/cstdlib \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/c++/11/bits/std_abs.h \
  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
- /usr/include/bits/signum-generic.h /usr/include/bits/signum-arch.h \
- /usr/include/bits/types/sig_atomic_t.h \
- /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
- /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
- /usr/include/bits/siginfo-consts-arch.h \
- /usr/include/bits/types/sigval_t.h /usr/include/bits/types/sigevent_t.h \
- /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
- /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
- /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
- /usr/include/bits/sigstksz.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/bits/ss_flags.h \
- /usr/include/bits/types/struct_sigstack.h /usr/include/bits/sigthread.h \
- /usr/include/bits/signal_ext.h /usr/include/glib-2.0/glib/gbase64.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+ /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstksz.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h \
+ /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+ /usr/include/glib-2.0/glib/gbase64.h \
  /usr/include/glib-2.0/glib/gbitlock.h \
  /usr/include/glib-2.0/glib/gbookmarkfile.h \
  /usr/include/glib-2.0/glib/gdatetime.h \
@@ -86,7 +119,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/glib/gconvert.h \
  /usr/include/glib-2.0/glib/gdataset.h /usr/include/glib-2.0/glib/gdate.h \
  /usr/include/glib-2.0/glib/gdir.h /usr/include/dirent.h \
- /usr/include/bits/dirent.h /usr/include/bits/dirent_ext.h \
+ /usr/include/x86_64-linux-gnu/bits/dirent.h \
+ /usr/include/x86_64-linux-gnu/bits/dirent_ext.h \
  /usr/include/glib-2.0/glib/genviron.h \
  /usr/include/glib-2.0/glib/gfileutils.h \
  /usr/include/glib-2.0/glib/ggettext.h /usr/include/glib-2.0/glib/ghash.h \
@@ -99,7 +133,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/glib/gmain.h /usr/include/glib-2.0/glib/gpoll.h \
  /usr/include/glib-2.0/glib/gslist.h /usr/include/glib-2.0/glib/gstring.h \
  /usr/include/glib-2.0/glib/gunicode.h \
- /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gkeyfile.h \
  /usr/include/glib-2.0/glib/gmappedfile.h \
  /usr/include/glib-2.0/glib/gmarkup.h \
@@ -107,7 +140,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/glib/gvariant.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/goption.h \
- /usr/include/glib-2.0/glib/gpathbuf.h \
  /usr/include/glib-2.0/glib/gpattern.h \
  /usr/include/glib-2.0/glib/gprimes.h /usr/include/glib-2.0/glib/gqsort.h \
  /usr/include/glib-2.0/glib/gqueue.h /usr/include/glib-2.0/glib/grand.h \
@@ -120,12 +152,14 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/glib/gsequence.h \
  /usr/include/glib-2.0/glib/gshell.h /usr/include/glib-2.0/glib/gslice.h \
  /usr/include/glib-2.0/glib/gspawn.h \
+ /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gstringchunk.h \
  /usr/include/glib-2.0/glib/gstrvbuilder.h \
  /usr/include/glib-2.0/glib/gtestutils.h /usr/include/errno.h \
- /usr/include/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
- /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/glib-2.0/glib/gthreadpool.h \
  /usr/include/glib-2.0/glib/gtimer.h \
  /usr/include/glib-2.0/glib/gtrashstack.h \
@@ -137,116 +171,109 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/glib/deprecated/gmain.h \
  /usr/include/glib-2.0/glib/deprecated/grel.h \
  /usr/include/glib-2.0/glib/deprecated/gthread.h /usr/include/pthread.h \
- /usr/include/sched.h /usr/include/bits/sched.h \
- /usr/include/linux/sched/types.h /usr/include/linux/types.h \
- /usr/include/asm/types.h /usr/include/asm-generic/types.h \
- /usr/include/asm-generic/int-ll64.h /usr/include/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h /usr/include/asm/posix_types.h \
- /usr/include/asm/posix_types_64.h /usr/include/asm-generic/posix_types.h \
- /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
- /usr/include/bits/setjmp.h \
- /usr/include/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
  /usr/include/glib-2.0/glib/glib-autocleanups.h \
  /usr/include/glibmm-2.4/glibmm/error.h \
  /usr/include/glibmm-2.4/glibmm/exception.h \
  /usr/include/glibmm-2.4/glibmm/ustring.h \
- /usr/include/glibmm-2.4/glibmm/unicode.h /usr/include/c++/15/cctype \
- /usr/include/ctype.h /usr/include/c++/15/iosfwd \
- /usr/include/c++/15/bits/requires_hosted.h \
- /usr/include/c++/15/bits/stringfwd.h \
- /usr/include/c++/15/bits/memoryfwd.h /usr/include/c++/15/bits/postypes.h \
- /usr/include/c++/15/cwchar /usr/include/wchar.h \
- /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
- /usr/include/bits/types/mbstate_t.h \
- /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
- /usr/include/bits/types/FILE.h /usr/include/c++/15/iterator \
- /usr/include/c++/15/bits/stl_iterator_base_types.h \
- /usr/include/c++/15/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/15/bits/concept_check.h \
- /usr/include/c++/15/debug/assertions.h \
- /usr/include/c++/15/bits/stl_iterator.h \
- /usr/include/c++/15/bits/cpp_type_traits.h \
- /usr/include/c++/15/ext/type_traits.h /usr/include/c++/15/bits/move.h \
- /usr/include/c++/15/bits/ptr_traits.h \
- /usr/include/c++/15/bits/stream_iterator.h \
- /usr/include/c++/15/debug/debug.h \
- /usr/include/c++/15/bits/streambuf_iterator.h \
- /usr/include/c++/15/streambuf /usr/include/c++/15/bits/localefwd.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/c++locale.h \
- /usr/include/c++/15/clocale /usr/include/locale.h \
- /usr/include/bits/locale.h /usr/include/c++/15/bits/ios_base.h \
- /usr/include/c++/15/ext/atomicity.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/gthr.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/gthr-default.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/atomic_word.h \
- /usr/include/sys/single_threaded.h \
- /usr/include/c++/15/bits/locale_classes.h /usr/include/c++/15/string \
- /usr/include/c++/15/bits/char_traits.h \
- /usr/include/c++/15/bits/allocator.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/c++allocator.h \
- /usr/include/c++/15/bits/new_allocator.h /usr/include/c++/15/new \
- /usr/include/c++/15/bits/exception.h \
- /usr/include/c++/15/bits/functexcept.h \
- /usr/include/c++/15/bits/exception_defines.h \
- /usr/include/c++/15/bits/ostream_insert.h \
- /usr/include/c++/15/bits/cxxabi_forced.h \
- /usr/include/c++/15/bits/stl_function.h \
- /usr/include/c++/15/backward/binders.h \
- /usr/include/c++/15/ext/numeric_traits.h \
- /usr/include/c++/15/bits/stl_algobase.h \
- /usr/include/c++/15/bits/stl_pair.h /usr/include/c++/15/bits/utility.h \
- /usr/include/c++/15/bits/predefined_ops.h /usr/include/c++/15/bit \
- /usr/include/c++/15/concepts /usr/include/c++/15/bits/refwrap.h \
- /usr/include/c++/15/bits/invoke.h \
- /usr/include/c++/15/bits/range_access.h \
- /usr/include/c++/15/initializer_list \
- /usr/include/c++/15/bits/basic_string.h \
- /usr/include/c++/15/ext/alloc_traits.h \
- /usr/include/c++/15/bits/alloc_traits.h \
- /usr/include/c++/15/bits/stl_construct.h /usr/include/c++/15/string_view \
- /usr/include/c++/15/bits/functional_hash.h \
- /usr/include/c++/15/bits/hash_bytes.h \
- /usr/include/c++/15/bits/string_view.tcc \
- /usr/include/c++/15/ext/string_conversions.h /usr/include/c++/15/cstdio \
- /usr/include/stdio.h /usr/include/bits/types/__fpos_t.h \
- /usr/include/bits/types/__fpos64_t.h \
- /usr/include/bits/types/struct_FILE.h \
- /usr/include/bits/types/cookie_io_functions_t.h \
- /usr/include/bits/stdio_lim.h /usr/include/c++/15/cerrno \
- /usr/include/c++/15/bits/charconv.h \
- /usr/include/c++/15/bits/basic_string.tcc \
- /usr/include/c++/15/bits/memory_resource.h /usr/include/c++/15/cstddef \
- /usr/include/c++/15/bits/uses_allocator.h \
- /usr/include/c++/15/bits/uses_allocator_args.h /usr/include/c++/15/tuple \
- /usr/include/c++/15/bits/locale_classes.tcc \
- /usr/include/c++/15/system_error \
- /usr/include/c++/15/x86_64-redhat-linux/bits/error_constants.h \
- /usr/include/c++/15/stdexcept /usr/include/c++/15/exception \
- /usr/include/c++/15/bits/exception_ptr.h \
- /usr/include/c++/15/bits/cxxabi_init_exception.h \
- /usr/include/c++/15/typeinfo /usr/include/c++/15/bits/nested_exception.h \
- /usr/include/c++/15/bits/streambuf.tcc /usr/include/c++/15/sstream \
- /usr/include/c++/15/istream /usr/include/c++/15/ios \
- /usr/include/c++/15/bits/basic_ios.h \
- /usr/include/c++/15/bits/locale_facets.h /usr/include/c++/15/cwctype \
- /usr/include/wctype.h /usr/include/bits/wctype-wchar.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/ctype_base.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/ctype_inline.h \
- /usr/include/c++/15/bits/locale_facets.tcc \
- /usr/include/c++/15/bits/basic_ios.tcc /usr/include/c++/15/ostream \
- /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/bits/ostream.tcc \
- /usr/include/c++/15/bits/istream.tcc \
- /usr/include/c++/15/bits/sstream.tcc \
+ /usr/include/glibmm-2.4/glibmm/unicode.h /usr/include/c++/11/cctype \
+ /usr/include/ctype.h /usr/include/c++/11/iosfwd \
+ /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
+ /usr/include/c++/11/cwchar /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/c++/11/iterator \
+ /usr/include/c++/11/bits/stl_iterator_base_types.h \
+ /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/11/bits/concept_check.h \
+ /usr/include/c++/11/debug/assertions.h \
+ /usr/include/c++/11/bits/stl_iterator.h \
+ /usr/include/c++/11/bits/cpp_type_traits.h \
+ /usr/include/c++/11/ext/type_traits.h /usr/include/c++/11/bits/move.h \
+ /usr/include/c++/11/bits/ptr_traits.h \
+ /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/debug/debug.h \
+ /usr/include/c++/11/bits/streambuf_iterator.h \
+ /usr/include/c++/11/streambuf /usr/include/c++/11/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+ /usr/include/c++/11/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h \
+ /usr/include/c++/11/bits/ios_base.h /usr/include/c++/11/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/11/bits/locale_classes.h /usr/include/c++/11/string \
+ /usr/include/c++/11/bits/char_traits.h \
+ /usr/include/c++/11/bits/stl_algobase.h \
+ /usr/include/c++/11/bits/functexcept.h \
+ /usr/include/c++/11/bits/exception_defines.h \
+ /usr/include/c++/11/ext/numeric_traits.h \
+ /usr/include/c++/11/bits/stl_pair.h \
+ /usr/include/c++/11/bits/predefined_ops.h /usr/include/c++/11/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/c++/11/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+ /usr/include/c++/11/ext/new_allocator.h /usr/include/c++/11/new \
+ /usr/include/c++/11/bits/exception.h \
+ /usr/include/c++/11/bits/ostream_insert.h \
+ /usr/include/c++/11/bits/cxxabi_forced.h \
+ /usr/include/c++/11/bits/stl_function.h \
+ /usr/include/c++/11/backward/binders.h \
+ /usr/include/c++/11/bits/range_access.h \
+ /usr/include/c++/11/initializer_list \
+ /usr/include/c++/11/bits/basic_string.h \
+ /usr/include/c++/11/ext/alloc_traits.h \
+ /usr/include/c++/11/bits/alloc_traits.h \
+ /usr/include/c++/11/bits/stl_construct.h /usr/include/c++/11/string_view \
+ /usr/include/c++/11/bits/functional_hash.h \
+ /usr/include/c++/11/bits/hash_bytes.h \
+ /usr/include/c++/11/bits/string_view.tcc \
+ /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdio \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/c++/11/cerrno /usr/include/c++/11/bits/charconv.h \
+ /usr/include/c++/11/bits/basic_string.tcc \
+ /usr/include/c++/11/bits/locale_classes.tcc \
+ /usr/include/c++/11/system_error \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+ /usr/include/c++/11/stdexcept /usr/include/c++/11/exception \
+ /usr/include/c++/11/bits/exception_ptr.h \
+ /usr/include/c++/11/bits/cxxabi_init_exception.h \
+ /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/nested_exception.h \
+ /usr/include/c++/11/bits/streambuf.tcc /usr/include/c++/11/sstream \
+ /usr/include/c++/11/istream /usr/include/c++/11/ios \
+ /usr/include/c++/11/bits/basic_ios.h \
+ /usr/include/c++/11/bits/locale_facets.h /usr/include/c++/11/cwctype \
+ /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+ /usr/include/c++/11/bits/locale_facets.tcc \
+ /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/ostream \
+ /usr/include/c++/11/bits/ostream.tcc \
+ /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/bits/sstream.tcc \
  /usr/include/glibmm-2.4/glibmm/value.h \
- /usr/include/glibmm-2.4/glibmm/refptr.h /usr/include/c++/15/utility \
- /usr/include/c++/15/bits/stl_relops.h \
+ /usr/include/glibmm-2.4/glibmm/refptr.h /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/glibmm-2.4/glibmm/enums.h \
  /usr/include/glib-2.0/glib-object.h \
  /usr/include/glib-2.0/gobject/gbinding.h \
  /usr/include/glib-2.0/gobject/gobject.h \
  /usr/include/glib-2.0/gobject/gtype.h \
- /usr/include/glib-2.0/gobject/gobject-visibility.h \
  /usr/include/glib-2.0/gobject/gvalue.h \
  /usr/include/glib-2.0/gobject/gparam.h \
  /usr/include/glib-2.0/gobject/gclosure.h \
@@ -265,21 +292,21 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
  /usr/include/glib-2.0/gobject/gvaluetypes.h \
  /usr/include/glib-2.0/gobject/gobject-autocleanups.h \
- /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_uninitialized.h \
- /usr/include/c++/15/bits/stl_vector.h \
- /usr/include/c++/15/bits/stl_bvector.h \
- /usr/include/c++/15/bits/vector.tcc \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc \
  /usr/include/glibmm-2.4/glibmm/value_custom.h \
  /usr/include/glibmm-2.4/glibmm/value_basictypes.h \
  /usr/include/glibmm-2.4/glibmm/timeval.h \
  /usr/include/sigc++-2.0/sigc++/sigc++.h \
- /usr/include/sigc++-2.0/sigc++/signal.h /usr/include/c++/15/list \
- /usr/include/c++/15/bits/stl_list.h \
- /usr/include/c++/15/bits/allocated_ptr.h \
- /usr/include/c++/15/ext/aligned_buffer.h \
- /usr/include/c++/15/bits/list.tcc \
- /usr/include/sigc++-2.0/sigc++/signal_base.h \
- /usr/lib64/sigc++-2.0/include/sigc++config.h \
+ /usr/include/sigc++-2.0/sigc++/signal.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/list.tcc \
+ /usr/include/sigc++-2.0/sigc++/signal_base.h /usr/include/c++/11/cstddef \
+ /usr/lib/x86_64-linux-gnu/sigc++-2.0/include/sigc++config.h \
  /usr/include/sigc++-2.0/sigc++/type_traits.h \
  /usr/include/sigc++-2.0/sigc++/trackable.h \
  /usr/include/sigc++-2.0/sigc++/functors/slot.h \
@@ -296,15 +323,20 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/sigc++-2.0/sigc++/adaptors/bind.h \
  /usr/include/sigc++-2.0/sigc++/adaptors/bound_argument.h \
  /usr/include/sigc++-2.0/sigc++/reference_wrapper.h \
- /usr/include/c++/15/functional /usr/include/c++/15/bits/std_function.h \
- /usr/include/c++/15/unordered_map \
- /usr/include/c++/15/bits/unordered_map.h \
- /usr/include/c++/15/bits/hashtable.h \
- /usr/include/c++/15/bits/hashtable_policy.h \
- /usr/include/c++/15/bits/enable_special_members.h \
- /usr/include/c++/15/bits/node_handle.h \
- /usr/include/c++/15/bits/erase_if.h /usr/include/c++/15/array \
- /usr/include/c++/15/compare \
+ /usr/include/c++/11/functional /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/unordered_map.h \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/bits/stl_algo.h \
+ /usr/include/c++/11/bits/algorithmfwd.h \
+ /usr/include/c++/11/bits/stl_heap.h \
+ /usr/include/c++/11/bits/stl_tempbuf.h \
+ /usr/include/c++/11/bits/uniform_int_dist.h \
  /usr/include/sigc++-2.0/sigc++/adaptors/bind_return.h \
  /usr/include/sigc++-2.0/sigc++/adaptors/hide.h \
  /usr/include/sigc++-2.0/sigc++/adaptors/retype_return.h \
@@ -320,21 +352,21 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glibmm-2.4/glibmm/varianttype.h \
  /usr/include/glibmm-2.4/glibmm/variantiter.h \
  /usr/include/glibmm-2.4/glibmm/variantdbusstring.h \
- /usr/include/c++/15/map /usr/include/c++/15/bits/stl_tree.h \
- /usr/include/c++/15/bits/stl_map.h \
- /usr/include/c++/15/bits/stl_multimap.h /usr/include/c++/15/memory \
- /usr/include/c++/15/bits/stl_tempbuf.h \
- /usr/include/c++/15/bits/stl_raw_storage_iter.h \
- /usr/include/c++/15/bits/align.h /usr/include/c++/15/bits/unique_ptr.h \
- /usr/include/c++/15/bits/shared_ptr.h \
- /usr/include/c++/15/bits/shared_ptr_base.h \
- /usr/include/c++/15/ext/concurrence.h \
- /usr/include/c++/15/bits/shared_ptr_atomic.h \
- /usr/include/c++/15/bits/atomic_base.h \
- /usr/include/c++/15/bits/atomic_lockfree_defines.h \
- /usr/include/c++/15/backward/auto_ptr.h \
- /usr/include/c++/15/pstl/glue_memory_defs.h \
- /usr/include/c++/15/pstl/execution_defs.h \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/memory \
+ /usr/include/c++/11/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
+ /usr/include/c++/11/bits/unique_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/shared_ptr_atomic.h \
+ /usr/include/c++/11/bits/atomic_base.h \
+ /usr/include/c++/11/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/11/backward/auto_ptr.h \
+ /usr/include/c++/11/pstl/glue_memory_defs.h \
+ /usr/include/c++/11/pstl/execution_defs.h \
  /usr/include/glibmm-2.4/glibmm/variant_basictypes.h \
  /usr/include/glibmm-2.4/glibmm/wrap.h \
  /usr/include/glibmm-2.4/glibmm/objectbase.h \
@@ -344,21 +376,14 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glibmm-2.4/glibmm/propertyproxy.h \
  /usr/include/glibmm-2.4/glibmm/propertyproxy_base.h \
  /usr/include/glibmm-2.4/glibmm/quark.h \
- /usr/include/glibmm-2.4/glibmm/debug.h /usr/include/c++/15/mutex \
- /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/ratio \
- /usr/include/c++/15/cstdint \
- /usr/lib/gcc/x86_64-redhat-linux/15/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/c++/15/limits \
- /usr/include/c++/15/ctime /usr/include/c++/15/bits/parse_numbers.h \
- /usr/include/c++/15/bits/std_mutex.h \
- /usr/include/c++/15/bits/unique_lock.h /usr/include/c++/15/algorithm \
- /usr/include/c++/15/bits/stl_algo.h \
- /usr/include/c++/15/bits/algorithmfwd.h \
- /usr/include/c++/15/bits/stl_heap.h \
- /usr/include/c++/15/bits/uniform_int_dist.h \
- /usr/include/c++/15/pstl/glue_algorithm_defs.h /usr/include/c++/15/deque \
- /usr/include/c++/15/bits/stl_deque.h /usr/include/c++/15/bits/deque.tcc \
+ /usr/include/glibmm-2.4/glibmm/debug.h /usr/include/c++/11/mutex \
+ /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
+ /usr/include/c++/11/limits /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/glibmm-2.4/glibmm/balancedtree.h \
  /usr/include/glibmm-2.4/glibmm/base64.h \
  /usr/include/glibmm-2.4/glibmm/binding.h \
@@ -389,8 +414,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glibmm-2.4/glibmm/markup.h \
  /usr/include/glibmm-2.4/glibmm/miscutils.h \
  /usr/include/glibmm-2.4/glibmm/module.h \
- /usr/include/glibmm-2.4/glibmm/nodetree.h /usr/include/c++/15/stack \
- /usr/include/c++/15/bits/stl_stack.h \
+ /usr/include/glibmm-2.4/glibmm/nodetree.h /usr/include/c++/11/stack \
+ /usr/include/c++/11/bits/stl_stack.h \
  /usr/include/glibmm-2.4/glibmm/optioncontext.h \
  /usr/include/glibmm-2.4/glibmm/optionentry.h \
  /usr/include/glibmm-2.4/glibmm/optiongroup.h \
@@ -410,11 +435,9 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glibmm-2.4/glibmm/vectorutils.h \
  /usr/include/glibmm-2.4/glibmm/weakref.h /usr/include/giomm-2.4/giomm.h \
  /usr/include/giomm-2.4/giomm/action.h \
- /usr/lib64/giomm-2.4/include/giommconfig.h \
+ /usr/lib/x86_64-linux-gnu/giomm-2.4/include/giommconfig.h \
  /usr/include/glib-2.0/gio/gio.h /usr/include/glib-2.0/gio/giotypes.h \
- /usr/include/glib-2.0/gio/gioenums.h \
- /usr/include/glib-2.0/gio/gio-visibility.h \
- /usr/include/glib-2.0/gio/gaction.h \
+ /usr/include/glib-2.0/gio/gioenums.h /usr/include/glib-2.0/gio/gaction.h \
  /usr/include/glib-2.0/gio/gactiongroup.h \
  /usr/include/glib-2.0/gio/gactiongroupexporter.h \
  /usr/include/glib-2.0/gio/gactionmap.h \
@@ -490,7 +513,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/gio/gsocketaddress.h \
  /usr/include/glib-2.0/gio/gioenumtypes.h \
  /usr/include/glib-2.0/gio/giomodule.h /usr/include/glib-2.0/gmodule.h \
- /usr/include/glib-2.0/gmodule/gmodule-visibility.h \
  /usr/include/glib-2.0/gio/gioscheduler.h \
  /usr/include/glib-2.0/gio/glistmodel.h \
  /usr/include/glib-2.0/gio/gliststore.h \
@@ -559,10 +581,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/glib-2.0/gio/gtlsinteraction.h \
  /usr/include/glib-2.0/gio/gtlspassword.h \
  /usr/include/glib-2.0/gio/gtlsserverconnection.h \
- /usr/include/glib-2.0/gio/gunixconnection.h \
- /usr/include/glib-2.0/gio/gunixcredentialsmessage.h \
- /usr/include/glib-2.0/gio/gunixfdlist.h \
- /usr/include/glib-2.0/gio/gunixsocketaddress.h \
  /usr/include/glib-2.0/gio/gvfs.h /usr/include/glib-2.0/gio/gvolume.h \
  /usr/include/glib-2.0/gio/gzlibcompressor.h \
  /usr/include/glib-2.0/gio/gzlibdecompressor.h \
@@ -682,8 +700,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/giomm-2.4/giomm/socketclient.h \
  /usr/include/giomm-2.4/giomm/socketconnection.h \
  /usr/include/giomm-2.4/giomm/socketcontrolmessage.h \
- /usr/include/c++/15/set /usr/include/c++/15/bits/stl_set.h \
- /usr/include/c++/15/bits/stl_multiset.h \
+ /usr/include/c++/11/set /usr/include/c++/11/bits/stl_set.h \
+ /usr/include/c++/11/bits/stl_multiset.h \
  /usr/include/giomm-2.4/giomm/socketlistener.h \
  /usr/include/giomm-2.4/giomm/socketservice.h \
  /usr/include/giomm-2.4/giomm/socketsource.h \
@@ -710,8 +728,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/giomm-2.4/giomm/zlibdecompressor.h \
  /usr/include/gdkmm-3.0/gdkmm/dragcontext.h \
  /usr/include/gdkmm-3.0/gdkmm/color.h \
- /usr/lib64/gdkmm-3.0/include/gdkmmconfig.h \
- /usr/lib64/pangomm-1.4/include/pangommconfig.h \
+ /usr/lib/x86_64-linux-gnu/gdkmm-3.0/include/gdkmmconfig.h \
+ /usr/lib/x86_64-linux-gnu/pangomm-1.4/include/pangommconfig.h \
  /usr/include/gtk-3.0/gdk/gdk.h /usr/include/gtk-3.0/gdk/gdkconfig.h \
  /usr/include/gtk-3.0/gdk/gdkversionmacros.h \
  /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h \
@@ -722,12 +740,11 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/pango-1.0/pango/pango-version-macros.h \
  /usr/include/pango-1.0/pango/pango-features.h /usr/include/harfbuzz/hb.h \
  /usr/include/harfbuzz/hb-blob.h /usr/include/harfbuzz/hb-common.h \
- /usr/include/inttypes.h /usr/include/harfbuzz/hb-buffer.h \
- /usr/include/harfbuzz/hb-unicode.h /usr/include/harfbuzz/hb-font.h \
- /usr/include/harfbuzz/hb-face.h /usr/include/harfbuzz/hb-map.h \
+ /usr/include/harfbuzz/hb-buffer.h /usr/include/harfbuzz/hb-unicode.h \
+ /usr/include/harfbuzz/hb-font.h /usr/include/harfbuzz/hb-face.h \
  /usr/include/harfbuzz/hb-set.h /usr/include/harfbuzz/hb-draw.h \
- /usr/include/harfbuzz/hb.h /usr/include/harfbuzz/hb-paint.h \
- /usr/include/harfbuzz/hb-deprecated.h /usr/include/harfbuzz/hb-shape.h \
+ /usr/include/harfbuzz/hb.h /usr/include/harfbuzz/hb-deprecated.h \
+ /usr/include/harfbuzz/hb-map.h /usr/include/harfbuzz/hb-shape.h \
  /usr/include/harfbuzz/hb-shape-plan.h /usr/include/harfbuzz/hb-style.h \
  /usr/include/harfbuzz/hb-version.h \
  /usr/include/pango-1.0/pango/pango-types.h \
@@ -804,7 +821,6 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/freetype2/freetype/config/ftheader.h \
  /usr/include/freetype2/freetype/freetype.h \
  /usr/include/freetype2/freetype/config/ftconfig.h \
- /usr/include/freetype2/freetype/config/ftconfig-64.h \
  /usr/include/freetype2/freetype/config/ftoption.h \
  /usr/include/freetype2/freetype/config/ftstdlib.h /usr/include/setjmp.h \
  /usr/include/freetype2/freetype/config/integer-types.h \
@@ -816,14 +832,23 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/freetype2/freetype/fterrors.h \
  /usr/include/freetype2/freetype/ftmoderr.h \
  /usr/include/freetype2/freetype/fterrdef.h \
- /usr/include/fontconfig/fontconfig.h /usr/include/sys/stat.h \
- /usr/include/bits/stat.h /usr/include/bits/struct_stat.h \
- /usr/include/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/bits/statx-generic.h \
- /usr/include/bits/types/struct_statx_timestamp.h \
- /usr/include/bits/types/struct_statx.h \
+ /usr/include/fontconfig/fontconfig.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
  /usr/include/cairomm-1.0/cairomm/exception.h \
- /usr/lib64/cairomm-1.0/include/cairommconfig.h \
  /usr/include/cairomm-1.0/cairomm/device.h \
  /usr/include/cairomm-1.0/cairomm/types.h \
  /usr/include/cairomm-1.0/cairomm/refptr.h \
@@ -847,35 +872,37 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/cairomm-1.0/cairomm/matrix.h \
  /usr/include/cairomm-1.0/cairomm/path.h \
  /usr/include/cairomm-1.0/cairomm/scaledfont.h \
- /usr/include/c++/15/valarray /usr/include/c++/15/cmath \
- /usr/include/math.h /usr/include/bits/math-vector.h \
- /usr/include/bits/libm-simd-decl-stubs.h \
- /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
- /usr/include/bits/fp-fast.h /usr/include/bits/mathcalls-macros.h \
- /usr/include/bits/mathcalls-helper-functions.h \
- /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
- /usr/include/bits/iscanonical.h /usr/include/c++/15/bits/specfun.h \
- /usr/include/c++/15/tr1/gamma.tcc \
- /usr/include/c++/15/tr1/special_function_util.h \
- /usr/include/c++/15/tr1/bessel_function.tcc \
- /usr/include/c++/15/tr1/beta_function.tcc \
- /usr/include/c++/15/tr1/ell_integral.tcc \
- /usr/include/c++/15/tr1/exp_integral.tcc \
- /usr/include/c++/15/tr1/hypergeometric.tcc \
- /usr/include/c++/15/tr1/legendre_function.tcc \
- /usr/include/c++/15/tr1/modified_bessel_func.tcc \
- /usr/include/c++/15/tr1/poly_hermite.tcc \
- /usr/include/c++/15/tr1/poly_laguerre.tcc \
- /usr/include/c++/15/tr1/riemann_zeta.tcc \
- /usr/include/c++/15/bits/valarray_array.h \
- /usr/include/c++/15/bits/valarray_array.tcc \
- /usr/include/c++/15/bits/valarray_before.h \
- /usr/include/c++/15/bits/slice_array.h \
- /usr/include/c++/15/bits/valarray_after.h \
- /usr/include/c++/15/bits/gslice.h \
- /usr/include/c++/15/bits/gslice_array.h \
- /usr/include/c++/15/bits/mask_array.h \
- /usr/include/c++/15/bits/indirect_array.h \
+ /usr/include/c++/11/valarray /usr/include/c++/11/cmath \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/11/bits/specfun.h /usr/include/c++/11/tr1/gamma.tcc \
+ /usr/include/c++/11/tr1/special_function_util.h \
+ /usr/include/c++/11/tr1/bessel_function.tcc \
+ /usr/include/c++/11/tr1/beta_function.tcc \
+ /usr/include/c++/11/tr1/ell_integral.tcc \
+ /usr/include/c++/11/tr1/exp_integral.tcc \
+ /usr/include/c++/11/tr1/hypergeometric.tcc \
+ /usr/include/c++/11/tr1/legendre_function.tcc \
+ /usr/include/c++/11/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/11/tr1/poly_hermite.tcc \
+ /usr/include/c++/11/tr1/poly_laguerre.tcc \
+ /usr/include/c++/11/tr1/riemann_zeta.tcc \
+ /usr/include/c++/11/bits/valarray_array.h \
+ /usr/include/c++/11/bits/valarray_array.tcc \
+ /usr/include/c++/11/bits/valarray_before.h \
+ /usr/include/c++/11/bits/slice_array.h \
+ /usr/include/c++/11/bits/valarray_after.h \
+ /usr/include/c++/11/bits/gslice.h \
+ /usr/include/c++/11/bits/gslice_array.h \
+ /usr/include/c++/11/bits/mask_array.h \
+ /usr/include/c++/11/bits/indirect_array.h \
  /usr/include/gdkmm-3.0/gdkmm/pixbufanimation.h \
  /usr/include/gdkmm-3.0/gdkmm/pixbufanimationiter.h \
  /usr/include/gdkmm-3.0/gdkmm/pixbufloader.h \
@@ -890,7 +917,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/gdkmm-3.0/gdkmm/general.h \
  /usr/include/gtkmm-3.0/gtkmm/toggleaction.h \
  /usr/include/gtkmm-3.0/gtkmm/action.h \
- /usr/lib64/gtkmm-3.0/include/gtkmmconfig.h \
+ /usr/lib/x86_64-linux-gnu/gtkmm-3.0/include/gtkmmconfig.h \
  /usr/include/gtkmm-3.0/gtkmm/widget.h \
  /usr/include/pangomm-1.4/pangomm/context.h \
  /usr/include/pangomm-1.4/pangomm/fontdescription.h \
@@ -917,7 +944,7 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/pangomm-1.4/pangomm/layoutrun.h \
  /usr/include/atkmm-1.6/atkmm/object.h \
  /usr/include/atkmm-1.6/atkmm/component.h \
- /usr/lib64/atkmm-1.6/include/atkmmconfig.h \
+ /usr/lib/x86_64-linux-gnu/atkmm-1.6/include/atkmmconfig.h \
  /usr/include/atkmm-1.6/atkmm/relation.h \
  /usr/include/atkmm-1.6/atkmm/implementor.h \
  /usr/include/gtkmm-3.0/gtkmm/object.h \
@@ -932,22 +959,22 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/gtk-3.0/gtk/gtkaccelgroup.h \
  /usr/include/gtk-3.0/gtk/gtkenums.h /usr/include/gtk-3.0/gtk/gtkborder.h \
  /usr/include/gtk-3.0/gtk/gtktypes.h /usr/include/atk-1.0/atk/atk.h \
- /usr/include/atk-1.0/atk/atk-enum-types.h \
- /usr/include/atk-1.0/atk/atkversion.h \
- /usr/include/atk-1.0/atk/atkaction.h \
  /usr/include/atk-1.0/atk/atkobject.h \
- /usr/include/atk-1.0/atk/atkrelationtype.h \
+ /usr/include/atk-1.0/atk/atkversion.h \
  /usr/include/atk-1.0/atk/atkstate.h \
+ /usr/include/atk-1.0/atk/atkrelationtype.h \
+ /usr/include/atk-1.0/atk/atkaction.h \
  /usr/include/atk-1.0/atk/atkcomponent.h \
  /usr/include/atk-1.0/atk/atkutil.h \
  /usr/include/atk-1.0/atk/atkdocument.h \
  /usr/include/atk-1.0/atk/atkeditabletext.h \
  /usr/include/atk-1.0/atk/atktext.h \
+ /usr/include/atk-1.0/atk/atk-enum-types.h \
  /usr/include/atk-1.0/atk/atkgobjectaccessible.h \
  /usr/include/atk-1.0/atk/atkhyperlink.h \
  /usr/include/atk-1.0/atk/atkhyperlinkimpl.h \
  /usr/include/atk-1.0/atk/atkhypertext.h \
- /usr/include/atk-1.0/atk/atkimage.h /usr/include/atk-1.0/atk/atkmisc.h \
+ /usr/include/atk-1.0/atk/atkimage.h \
  /usr/include/atk-1.0/atk/atknoopobject.h \
  /usr/include/atk-1.0/atk/atknoopobjectfactory.h \
  /usr/include/atk-1.0/atk/atkobjectfactory.h \
@@ -962,9 +989,8 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/atk-1.0/atk/atkstreamablecontent.h \
  /usr/include/atk-1.0/atk/atktable.h \
  /usr/include/atk-1.0/atk/atktablecell.h \
- /usr/include/atk-1.0/atk/atkvalue.h /usr/include/atk-1.0/atk/atkwindow.h \
- /usr/include/atk-1.0/atk/atk-autocleanups.h \
- /usr/include/gtk-3.0/gtk/gtkbin.h \
+ /usr/include/atk-1.0/atk/atkmisc.h /usr/include/atk-1.0/atk/atkvalue.h \
+ /usr/include/atk-1.0/atk/atkwindow.h /usr/include/gtk-3.0/gtk/gtkbin.h \
  /usr/include/gtk-3.0/gtk/gtkcontainer.h \
  /usr/include/gtk-3.0/gtk/gtkaccellabel.h \
  /usr/include/gtk-3.0/gtk/gtklabel.h \
@@ -1448,15 +1474,15 @@ CMakeFiles/Pixelate.dir/MainWindow.cpp.o: \
  /usr/include/gtkmm-3.0/gtkmm/uimanager.h \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
  /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
- /home/mennajaheen/Pixelate/include/DrawingWindow.h \
- /home/mennajaheen/Pixelate/include/DrawingWindow.h \
- /usr/include/c++/15/iostream /usr/include/c++/15/iomanip \
- /usr/include/c++/15/locale \
- /usr/include/c++/15/bits/locale_facets_nonio.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/time_members.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
- /usr/include/c++/15/bits/locale_facets_nonio.tcc \
- /usr/include/c++/15/bits/locale_conv.h \
- /usr/include/c++/15/bits/quoted_string.h \
- /home/mennajaheen/Pixelate/Singleton.cpp
+ /home/menna/Pixelate/include/DrawingWindow.h \
+ /home/menna/Pixelate/include/DrawingWindow.h \
+ /usr/include/c++/11/iostream /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h \
+ /usr/include/c++/11/bits/quoted_string.h \
+ /home/menna/Pixelate/Singleton.cpp

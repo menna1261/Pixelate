@@ -9,7 +9,7 @@ DrawingWindow::DrawingWindow(int width, int height, Gdk::RGBA* current_color) {
     set_default_size(width, height);
     set_title("Drawing Window");
     add(drawing_area);
-    
+     set_keep_above(true);
     Singleton::getInstance(); 
     drawing_area.set_events(
         Gdk::BUTTON_PRESS_MASK |
